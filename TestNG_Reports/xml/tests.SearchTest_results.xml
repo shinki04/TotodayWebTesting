@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite name="Gradle test"
-           tests="1"
-           failures="0"
+           tests="2"
+           failures="1"
            errors="0"
            skipped="0"
-           time="0.015">
+           time="17.509">
     <properties></properties>
 
+            <testcase
+                name="searchFailed"
+                time="2.162"
+                classname="tests.SearchTest">
+
+            <failure type="java.lang.AssertionError" message="did not expect [https://totoday.vn/search?q=kahwfv] but found [https://totoday.vn/search?q=kahwfv]">
+                <![CDATA[java.lang.AssertionError: did not expect [https://totoday.vn/search?q=kahwfv] but found [https://totoday.vn/search?q=kahwfv]
+                org.testng.Assert.fail(Assert.java:111)org.testng.Assert.failEquals(Assert.java:1582)org.testng.Assert.assertNotEqualsImpl(Assert.java:157)org.testng.Assert.assertNotEquals(Assert.java:2201)org.testng.Assert.assertNotEquals(Assert.java:2223)tests.SearchTest.searchFailed(SearchTest.java:54)java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)java.base/java.lang.reflect.Method.invoke(Method.java:580)org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)java.base/java.util.ArrayList.forEach(ArrayList.java:1597)org.testng.TestRunner.privateRun(TestRunner.java:739)org.testng.TestRunner.run(TestRunner.java:614)org.testng.SuiteRunner.runTest(SuiteRunner.java:421)org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)org.testng.SuiteRunner.run(SuiteRunner.java:312)org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)org.testng.TestNG.runSuitesLocally(TestNG.java:1208)org.testng.TestNG.runSuites(TestNG.java:1112)org.testng.TestNG.run(TestNG.java:1079)org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.runTests(TestNGTestClassProcessor.java:153)org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.stop(TestNGTestClassProcessor.java:95)org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)java.base/java.lang.reflect.Method.invoke(Method.java:580)org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
+]]>
+            </failure>
+    </testcase>
 
 
             <testcase
                 name="searchSuccess"
-                time="0.015"
+                time="15.347"
                 classname="tests.SearchTest">
             </testcase>
 </testsuite>

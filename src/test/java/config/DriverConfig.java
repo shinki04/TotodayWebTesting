@@ -5,16 +5,29 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-public interface DriverConfig {
-
-    WebDriver driver = new ChromeDriver() ;
-    String baseURL = "https://totoday.vn/";
-    ChromeOptions chromeOptions = new ChromeOptions();
+public class DriverConfig {
 
 
+    public static String baseURL = "https://totoday.vn/";
+    private static WebDriver driver;
 
-    static void quitDriver(){
-        driver.quit();
+    public static WebDriver getDriver() {
+        if (driver == null) {
+            WebDriverManager.chromedriver().setup();
+            ChromeOptions chromeOptions = new ChromeOptions();
+            chromeOptions.addArguments("--headless=new");
+            chromeOptions.addArguments("--disable-gpu");
+            chromeOptions.addArguments("--window-size=1920,1080");
+            driver = new ChromeDriver(chromeOptions);
+        }
+        return driver;
+    }
+
+    public static void quitDriver() {
+        if (driver != null) {
+            driver.quit();
+            driver = null;
+        }
     }
 
 //    public static void sleep(int s ) throws InterruptedException {
