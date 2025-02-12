@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public class tools implements DriverConfig {
+public class tools {
 
     public String getValue(WebElement element, String arr){
 //        return element.getAttribute(arr);
@@ -36,15 +36,18 @@ public class tools implements DriverConfig {
         return element.isSelected();
     }
 
-    public  WebElement getChildElement(String fatherElementXpath){
-        List<WebElement> elements = driver.findElements(By.xpath(fatherElementXpath));
-        for (WebElement element : elements){
-            return element;
-        }
-        return null;
+//    public  WebElement getChildElement(String fatherElementXpath){
+//        List<WebElement> elements = driver.findElements(By.xpath(fatherElementXpath));
+//        for (WebElement element : elements){
+//            return element;
+//        }
+//        return null;
+//    }
+
+
+    public String addPlusToString(String text){
+        return text == null ? "" : text.trim().replace(" ","+");
     }
-
-
 
 
 }
