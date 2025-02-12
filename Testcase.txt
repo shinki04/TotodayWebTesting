@@ -1,0 +1,34 @@
+1. Tìm kiếm sản phẩm
+✅ Kiểm tra tìm kiếm sản phẩm với từ khóa chính xác
+✅ Kiểm tra tìm kiếm sản phẩm với từ khóa không chính xác
+✅ Kiểm tra tìm kiếm với từ khóa chứa ký tự đặc biệt
+✅ Kiểm tra tìm kiếm với từ khóa viết hoa/thường khác nhau
+✅ Kiểm tra tìm kiếm với từ khóa có khoảng trắng đầu/cuối
+✅ Kiểm tra tìm kiếm với từ khóa rỗng
+✅ Kiểm tra hiển thị gợi ý khi nhập từ khóa
+✅ Kiểm tra tốc độ tìm kiếm
+2. Lọc sản phẩm
+✅ Kiểm tra chọn một tiêu chí lọc (giá, danh mục, thương hiệu, v.v.)
+✅ Kiểm tra kết hợp nhiều tiêu chí lọc
+✅ Kiểm tra lọc sản phẩm với giá trị ngoài phạm vi
+✅ Kiểm tra bỏ chọn bộ lọc có cập nhật kết quả không
+✅ Kiểm tra tốc độ áp dụng bộ lọc
+✅ Kiểm tra bộ lọc có hiển thị số lượng sản phẩm phù hợp không
+3. Xem chi tiết sản phẩm
+✅ Kiểm tra nhấn vào sản phẩm có mở trang chi tiết không
+✅ Kiểm tra hình ảnh sản phẩm hiển thị đúng không
+✅ Kiểm tra thông tin sản phẩm (giá, mô tả, đánh giá, v.v.) có đầy đủ không
+✅ Kiểm tra nút thêm vào giỏ hàng có hiển thị không
+✅ Kiểm tra hiển thị sản phẩm liên quan
+4. Scale (hiệu năng & giao diện trên nhiều thiết bị)
+✅ Kiểm tra tốc độ tải danh sách sản phẩm
+✅ Kiểm tra tốc độ tải trang chi tiết sản phẩm
+✅ Kiểm tra hiển thị trên màn hình desktop, tablet, mobile
+✅ Kiểm tra hiển thị trên trình duyệt khác nhau
+✅ Kiểm tra tải sản phẩm khi cuộn trang (lazy loading)
+5. Thêm sản phẩm vào danh sách yêu thích
+✅ Kiểm tra nhấn vào biểu tượng yêu thích có thêm sản phẩm không
+✅ Kiểm tra bỏ thích sản phẩm có cập nhật danh sách không
+✅ Kiểm tra danh sách yêu thích có lưu khi tải lại trang không
+✅ Kiểm tra thêm sản phẩm khi chưa đăng nhập có hiển thị yêu cầu đăng nhập không
+✅ Kiểm tra giới hạn số lượng sản phẩm có thể thêm vào yêu thích
