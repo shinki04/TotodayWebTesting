@@ -2,18 +2,28 @@ package tests;
 
 import config.DriverConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.jspecify.annotations.Nullable;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 
-public class LoginTest extends LoginPage {
+public class LoginTest implements DriverConfig {
+    String loginURL = baseURL+"user/signin";
+
+    @BeforeSuite
+    void setupSuite(){
+        WebDriverManager.chromedriver().setup();
+        driver.get(loginURL);
+        chromeOptions.addArguments("--headless");
+    }
+
+    @AfterSuite
+    void cleanupSuite(){
+        driver.quit();
+    }
 
     @Test
-    static void compareTitle(){
+    void compareTitle(){
         String actualTitle = driver.getTitle();
         String expectedTitle = "Đăng nhập";
         Assert.assertEquals(actualTitle,expectedTitle);

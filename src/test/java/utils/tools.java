@@ -36,7 +36,6 @@ public class tools implements DriverConfig {
         return element.isSelected();
     }
 
-
     public  WebElement getChildElement(String fatherElementXpath){
         List<WebElement> elements = driver.findElements(By.xpath(fatherElementXpath));
         for (WebElement element : elements){

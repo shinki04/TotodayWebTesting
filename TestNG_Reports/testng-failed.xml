@@ -5,6 +5,8 @@
     <classes>
       <class name="tests.LoginTest">
         <methods>
+          <include name="Bs"/>
+          <include name="As"/>
           <include name="compareTitle"/>
         </methods>
       </class> <!-- tests.LoginTest -->

@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Gradle_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Gradle_suite" title="tests.LoginTest" class="method navigator-link" hash-for-method="compareTitle">compareTitle</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Gradle_suite" title="tests.SearchTest" class="method navigator-link" hash-for-method="searchSuccess">searchSuccess</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Gradle_suite -->
@@ -121,14 +121,14 @@
           <div class="suite-Gradle_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">tests.LoginTest</span>
+              <span class="class-name">tests.SearchTest</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="compareTitle">
-                  </a> <!-- compareTitle -->
-                  <span class="method-name">compareTitle</span>
+                  <a name="searchSuccess">
+                  </a> <!-- searchSuccess -->
+                  <span class="method-name">searchSuccess</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -144,7 +144,7 @@
 &lt;suite name=&quot;Gradle suite&quot; verbose=&quot;0&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Gradle test&quot; verbose=&quot;0&quot; preserve-order=&quot;false&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tests.LoginTest&quot;/&gt;
+      &lt;class name=&quot;tests.SearchTest&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Gradle test --&gt;
 &lt;/suite&gt; &lt;!-- Gradle suite --&gt;
@@ -186,14 +186,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'compareTitle')
-data.setCell(0, 2, 'tests.LoginTest')
-data.setCell(0, 3, 17);
+data.setCell(0, 1, 'searchSuccess')
+data.setCell(0, 2, 'tests.SearchTest')
+data.setCell(0, 3, 15);
 window.suiteTableData['Gradle_suite']= { tableData: data, tableDiv: 'times-div-Gradle_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 17 ms</span>
+              <span class="suite-total-time">Total running time: 15 ms</span>
               <div id="times-div-Gradle_suite">
               </div> <!-- times-div-Gradle_suite -->
             </div> <!-- times-div -->
@@ -219,18 +219,22 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.LoginTest</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">tests.SearchTest</div> <!-- chronological-class-name -->
               <div class="configuration-suite before">
-                <span class="method-name">Bs</span>
+                <span class="method-name">setupSuite</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
+              <div class="configuration-class before">
+                <span class="method-name">setupClass</span>
+                <span class="method-start">31006 ms</span>
+              </div> <!-- configuration-class before -->
               <div class="test-method">
-                <span class="method-name">compareTitle</span>
-                <span class="method-start">59353 ms</span>
+                <span class="method-name">searchSuccess</span>
+                <span class="method-start">31034 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
-                <span class="method-name">As</span>
-                <span class="method-start">59384 ms</span>
+                <span class="method-name">cleanupSuite</span>
+                <span class="method-start">31061 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

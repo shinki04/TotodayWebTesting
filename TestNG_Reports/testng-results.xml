@@ -2,24 +2,28 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-02-12T14:05:42 ICT" name="Gradle suite" finished-at="2025-02-12T14:05:42 ICT" duration-ms="32">
+  <suite started-at="2025-02-12T16:14:33 ICT" name="Gradle suite" finished-at="2025-02-12T16:14:33 ICT" duration-ms="57">
     <groups>
     </groups>
-    <test started-at="2025-02-12T14:05:42 ICT" name="Gradle test" finished-at="2025-02-12T14:05:42 ICT" duration-ms="32">
-      <class name="tests.LoginTest">
-        <test-method is-config="true" signature="Bs()[pri:0, instance:tests.LoginTest@49b2a47d]" started-at="2025-02-12T14:04:42 ICT" name="Bs" finished-at="2025-02-12T14:05:42 ICT" duration-ms="59340" status="PASS">
+    <test started-at="2025-02-12T16:14:33 ICT" name="Gradle test" finished-at="2025-02-12T16:14:33 ICT" duration-ms="57">
+      <class name="tests.SearchTest">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:tests.SearchTest@5be1d0a4]" started-at="2025-02-12T16:14:02 ICT" name="setupSuite" finished-at="2025-02-12T16:14:33 ICT" duration-ms="30994" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Bs -->
-        <test-method signature="compareTitle()[pri:0, instance:tests.LoginTest@49b2a47d]" started-at="2025-02-12T14:05:42 ICT" name="compareTitle" finished-at="2025-02-12T14:05:42 ICT" duration-ms="17" status="PASS">
+        </test-method> <!-- setupSuite -->
+        <test-method is-config="true" signature="setupClass()[pri:0, instance:tests.SearchTest@5be1d0a4]" started-at="2025-02-12T16:14:33 ICT" name="setupClass" finished-at="2025-02-12T16:14:33 ICT" duration-ms="24" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- compareTitle -->
-        <test-method is-config="true" signature="As()[pri:0, instance:tests.LoginTest@49b2a47d]" started-at="2025-02-12T14:05:42 ICT" name="As" finished-at="2025-02-12T14:05:42 ICT" duration-ms="146" status="PASS">
+        </test-method> <!-- setupClass -->
+        <test-method signature="searchSuccess()[pri:0, instance:tests.SearchTest@5be1d0a4]" started-at="2025-02-12T16:14:33 ICT" name="searchSuccess" finished-at="2025-02-12T16:14:33 ICT" duration-ms="15" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- As -->
-      </class> <!-- tests.LoginTest -->
+        </test-method> <!-- searchSuccess -->
+        <test-method is-config="true" signature="cleanupSuite()[pri:0, instance:tests.SearchTest@5be1d0a4]" started-at="2025-02-12T16:14:33 ICT" name="cleanupSuite" finished-at="2025-02-12T16:14:33 ICT" duration-ms="161" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanupSuite -->
+      </class> <!-- tests.SearchTest -->
     </test> <!-- Gradle test -->
   </suite> <!-- Gradle suite -->
 </testng-results>
