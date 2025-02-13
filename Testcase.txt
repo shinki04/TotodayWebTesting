@@ -2,9 +2,10 @@
 ✅ Kiểm tra tìm kiếm sản phẩm với từ khóa chính xác
 ✅ Kiểm tra tìm kiếm sản phẩm với từ khóa không chính xác
 ✅ Kiểm tra tìm kiếm với từ khóa chứa ký tự đặc biệt
-✅ Kiểm tra tìm kiếm với từ khóa viết hoa/thường khác nhau
-✅ Kiểm tra tìm kiếm với từ khóa có khoảng trắng đầu/cuối
-✅ Kiểm tra tìm kiếm với từ khóa rỗng
+Kiểm tra tìm kiếm với từ khóa viết hoa/thường khác nhau
+Kiểm tra tìm kiếm với từ khóa có khoảng trắng đầu/cuối
+Kiểm tra tìm kiếm với từ khóa rỗng
+Kiểm tra tìm kiếm với kí tự dài nhất
 ✅ Kiểm tra hiển thị gợi ý khi nhập từ khóa
 ✅ Kiểm tra tốc độ tìm kiếm
 2. Lọc sản phẩm

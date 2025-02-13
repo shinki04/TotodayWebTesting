@@ -1,12 +1,8 @@
 package utils;
 
-import config.DriverConfig;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
-public class tools {
+public class Tools {
 
     public String getValue(WebElement element, String arr){
 //        return element.getAttribute(arr);
@@ -17,13 +13,7 @@ public class tools {
         return element.getText();
     }
 
-    public static void sleep(int time){
-        try {
-            Thread.sleep(time+1000);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+
     public  void setCheckboxState(WebElement element, boolean state){
         boolean isActualChecked = element.isSelected();
         if (state != isActualChecked) {

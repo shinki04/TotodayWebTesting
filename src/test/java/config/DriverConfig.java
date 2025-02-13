@@ -28,6 +28,14 @@ public class DriverConfig {
         }
     }
 
+    public static void sleep(int time){
+        try {
+            Thread.sleep(time+1000);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
 //    public static void sleep(int s ) throws InterruptedException {
 //        Thread.sleep(s+1000);
 //    }

@@ -5,10 +5,10 @@
     <classes>
       <class name="tests.SearchTest">
         <methods>
-          <include name="setupClass"/>
-          <include name="searchFailed"/>
+          <include name="testSearchWithIncorrectKeyword"/>
           <include name="setupSuite"/>
           <include name="cleanupSuite"/>
+          <include name="setupTest"/>
         </methods>
       </class> <!-- tests.SearchTest -->
     </classes>
