@@ -143,11 +143,11 @@
                   <a name="searchFailed">
                   </a> <!-- searchFailed -->
                   <span class="method-name">searchFailed</span>
-                  <div class="stack-trace">java.lang.AssertionError: did not expect [https://totoday.vn/search?q=kahwfv] but found [https://totoday.vn/search?q=kahwfv]
-	at tests.SearchTest.searchFailed(SearchTest.java:54)
+                  <div class="stack-trace">java.lang.AssertionError: expected [false] but found [true]
+	at tests.SearchTest.searchFailed(SearchTest.java:56)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
 	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
-... Removed 45 stack frames
+... Removed 44 stack frames
 </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
@@ -223,16 +223,16 @@ data.addRows(2);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'searchSuccess')
 data.setCell(0, 2, 'tests.SearchTest')
-data.setCell(0, 3, 15347);
+data.setCell(0, 3, 11243);
 data.setCell(1, 0, 1)
 data.setCell(1, 1, 'searchFailed')
 data.setCell(1, 2, 'tests.SearchTest')
-data.setCell(1, 3, 2162);
+data.setCell(1, 3, 2115);
 window.suiteTableData['Gradle_suite']= { tableData: data, tableDiv: 'times-div-Gradle_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 17 seconds</span>
+              <span class="suite-total-time">Total running time: 13 seconds</span>
               <div id="times-div-Gradle_suite">
               </div> <!-- times-div-Gradle_suite -->
             </div> <!-- times-div -->
@@ -265,21 +265,21 @@ return data;
               </div> <!-- configuration-suite before -->
               <div class="configuration-test before">
                 <span class="method-name">setupClass</span>
-                <span class="method-start">23040 ms</span>
+                <span class="method-start">19863 ms</span>
               </div> <!-- configuration-test before -->
               <div class="test-method">
                 <span class="method-name">searchSuccess</span>
-                <span class="method-start">23049 ms</span>
+                <span class="method-start">19873 ms</span>
               </div> <!-- test-method -->
               <div class="test-method">
                 <img src="failed.png">
                 </img>
                 <span class="method-name">searchFailed</span>
-                <span class="method-start">38398 ms</span>
+                <span class="method-start">31119 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">cleanupSuite</span>
-                <span class="method-start">40582 ms</span>
+                <span class="method-start">33261 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

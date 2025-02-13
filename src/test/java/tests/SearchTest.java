@@ -14,8 +14,9 @@ import utils.tools;
 public class SearchTest extends DriverConfig {
     private static tools tols = new tools();
     private WebElement searchInput;
-    private WebElement messageNoProduct;
     private final WebDriver driver = getDriver();
+    private DriverConfig driverConfig;
+
 
     @BeforeSuite
     void setupSuite(){
@@ -26,8 +27,9 @@ public class SearchTest extends DriverConfig {
 
     @AfterSuite
     void cleanupSuite(){
-        driver.quit();
+        quitDriver();
     }
+
 
     @BeforeTest
     void setupClass(){
@@ -37,7 +39,7 @@ public class SearchTest extends DriverConfig {
 
 
     @Test(priority = 0)
-    void searchSuccess(){
+    void testSearchSuccess(){
         searchInput = driver.findElement(By.xpath("//input[@class='search-input']"));
         String searchItem = "Quần Jean";
         searchInput.sendKeys(searchItem);
@@ -46,16 +48,22 @@ public class SearchTest extends DriverConfig {
     }
 
     @Test(priority = 1)
-    void searchFailed(){
+    void testSearchFailed(){
         searchInput = driver.findElement(By.xpath("//input[@class='search-input']"));
-        String searchItem = "kahwfv";
+        String searchItem = "quần đùi";
         searchInput.sendKeys(searchItem);
         searchInput.submit();
         Assert.assertNotEquals(driver.getCurrentUrl(),(baseURL+"search?q="+tols.addPlusToString(searchItem)));
-        messageNoProduct = driver.findElement(By.xpath("//div[@class='no-product']"));
-        Assert.assertFalse(messageNoProduct.isDisplayed());
+        WebElement messageNoProduct = driver.findElement(By.xpath("//div[@class='no-product']"));
+        Assert.assertTrue(messageNoProduct.isDisplayed());
+    }
+
+    @Test(priority = 2)
+    void testSearchWithIncorrectKeyword(){
 
     }
+
+
 
 
 

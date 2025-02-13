@@ -2,36 +2,35 @@
 <testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-02-12T19:26:41 ICT" name="Gradle suite" finished-at="2025-02-12T19:26:59 ICT" duration-ms="17529">
+  <suite started-at="2025-02-12T19:37:31 ICT" name="Gradle suite" finished-at="2025-02-12T19:37:45 ICT" duration-ms="13374">
     <groups>
     </groups>
-    <test started-at="2025-02-12T19:26:41 ICT" name="Gradle test" finished-at="2025-02-12T19:26:59 ICT" duration-ms="17529">
+    <test started-at="2025-02-12T19:37:31 ICT" name="Gradle test" finished-at="2025-02-12T19:37:45 ICT" duration-ms="13374">
       <class name="tests.SearchTest">
-        <test-method is-config="true" signature="setupSuite()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:18 ICT" name="setupSuite" finished-at="2025-02-12T19:26:41 ICT" duration-ms="23038" status="PASS">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:37:11 ICT" name="setupSuite" finished-at="2025-02-12T19:37:31 ICT" duration-ms="19861" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupSuite -->
-        <test-method is-config="true" signature="setupClass()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:41 ICT" name="setupClass" finished-at="2025-02-12T19:26:41 ICT" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="setupClass()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:37:31 ICT" name="setupClass" finished-at="2025-02-12T19:37:31 ICT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupClass -->
-        <test-method signature="searchSuccess()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:41 ICT" name="searchSuccess" finished-at="2025-02-12T19:26:56 ICT" duration-ms="15347" status="PASS">
+        <test-method signature="searchSuccess()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:37:31 ICT" name="searchSuccess" finished-at="2025-02-12T19:37:43 ICT" duration-ms="11243" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchSuccess -->
-        <test-method signature="searchFailed()[pri:1, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:56 ICT" name="searchFailed" finished-at="2025-02-12T19:26:59 ICT" duration-ms="2162" status="FAIL">
+        <test-method signature="searchFailed()[pri:1, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:37:43 ICT" name="searchFailed" finished-at="2025-02-12T19:37:45 ICT" duration-ms="2115" status="FAIL">
           <exception class="java.lang.AssertionError">
             <message>
-              <![CDATA[did not expect [https://totoday.vn/search?q=kahwfv] but found [https://totoday.vn/search?q=kahwfv]]]>
+              <![CDATA[expected [false] but found [true]]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: did not expect [https://totoday.vn/search?q=kahwfv] but found [https://totoday.vn/search?q=kahwfv]
+              <![CDATA[java.lang.AssertionError: expected [false] but found [true]
 at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failEquals(Assert.java:1582)
-at org.testng.Assert.assertNotEqualsImpl(Assert.java:157)
-at org.testng.Assert.assertNotEquals(Assert.java:2201)
-at org.testng.Assert.assertNotEquals(Assert.java:2223)
-at tests.SearchTest.searchFailed(SearchTest.java:54)
+at org.testng.Assert.failNotEquals(Assert.java:1578)
+at org.testng.Assert.assertFalse(Assert.java:79)
+at org.testng.Assert.assertFalse(Assert.java:89)
+at tests.SearchTest.searchFailed(SearchTest.java:56)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -80,7 +79,7 @@ at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerM
           <reporter-output>
           </reporter-output>
         </test-method> <!-- searchFailed -->
-        <test-method is-config="true" signature="cleanupSuite()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:59 ICT" name="cleanupSuite" finished-at="2025-02-12T19:26:59 ICT" duration-ms="127" status="PASS">
+        <test-method is-config="true" signature="cleanupSuite()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:37:45 ICT" name="cleanupSuite" finished-at="2025-02-12T19:37:45 ICT" duration-ms="142" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cleanupSuite -->
