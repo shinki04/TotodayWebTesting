@@ -1,86 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="2" passed="1" failed="1" skipped="0">
+<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-02-12T19:26:41 ICT" name="Gradle suite" finished-at="2025-02-12T19:26:59 ICT" duration-ms="17529">
+  <suite started-at="2025-02-13T13:10:22 ICT" name="Gradle suite" finished-at="2025-02-13T13:10:34 ICT" duration-ms="11480">
     <groups>
     </groups>
-    <test started-at="2025-02-12T19:26:41 ICT" name="Gradle test" finished-at="2025-02-12T19:26:59 ICT" duration-ms="17529">
+    <test started-at="2025-02-13T13:10:22 ICT" name="Gradle test" finished-at="2025-02-13T13:10:34 ICT" duration-ms="11480">
       <class name="tests.SearchTest">
-        <test-method is-config="true" signature="setupSuite()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:18 ICT" name="setupSuite" finished-at="2025-02-12T19:26:41 ICT" duration-ms="23038" status="PASS">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:tests.SearchTest@72be135f]" started-at="2025-02-13T13:10:09 ICT" name="setupSuite" finished-at="2025-02-13T13:10:22 ICT" duration-ms="13490" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupSuite -->
-        <test-method is-config="true" signature="setupClass()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:41 ICT" name="setupClass" finished-at="2025-02-12T19:26:41 ICT" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="setupTest()[pri:0, instance:tests.SearchTest@72be135f]" started-at="2025-02-13T13:10:22 ICT" name="setupTest" finished-at="2025-02-13T13:10:22 ICT" duration-ms="10" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setupClass -->
-        <test-method signature="searchSuccess()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:41 ICT" name="searchSuccess" finished-at="2025-02-12T19:26:56 ICT" duration-ms="15347" status="PASS">
+        </test-method> <!-- setupTest -->
+        <test-method signature="testSearchSuccess()[pri:0, instance:tests.SearchTest@72be135f]" started-at="2025-02-13T13:10:22 ICT" name="testSearchSuccess" finished-at="2025-02-13T13:10:31 ICT" duration-ms="9152" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- searchSuccess -->
-        <test-method signature="searchFailed()[pri:1, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:56 ICT" name="searchFailed" finished-at="2025-02-12T19:26:59 ICT" duration-ms="2162" status="FAIL">
-          <exception class="java.lang.AssertionError">
-            <message>
-              <![CDATA[did not expect [https://totoday.vn/search?q=kahwfv] but found [https://totoday.vn/search?q=kahwfv]]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: did not expect [https://totoday.vn/search?q=kahwfv] but found [https://totoday.vn/search?q=kahwfv]
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.failEquals(Assert.java:1582)
-at org.testng.Assert.assertNotEqualsImpl(Assert.java:157)
-at org.testng.Assert.assertNotEquals(Assert.java:2201)
-at org.testng.Assert.assertNotEquals(Assert.java:2223)
-at tests.SearchTest.searchFailed(SearchTest.java:54)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:686)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:992)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-at org.testng.TestRunner.privateRun(TestRunner.java:739)
-at org.testng.TestRunner.run(TestRunner.java:614)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.runTests(TestNGTestClassProcessor.java:153)
-at org.gradle.api.internal.tasks.testing.testng.TestNGTestClassProcessor.stop(TestNGTestClassProcessor.java:95)
-at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.stop(SuiteTestClassProcessor.java:63)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:36)
-at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
-at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:33)
-at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:92)
-at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
-at org.gradle.api.internal.tasks.testing.worker.TestWorker$3.run(TestWorker.java:200)
-at org.gradle.api.internal.tasks.testing.worker.TestWorker.executeAndMaintainThreadName(TestWorker.java:132)
-at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:103)
-at org.gradle.api.internal.tasks.testing.worker.TestWorker.execute(TestWorker.java:63)
-at org.gradle.process.internal.worker.child.ActionExecutionWorker.execute(ActionExecutionWorker.java:56)
-at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:121)
-at org.gradle.process.internal.worker.child.SystemApplicationClassLoaderWorker.call(SystemApplicationClassLoaderWorker.java:71)
-at worker.org.gradle.process.internal.worker.GradleWorkerMain.run(GradleWorkerMain.java:69)
-at worker.org.gradle.process.internal.worker.GradleWorkerMain.main(GradleWorkerMain.java:74)
-]]>
-            </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+        </test-method> <!-- testSearchSuccess -->
+        <test-method signature="testSearchWithIncorrectKeyword()[pri:1, instance:tests.SearchTest@72be135f]" started-at="2025-02-13T13:10:31 ICT" name="testSearchWithIncorrectKeyword" finished-at="2025-02-13T13:10:32 ICT" duration-ms="1063" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- searchFailed -->
-        <test-method is-config="true" signature="cleanupSuite()[pri:0, instance:tests.SearchTest@a8a8b75]" started-at="2025-02-12T19:26:59 ICT" name="cleanupSuite" finished-at="2025-02-12T19:26:59 ICT" duration-ms="127" status="PASS">
+        </test-method> <!-- testSearchWithIncorrectKeyword -->
+        <test-method signature="testSearchWithItestSearchWithSpecialCharactersncorrectKeyword()[pri:2, instance:tests.SearchTest@72be135f]" started-at="2025-02-13T13:10:32 ICT" name="testSearchWithItestSearchWithSpecialCharactersncorrectKeyword" finished-at="2025-02-13T13:10:34 ICT" duration-ms="1105" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSearchWithItestSearchWithSpecialCharactersncorrectKeyword -->
+        <test-method is-config="true" signature="clearTest()[pri:0, instance:tests.SearchTest@72be135f]" started-at="2025-02-13T13:10:34 ICT" name="clearTest" finished-at="2025-02-13T13:10:34 ICT" duration-ms="136" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- clearTest -->
+        <test-method is-config="true" signature="cleanupSuite()[pri:0, instance:tests.SearchTest@72be135f]" started-at="2025-02-13T13:10:34 ICT" name="cleanupSuite" finished-at="2025-02-13T13:10:34 ICT" duration-ms="1" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- cleanupSuite -->

@@ -16,8 +16,6 @@ public class DriverConfig {
             WebDriverManager.chromedriver().setup();
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("--headless=new");
-            chromeOptions.addArguments("--disable-gpu");
-            chromeOptions.addArguments("--window-size=1920,1080");
             driver = new ChromeDriver(chromeOptions);
         }
         return driver;
@@ -27,6 +25,14 @@ public class DriverConfig {
         if (driver != null) {
             driver.quit();
             driver = null;
+        }
+    }
+
+    public static void sleep(int time){
+        try {
+            Thread.sleep(time+1000);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 

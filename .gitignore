@@ -3,6 +3,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+### Report ###
+TestNG_Reports/*
+GradleReports/*
 
 ### IntelliJ IDEA ###
 #.idea/modules.xml

@@ -26,8 +26,8 @@ public class LoginTest extends DriverConfig {
     @Test
     void compareTitle(){
         String actualTitle = driver.getTitle();
-        String expectedTitle = "Đăng nhập";
-        Assert.assertEquals(actualTitle,expectedTitle);
+        String expectedTitle = "Đăng nhập s";
+        Assert.assertEquals(actualTitle,expectedTitle, "Không giống nhau");
     }
 
 }
