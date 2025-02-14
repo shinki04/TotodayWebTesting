@@ -33,3 +33,33 @@ Kiểm tra tìm kiếm với kí tự dài nhất
 ✅ Kiểm tra danh sách yêu thích có lưu khi tải lại trang không
 ✅ Kiểm tra thêm sản phẩm khi chưa đăng nhập có hiển thị yêu cầu đăng nhập không
 ✅ Kiểm tra giới hạn số lượng sản phẩm có thể thêm vào yêu thích
+
+==========================================================================
+Test case by Nhi Nguyen
+
+Đăng ký
+✅ Kiểm tra nhấn nút Đăng ký với thông tin hợp lệ có tạo tài khoản thành công không
+✅ Kiểm tra nhấn nút Đăng ký với thông tin không hợp lệ (email sai định dạng, mật khẩu ngắn) có hiển thị thông báo lỗi không
+✅ Kiểm tra hệ thống có yêu cầu xác nhận email sau khi đăng ký không
+✅ Kiểm tra khi không nhập thông tin bắt buộc có hiển thị thông báo yêu cầu điền thông tin không
+✅ Kiểm tra đăng ký với tài khoản đã tồn tại có hiển thị thông báo lỗi không
+2. Đăng nhập/Đăng xuất
+✅ Kiểm tra đăng nhập với tài khoản hợp lệ có thành công và chuyển đến trang chủ không
+✅ Kiểm tra đăng nhập với tài khoản sai thông tin có hiển thị thông báo lỗi không
+✅ Kiểm tra đăng nhập khi tài khoản chưa được xác nhận có hiển thị yêu cầu xác nhận không
+✅ Kiểm tra đăng xuất có đưa người dùng trở lại trang đăng nhập không
+✅ Kiểm tra đăng xuất khi chưa đăng nhập có hiển thị thông báo lỗi không
+3. Quản lý hồ sơ của tôi
+✅ Kiểm tra chỉnh sửa thông tin cá nhân (Tên, Địa chỉ, Số điện thoại) có lưu thành công không
+✅ Kiểm tra nhập thông tin sai định dạng (email không hợp lệ, số điện thoại không đúng) có hiển thị thông báo lỗi không
+✅ Kiểm tra tải lại trang có hiển thị thông tin hồ sơ mới không
+✅ Kiểm tra việc cập nhật ảnh đại diện có thay đổi thành công không
+✅ Kiểm tra thay đổi mật khẩu có yêu cầu mật khẩu cũ trước khi cập nhật không
+4. Đổi mật khẩu
+
+5. Xóa danh sách yêu thích
+✅ Kiểm tra nhấn vào nút "Xóa" trên sản phẩm yêu thích có xóa sản phẩm khỏi danh sách không
+✅ Kiểm tra xóa sản phẩm yêu thích có cập nhật lại danh sách yêu thích ngay lập tức không
+✅ Kiểm tra xóa sản phẩm khi không có sản phẩm yêu thích có hiển thị thông báo không
+✅ Kiểm tra xóa sản phẩm yêu thích khi chưa đăng nhập có hiển thị yêu cầu đăng nhập không
+✅ Kiểm tra xóa sản phẩm yêu thích khi tải lại trang có cập nhật đúng danh sách yêu thích không
