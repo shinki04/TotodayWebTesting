@@ -1,20 +1,24 @@
 package utils;
 
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+
+import java.util.Objects;
+import java.util.UUID;
 
 public class Tools {
 
-    public String getValue(WebElement element, String arr){
+    public String getValue(WebElement element, String arr) {
 //        return element.getAttribute(arr);
         return element.getDomAttribute(arr);
     }
 
-    public String getText(WebElement element){
+    public String getText(WebElement element) {
         return element.getText();
     }
 
 
-    public  void setCheckboxState(WebElement element, boolean state){
+    public void setCheckboxState(WebElement element, boolean state) {
         boolean isActualChecked = element.isSelected();
         if (state != isActualChecked) {
             element.click();
@@ -22,7 +26,7 @@ public class Tools {
     }
 
 
-    public boolean getCheckboxState(WebElement element){
+    public boolean getCheckboxState(WebElement element) {
         return element.isSelected();
     }
 
@@ -35,8 +39,43 @@ public class Tools {
 //    }
 
 
-    public String addPlusToString(String text){
-        return text == null ? "" : text.trim().replace(" ","+");
+    public String addPlusToString(String text) {
+        return Objects.equals(text, "") ? "" : text.trim().replace(" ", "+");
+    }
+
+    public WebElement getElementIsDisplayed(WebElement element) {
+        try {
+            if (element.isDisplayed()) {
+                return element;
+            }
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+        return null;
+    }
+
+    public boolean checkElementIsDisplayed(WebElement element) {
+        if (element != null) {
+            return false;
+        } else {
+            return element.isDisplayed();
+        }
+    }
+
+//    public WebElement checkTestElementNotDisplayed(WebElement element){
+//        try {
+//            if (!element.isDisplayed()) {
+//                return element;
+//            }
+//        } catch (NoSuchElementException e) {
+//            return null;
+//        }
+//        return null;
+//    }
+
+    public String generateRandomString(int length) {
+        String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // Loại bỏ dấu "-"
+        return uuid.substring(0, Math.min(length, uuid.length()));
     }
 
 
