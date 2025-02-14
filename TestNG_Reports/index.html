@@ -92,7 +92,7 @@
               <div class="suite-section-content">
                 <ul>
                   <li>
-                    <span class="method-stats">3 methods,   3 passed</span>
+                    <span class="method-stats">7 methods,   7 passed</span>
                   </li>
                   <li>
                     <span class="method-list-title passed">Passed methods</span>
@@ -103,17 +103,37 @@
                     <div class="method-list-content passed suite-Gradle_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Gradle_suite" title="tests.SearchTest" class="method navigator-link" hash-for-method="testSearchFailed">testSearchFailed</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Gradle_suite" title="tests.SearchTest" class="method navigator-link" hash-for-method="testSearchSuccess">testSearchSuccess</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Gradle_suite" title="tests.SearchTest" class="method navigator-link" hash-for-method="testSearchWithIncorrectKeyword">testSearchWithIncorrectKeyword</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Gradle_suite" title="tests.SearchTest" class="method navigator-link" hash-for-method="testSearchWithCaseInsensitiveKeyword">testSearchWithCaseInsensitiveKeyword</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Gradle_suite" title="tests.SearchTest" class="method navigator-link" hash-for-method="testSearchWithEmptyKeyword">testSearchWithEmptyKeyword</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="passed.png" width="3%"/>
                         <a href="#" panel-name="suite-Gradle_suite" title="tests.SearchTest" class="method navigator-link" hash-for-method="testSearchWithItestSearchWithSpecialCharactersncorrectKeyword">testSearchWithItestSearchWithSpecialCharactersncorrectKeyword</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Gradle_suite" title="tests.SearchTest" class="method navigator-link" hash-for-method="testSearchWithLeadingTrailingSpaces">testSearchWithLeadingTrailingSpaces</a> <!-- method navigator-link -->
+                      </span>
+                      <br/>
+                      <span>
+                        <img src="passed.png" width="3%"/>
+                        <a href="#" panel-name="suite-Gradle_suite" title="tests.SearchTest" class="method navigator-link" hash-for-method="testSearchWithMaxLengthKeyword">testSearchWithMaxLengthKeyword</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Gradle_suite -->
@@ -136,6 +156,13 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
+                  <a name="testSearchFailed">
+                  </a> <!-- testSearchFailed -->
+                  <span class="method-name">testSearchFailed</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
                   <a name="testSearchSuccess">
                   </a> <!-- testSearchSuccess -->
                   <span class="method-name">testSearchSuccess</span>
@@ -143,9 +170,16 @@
               </div> <!-- method -->
               <div class="method">
                 <div class="method-content">
-                  <a name="testSearchWithIncorrectKeyword">
-                  </a> <!-- testSearchWithIncorrectKeyword -->
-                  <span class="method-name">testSearchWithIncorrectKeyword</span>
+                  <a name="testSearchWithCaseInsensitiveKeyword">
+                  </a> <!-- testSearchWithCaseInsensitiveKeyword -->
+                  <span class="method-name">testSearchWithCaseInsensitiveKeyword</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testSearchWithEmptyKeyword">
+                  </a> <!-- testSearchWithEmptyKeyword -->
+                  <span class="method-name">testSearchWithEmptyKeyword</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -153,6 +187,20 @@
                   <a name="testSearchWithItestSearchWithSpecialCharactersncorrectKeyword">
                   </a> <!-- testSearchWithItestSearchWithSpecialCharactersncorrectKeyword -->
                   <span class="method-name">testSearchWithItestSearchWithSpecialCharactersncorrectKeyword</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testSearchWithLeadingTrailingSpaces">
+                  </a> <!-- testSearchWithLeadingTrailingSpaces -->
+                  <span class="method-name">testSearchWithLeadingTrailingSpaces</span>
+                </div> <!-- method-content -->
+              </div> <!-- method -->
+              <div class="method">
+                <div class="method-content">
+                  <a name="testSearchWithMaxLengthKeyword">
+                  </a> <!-- testSearchWithMaxLengthKeyword -->
+                  <span class="method-name">testSearchWithMaxLengthKeyword</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -208,24 +256,40 @@ data.addColumn('number', 'Number');
 data.addColumn('string', 'Method');
 data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
-data.addRows(3);
+data.addRows(7);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'testSearchSuccess')
 data.setCell(0, 2, 'tests.SearchTest')
-data.setCell(0, 3, 9152);
+data.setCell(0, 3, 17130);
 data.setCell(1, 0, 1)
-data.setCell(1, 1, 'testSearchWithItestSearchWithSpecialCharactersncorrectKeyword')
+data.setCell(1, 1, 'testSearchWithEmptyKeyword')
 data.setCell(1, 2, 'tests.SearchTest')
-data.setCell(1, 3, 1105);
+data.setCell(1, 3, 6606);
 data.setCell(2, 0, 2)
-data.setCell(2, 1, 'testSearchWithIncorrectKeyword')
+data.setCell(2, 1, 'testSearchFailed')
 data.setCell(2, 2, 'tests.SearchTest')
-data.setCell(2, 3, 1063);
+data.setCell(2, 3, 2618);
+data.setCell(3, 0, 3)
+data.setCell(3, 1, 'testSearchWithMaxLengthKeyword')
+data.setCell(3, 2, 'tests.SearchTest')
+data.setCell(3, 3, 2495);
+data.setCell(4, 0, 4)
+data.setCell(4, 1, 'testSearchWithLeadingTrailingSpaces')
+data.setCell(4, 2, 'tests.SearchTest')
+data.setCell(4, 3, 2362);
+data.setCell(5, 0, 5)
+data.setCell(5, 1, 'testSearchWithCaseInsensitiveKeyword')
+data.setCell(5, 2, 'tests.SearchTest')
+data.setCell(5, 3, 2345);
+data.setCell(6, 0, 6)
+data.setCell(6, 1, 'testSearchWithItestSearchWithSpecialCharactersncorrectKeyword')
+data.setCell(6, 2, 'tests.SearchTest')
+data.setCell(6, 3, 2332);
 window.suiteTableData['Gradle_suite']= { tableData: data, tableDiv: 'times-div-Gradle_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 11 seconds</span>
+              <span class="suite-total-time">Total running time: 35 seconds</span>
               <div id="times-div-Gradle_suite">
               </div> <!-- times-div-Gradle_suite -->
             </div> <!-- times-div -->
@@ -252,33 +316,69 @@ return data;
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
               <div class="chronological-class-name">tests.SearchTest</div> <!-- chronological-class-name -->
-              <div class="configuration-suite before">
-                <span class="method-name">setupSuite</span>
-                <span class="method-start">0 ms</span>
-              </div> <!-- configuration-suite before -->
               <div class="configuration-test before">
                 <span class="method-name">setupTest</span>
-                <span class="method-start">13493 ms</span>
+                <span class="method-start">0 ms</span>
               </div> <!-- configuration-test before -->
+              <div class="configuration-method before">
+                <span class="method-name">setupTMethod</span>
+                <span class="method-start">24180 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testSearchSuccess</span>
-                <span class="method-start">13511 ms</span>
+                <span class="method-start">24203 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">setupTMethod</span>
+                <span class="method-start">41337 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">testSearchWithIncorrectKeyword</span>
-                <span class="method-start">22666 ms</span>
+                <span class="method-name">testSearchFailed</span>
+                <span class="method-start">41353 ms</span>
               </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">setupTMethod</span>
+                <span class="method-start">43974 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
                 <span class="method-name">testSearchWithItestSearchWithSpecialCharactersncorrectKeyword</span>
-                <span class="method-start">23730 ms</span>
+                <span class="method-start">43988 ms</span>
               </div> <!-- test-method -->
-              <div class="configuration-test after">
-                <span class="method-name">clearTest</span>
-                <span class="method-start">24835 ms</span>
-              </div> <!-- configuration-test after -->
+              <div class="configuration-method before">
+                <span class="method-name">setupTMethod</span>
+                <span class="method-start">46321 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testSearchWithCaseInsensitiveKeyword</span>
+                <span class="method-start">46335 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">setupTMethod</span>
+                <span class="method-start">48681 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testSearchWithLeadingTrailingSpaces</span>
+                <span class="method-start">48697 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">setupTMethod</span>
+                <span class="method-start">51060 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testSearchWithEmptyKeyword</span>
+                <span class="method-start">51072 ms</span>
+              </div> <!-- test-method -->
+              <div class="configuration-method before">
+                <span class="method-name">setupTMethod</span>
+                <span class="method-start">57679 ms</span>
+              </div> <!-- configuration-method before -->
+              <div class="test-method">
+                <span class="method-name">testSearchWithMaxLengthKeyword</span>
+                <span class="method-start">57691 ms</span>
+              </div> <!-- test-method -->
               <div class="configuration-suite after">
-                <span class="method-name">cleanupSuite</span>
-                <span class="method-start">24979 ms</span>
+                <span class="method-name">cleanupTest</span>
+                <span class="method-start">60203 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->

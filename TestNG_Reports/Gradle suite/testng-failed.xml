@@ -5,9 +5,9 @@
     <classes>
       <class name="tests.SearchTest">
         <methods>
-          <include name="testSearchWithIncorrectKeyword"/>
-          <include name="setupSuite"/>
-          <include name="cleanupSuite"/>
+          <include name="testSearchWithEmptyKeyword"/>
+          <include name="setupTMethod"/>
+          <include name="cleanupTest"/>
           <include name="setupTest"/>
         </methods>
       </class> <!-- tests.SearchTest -->
