@@ -1,27 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite name="Gradle test"
-           tests="3"
+           tests="7"
            failures="0"
            errors="0"
            skipped="0"
-           time="11.320">
+           time="35.888">
     <properties></properties>
 
 
 
             <testcase
-                name="testSearchWithIncorrectKeyword"
-                time="1.063"
+                name="testSearchWithLeadingTrailingSpaces"
+                time="2.362"
+                classname="tests.SearchTest">
+            </testcase>
+            <testcase
+                name="testSearchFailed"
+                time="2.618"
+                classname="tests.SearchTest">
+            </testcase>
+            <testcase
+                name="testSearchWithCaseInsensitiveKeyword"
+                time="2.345"
                 classname="tests.SearchTest">
             </testcase>
             <testcase
                 name="testSearchWithItestSearchWithSpecialCharactersncorrectKeyword"
-                time="1.105"
+                time="2.332"
                 classname="tests.SearchTest">
             </testcase>
             <testcase
                 name="testSearchSuccess"
-                time="9.152"
+                time="17.130"
+                classname="tests.SearchTest">
+            </testcase>
+            <testcase
+                name="testSearchWithEmptyKeyword"
+                time="6.606"
+                classname="tests.SearchTest">
+            </testcase>
+            <testcase
+                name="testSearchWithMaxLengthKeyword"
+                time="2.495"
                 classname="tests.SearchTest">
             </testcase>
 </testsuite>

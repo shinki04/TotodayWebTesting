@@ -1,12 +1,21 @@
 package utils;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import java.util.Objects;
 import java.util.UUID;
 
+
 public class Tools {
+
+    private final WebDriver driver;
+
+    public Tools(WebDriver driver){
+        this.driver = driver;
+    }
 
     public String getValue(WebElement element, String arr) {
 //        return element.getAttribute(arr);
@@ -43,8 +52,10 @@ public class Tools {
         return Objects.equals(text, "") ? "" : text.trim().replace(" ", "+");
     }
 
-    public WebElement getElementIsDisplayed(WebElement element) {
+    public WebElement getElementByXpath(String xpath) {
+
         try {
+            WebElement element = driver.findElement(By.xpath(xpath));
             if (element.isDisplayed()) {
                 return element;
             }
@@ -55,7 +66,7 @@ public class Tools {
     }
 
     public boolean checkElementIsDisplayed(WebElement element) {
-        if (element != null) {
+        if (element == null) {
             return false;
         } else {
             return element.isDisplayed();
