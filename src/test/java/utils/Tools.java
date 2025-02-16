@@ -61,6 +61,15 @@ public class Tools {
         }
     }
 
+    public WebElement getElementChildByXpath( WebElement parentElement,String xpath) {
+
+        try {
+            return parentElement.findElement(By.xpath(xpath));
+        } catch (NoSuchElementException e) {
+            return null;
+        }
+    }
+
     public boolean checkElementIsDisplayed(WebElement element) {
         if (element == null) {
             return false;
