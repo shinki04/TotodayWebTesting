@@ -50,7 +50,7 @@ public class SearchTest extends DriverConfig {
         }
         sleep(5);
         checkSearchSuccess();
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem));
+        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem),"Product Item not found or not display");
         sleep(5);
 
     }
@@ -82,7 +82,7 @@ public class SearchTest extends DriverConfig {
         searchInput.submit();
 
         checkSearchSuccess();
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem));
+        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem),"Product Item not found or not display");
 
         sleep(5);
     }
@@ -94,7 +94,7 @@ public class SearchTest extends DriverConfig {
         searchInput.sendKeys(searchItem);
         searchInput.submit();
         checkSearchSuccess();
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem));
+        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem),"Product Item not found or not display");
         sleep(5);
     }
 
@@ -104,7 +104,7 @@ public class SearchTest extends DriverConfig {
         searchInput.sendKeys(searchItem);
         searchInput.submit();
         checkSearchSuccess();
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem));
+        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem),"Product Item not found or not display");
         sleep(5);
     }
 
@@ -137,7 +137,7 @@ public class SearchTest extends DriverConfig {
         }
 
         Assert.assertTrue(baseURL.contentEquals(expectedUrl));
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/a[1]",valueItem));
+        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/a[1]",valueItem),"Product Item not found or not display");
 
         checkSearchSuccess();
         sleep(5);

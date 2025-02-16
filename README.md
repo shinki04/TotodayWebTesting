@@ -26,11 +26,15 @@ graph TD;
     test --> java_test["java"];
     java_test --> base;
     java_test --> config;
-    config --> DriverCongif.java
+    config --> DriverConfig.java
     java_test --> tests;
     tests --> LoginTest.java
     tests --> SearchTest.java
+    tests --> AddCartTest.java
+    tests --> RegisterTest.java
     java_test --> utils;
     utils --> Tools.java
+    utils --> Notification.java
     test --> resources_test["resources"];
+    resources_test --> testng.xml
 ```

@@ -28,13 +28,12 @@ public class DriverConfig {
         }
     }
 
-    public static void sleep(int time){
+    public static void sleep(int second) {
         try {
-            Thread.sleep(time+1000);
+            Thread.sleep(second + 1000);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
-
 
 }
