@@ -29,6 +29,7 @@ dependencies {
     testImplementation("org.seleniumhq.selenium:selenium-chromium-driver:4.28.1")
     testImplementation("org.testng:reportng:1.2.2")
 }
+
 tasks.named<Test>("test") {
     // Sử dụng TestNG cho unit tests
     useTestNG {
@@ -45,8 +46,8 @@ tasks.test {
     useTestNG()
 }
 
-tasks.register("helloVietnam") {
-    doLast {
-        println("Xin chào Việt Nam! ")
-    }
-}
+//tasks.register("helloVietnam") {
+//    doLast {
+//        println("Xin chào Việt Nam! ")
+//    }
+//}

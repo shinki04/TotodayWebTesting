@@ -3,14 +3,15 @@
 <suite name="Failed suite [Gradle suite]" verbose="0">
   <test thread-count="5" name="Gradle test(failed)" verbose="0">
     <classes>
-      <class name="tests.SearchTest">
+      <class name="tests.RegisterTest">
         <methods>
-          <include name="setupClass"/>
-          <include name="searchFailed"/>
           <include name="setupSuite"/>
+          <include name="testRegisterWithEmptyFields"/>
+          <include name="setupTMethod"/>
+          <include name="testRegisterWithExistingAccount"/>
           <include name="cleanupSuite"/>
         </methods>
-      </class> <!-- tests.SearchTest -->
+      </class> <!-- tests.RegisterTest -->
     </classes>
   </test> <!-- Gradle test(failed) -->
 </suite> <!-- Failed suite [Gradle suite] -->
