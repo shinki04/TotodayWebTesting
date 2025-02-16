@@ -55,14 +55,10 @@ public class Tools {
     public WebElement getElementByXpath(String xpath) {
 
         try {
-            WebElement element = driver.findElement(By.xpath(xpath));
-            if (element.isDisplayed()) {
-                return element;
-            }
+            return driver.findElement(By.xpath(xpath));
         } catch (NoSuchElementException e) {
             return null;
         }
-        return null;
     }
 
     public boolean checkElementIsDisplayed(WebElement element) {
