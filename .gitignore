@@ -4,8 +4,8 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 ### Report ###
-TestNG_Reports/*
-GradleReports/*
+TestNG_Reports
+GradleReports
 
 ### IntelliJ IDEA ###
 #.idea/modules.xml

@@ -36,7 +36,5 @@ public class DriverConfig {
         }
     }
 
-//    public static void sleep(int s ) throws InterruptedException {
-//        Thread.sleep(s+1000);
-//    }
+
 }
