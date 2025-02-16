@@ -6,8 +6,10 @@
       <class name="tests.RegisterTest">
         <methods>
           <include name="setupSuite"/>
+          <include name="testRegisterWithEmptyFields"/>
+          <include name="setupTMethod"/>
+          <include name="testRegisterWithExistingAccount"/>
           <include name="cleanupSuite"/>
-          <include name="testRegistration"/>
         </methods>
       </class> <!-- tests.RegisterTest -->
     </classes>

@@ -103,7 +103,7 @@
                     <div class="method-list-content passed suite-Gradle_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Gradle_suite" title="tests.RegisterTest" class="method navigator-link" hash-for-method="testRegistration">testRegistration</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Gradle_suite" title="tests.RegisterTest" class="method navigator-link" hash-for-method="testRegisterWithInvalidEmail">testRegisterWithInvalidEmail</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Gradle_suite -->
@@ -126,9 +126,9 @@
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
                 <div class="method-content">
-                  <a name="testRegistration">
-                  </a> <!-- testRegistration -->
-                  <span class="method-name">testRegistration</span>
+                  <a name="testRegisterWithInvalidEmail">
+                  </a> <!-- testRegisterWithInvalidEmail -->
+                  <span class="method-name">testRegisterWithInvalidEmail</span>
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -186,14 +186,14 @@ data.addColumn('string', 'Class');
 data.addColumn('number', 'Time (ms)');
 data.addRows(1);
 data.setCell(0, 0, 0)
-data.setCell(0, 1, 'testRegistration')
+data.setCell(0, 1, 'testRegisterWithInvalidEmail')
 data.setCell(0, 2, 'tests.RegisterTest')
-data.setCell(0, 3, 6302);
+data.setCell(0, 3, 2471);
 window.suiteTableData['Gradle_suite']= { tableData: data, tableDiv: 'times-div-Gradle_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 6 seconds</span>
+              <span class="suite-total-time">Total running time: 2 seconds</span>
               <div id="times-div-Gradle_suite">
               </div> <!-- times-div-Gradle_suite -->
             </div> <!-- times-div -->
@@ -224,13 +224,17 @@ return data;
                 <span class="method-name">setupSuite</span>
                 <span class="method-start">0 ms</span>
               </div> <!-- configuration-suite before -->
+              <div class="configuration-method before">
+                <span class="method-name">setupTMethod</span>
+                <span class="method-start">3360 ms</span>
+              </div> <!-- configuration-method before -->
               <div class="test-method">
-                <span class="method-name">testRegistration</span>
-                <span class="method-start">4794 ms</span>
+                <span class="method-name">testRegisterWithInvalidEmail</span>
+                <span class="method-start">4459 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
                 <span class="method-name">cleanupSuite</span>
-                <span class="method-start">11141 ms</span>
+                <span class="method-start">6947 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
