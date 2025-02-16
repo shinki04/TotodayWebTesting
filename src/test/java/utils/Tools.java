@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.Objects;
 import java.util.UUID;
+import java.util.Random;
 
 
 public class Tools {
@@ -92,6 +93,15 @@ public class Tools {
     public String generateRandomString(int length) {
         String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // Loại bỏ dấu "-"
         return uuid.substring(0, Math.min(length, uuid.length()));
+    }
+
+    public String generateRandomNumber(int length) {
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            sb.append(random.nextInt(10)); // ngẫu nhiên 0-9
+        }
+        return sb.toString();
     }
 
 

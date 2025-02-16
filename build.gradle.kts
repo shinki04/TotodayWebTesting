@@ -46,8 +46,8 @@ tasks.test {
     useTestNG()
 }
 
-tasks.register("helloVietnam") {
-    doLast {
-        println("Xin chào Việt Nam! ")
-    }
-}
+//tasks.register("helloVietnam") {
+//    doLast {
+//        println("Xin chào Việt Nam! ")
+//    }
+//}
