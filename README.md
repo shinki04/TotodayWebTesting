@@ -1,14 +1,3 @@
-- root/
-    - src/
-        - main.py
-        - utils.py
-    - docs/
-        - README.md
-    - tests/
-        - test_main.py
-    - .gitignore
-    - requirements.txt
-
 ```mermaid
 graph TD;
     D[Totoday]
