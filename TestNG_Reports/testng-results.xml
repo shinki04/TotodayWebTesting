@@ -1,29 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-02-16T22:30:32 ICT" name="Gradle suite" finished-at="2025-02-16T22:30:36 ICT" duration-ms="3589">
+  <suite started-at="2025-02-17T20:38:45 ICT" name="Gradle suite" finished-at="2025-02-17T20:39:02 ICT" duration-ms="17814">
     <groups>
     </groups>
-    <test started-at="2025-02-16T22:30:32 ICT" name="Gradle test" finished-at="2025-02-16T22:30:36 ICT" duration-ms="3589">
-      <class name="tests.RegisterTest">
-        <test-method is-config="true" signature="setupSuite()[pri:0, instance:tests.RegisterTest@3bcd05cb]" started-at="2025-02-16T22:30:29 ICT" name="setupSuite" finished-at="2025-02-16T22:30:32 ICT" duration-ms="3342" status="PASS">
+    <test started-at="2025-02-17T20:38:45 ICT" name="Gradle test" finished-at="2025-02-17T20:39:02 ICT" duration-ms="17814">
+      <class name="tests.OrderLookupTest">
+        <test-method is-config="true" signature="setupSuite()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:35 ICT" name="setupSuite" finished-at="2025-02-17T20:38:45 ICT" duration-ms="9563" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setupSuite -->
-        <test-method is-config="true" signature="setupTMethod()[pri:0, instance:tests.RegisterTest@3bcd05cb]" started-at="2025-02-16T22:30:32 ICT" name="setupTMethod" finished-at="2025-02-16T22:30:33 ICT" duration-ms="1099" status="PASS">
+        <test-method is-config="true" signature="setupMethod()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:45 ICT" name="setupMethod" finished-at="2025-02-17T20:38:45 ICT" duration-ms="662" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setupTMethod -->
-        <test-method signature="testRegisterWithInvalidEmail()[pri:3, instance:tests.RegisterTest@3bcd05cb]" started-at="2025-02-16T22:30:33 ICT" name="testRegisterWithInvalidEmail" finished-at="2025-02-16T22:30:36 ICT" duration-ms="2471" status="PASS">
+        </test-method> <!-- setupMethod -->
+        <test-method signature="testOrderSearchWithItestSearchWithSpecialCharactersncorrectKeyword()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:45 ICT" name="testOrderSearchWithItestSearchWithSpecialCharactersncorrectKeyword" finished-at="2025-02-17T20:38:48 ICT" duration-ms="2920" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- testRegisterWithInvalidEmail -->
-        <test-method is-config="true" signature="cleanupSuite()[pri:0, instance:tests.RegisterTest@3bcd05cb]" started-at="2025-02-16T22:30:36 ICT" name="cleanupSuite" finished-at="2025-02-16T22:30:36 ICT" duration-ms="455" status="PASS">
+        </test-method> <!-- testOrderSearchWithItestSearchWithSpecialCharactersncorrectKeyword -->
+        <test-method is-config="true" signature="setupMethod()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:48 ICT" name="setupMethod" finished-at="2025-02-17T20:38:49 ICT" duration-ms="716" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- cleanupSuite -->
-      </class> <!-- tests.RegisterTest -->
+        </test-method> <!-- setupMethod -->
+        <test-method signature="testSearchFailed()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:49 ICT" name="testSearchFailed" finished-at="2025-02-17T20:38:52 ICT" duration-ms="2896" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSearchFailed -->
+        <test-method is-config="true" signature="setupMethod()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:52 ICT" name="setupMethod" finished-at="2025-02-17T20:38:52 ICT" duration-ms="639" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupMethod -->
+        <test-method signature="testSearchWithEmptyKeyword()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:52 ICT" name="testSearchWithEmptyKeyword" finished-at="2025-02-17T20:38:55 ICT" duration-ms="2660" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSearchWithEmptyKeyword -->
+        <test-method is-config="true" signature="setupMethod()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:55 ICT" name="setupMethod" finished-at="2025-02-17T20:38:56 ICT" duration-ms="752" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupMethod -->
+        <test-method signature="testSearchWithLeadingTrailingSpaces()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:56 ICT" name="testSearchWithLeadingTrailingSpaces" finished-at="2025-02-17T20:38:59 ICT" duration-ms="2978" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSearchWithLeadingTrailingSpaces -->
+        <test-method is-config="true" signature="setupMethod()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:59 ICT" name="setupMethod" finished-at="2025-02-17T20:38:59 ICT" duration-ms="694" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setupMethod -->
+        <test-method signature="testSearchWithMaxLengthKeyword()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:38:59 ICT" name="testSearchWithMaxLengthKeyword" finished-at="2025-02-17T20:39:02 ICT" duration-ms="2878" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testSearchWithMaxLengthKeyword -->
+        <test-method is-config="true" signature="cleanupTest()[pri:0, instance:tests.OrderLookupTest@642a7222]" started-at="2025-02-17T20:39:02 ICT" name="cleanupTest" finished-at="2025-02-17T20:39:03 ICT" duration-ms="230" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanupTest -->
+      </class> <!-- tests.OrderLookupTest -->
     </test> <!-- Gradle test -->
   </suite> <!-- Gradle suite -->
 </testng-results>
