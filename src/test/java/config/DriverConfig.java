@@ -15,7 +15,7 @@ public class DriverConfig {
         if (driver == null) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.addArguments("--headless=new");
+//            chromeOptions.addArguments("--headless=new");
             driver = new ChromeDriver(chromeOptions);
         }
         return driver;
