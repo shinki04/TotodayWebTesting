@@ -47,7 +47,7 @@ public class OrderLookupTest extends DriverConfig {
 
 
     @Test()
-    void testSearchFailed() {
+    void testOrderSearchFailed() {
         String orderSearchItem = "0708712413";
         orderSearchInput.sendKeys(orderSearchItem);
         orderSearchInput.submit();
@@ -65,7 +65,7 @@ public class OrderLookupTest extends DriverConfig {
 
 
     @Test()
-    void testOrderSearchWithItestSearchWithSpecialCharactersncorrectKeyword() {
+    void testOrderSearchWithItestOrderSearchWithSpecialCharactersncorrectKeyword() {
         String orderSearchItem = "\"@b$$^";
         orderSearchInput.sendKeys(orderSearchItem);
         orderSearchInput.submit();
@@ -82,7 +82,7 @@ public class OrderLookupTest extends DriverConfig {
     }
 
     @Test()
-    void testSearchWithLeadingTrailingSpaces() {
+    void testOrderSearchWithLeadingTrailingSpaces() {
         String orderSearchItem = "    0708712413     ";
         orderSearchInput.sendKeys(orderSearchItem);
         orderSearchInput.submit();
@@ -98,7 +98,7 @@ public class OrderLookupTest extends DriverConfig {
     }
 
     @Test()
-    void testSearchWithEmptyKeyword() {
+    void testOrderSearchWithEmptyKeyword() {
         String orderSearchItem = "";
         orderSearchInput.sendKeys(orderSearchItem);
         orderSearchInput.submit();
@@ -113,7 +113,7 @@ public class OrderLookupTest extends DriverConfig {
     }
 
     @Test()
-    void testSearchWithMaxLengthKeyword() {
+    void testOrderSearchWithMaxLengthKeyword() {
         String orderSearchItem = tools.generateRandomString(256);
         System.out.println(orderSearchItem);
         orderSearchInput.sendKeys(orderSearchItem);
