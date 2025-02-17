@@ -3,15 +3,18 @@
 <suite name="Failed suite [Gradle suite]" verbose="0">
   <test thread-count="5" name="Gradle test(failed)" verbose="0">
     <classes>
-      <class name="tests.RegisterTest">
+      <class name="tests.OrderLookupTest">
         <methods>
+          <include name="testOrderSearchWithItestSearchWithSpecialCharactersncorrectKeyword"/>
+          <include name="setupMethod"/>
+          <include name="testSearchWithEmptyKeyword"/>
           <include name="setupSuite"/>
-          <include name="testRegisterWithEmptyFields"/>
-          <include name="setupTMethod"/>
-          <include name="testRegisterWithExistingAccount"/>
-          <include name="cleanupSuite"/>
+          <include name="testSearchWithMaxLengthKeyword"/>
+          <include name="cleanupTest"/>
+          <include name="testSearchWithLeadingTrailingSpaces"/>
+          <include name="testSearchFailed"/>
         </methods>
-      </class> <!-- tests.RegisterTest -->
+      </class> <!-- tests.OrderLookupTest -->
     </classes>
   </test> <!-- Gradle test(failed) -->
 </suite> <!-- Failed suite [Gradle suite] -->
