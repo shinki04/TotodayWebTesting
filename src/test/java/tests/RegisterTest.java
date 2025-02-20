@@ -137,6 +137,6 @@ public class RegisterTest extends DriverConfig {
 
     @AfterSuite
     public void cleanupSuite() {
-        quitDriver();
+//        quitDriver();
     }
 }
