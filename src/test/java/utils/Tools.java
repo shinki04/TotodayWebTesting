@@ -5,6 +5,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 import java.util.Random;
@@ -40,13 +41,13 @@ public class Tools {
         return element.isSelected();
     }
 
-//    public  WebElement getChildElement(String fatherElementXpath){
-//        List<WebElement> elements = driver.findElements(By.xpath(fatherElementXpath));
-//        for (WebElement element : elements){
-//            return element;
-//        }
-//        return null;
-//    }
+    public  WebElement getChildElement(String fatherElementXpath){
+        List<WebElement> elements = driver.findElements(By.xpath(fatherElementXpath));
+        for (WebElement element : elements){
+            return element;
+        }
+        return null;
+    }
 
 
     public String addPlusToString(String text) {
