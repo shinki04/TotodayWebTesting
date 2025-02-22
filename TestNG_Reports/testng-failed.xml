@@ -7,12 +7,8 @@
         <methods>
           <include name="cleanupSuite"/>
           <include name="setupTMethod"/>
-          <include name="testLoginWithEmptyEmailAndPassword"/>
-          <include name="testLoginWithEmptyPassword"/>
-          <include name="testLoginWithEmptyEmail"/>
-          <include name="testLoginWithInvalidEmailFormat"/>
+          <include name="testLoginWithSuccess"/>
           <include name="setupSuite"/>
-          <include name="testLoginWithNonExistentEmail"/>
         </methods>
       </class> <!-- tests.LoginTest -->
     </classes>

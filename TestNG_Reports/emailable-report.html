@@ -9,36 +9,20 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">Gradle suite</th></tr>
-<tr><td><a href="#t0">Gradle test</a></td><td class="num">2</td><td class="num">0</td><td class="num">0</td><td class="num attn">5</td><td class="num">24,626</td><td></td><td></td></tr>
+<tr><td><a href="#t0">Gradle test</a></td><td class="num">11</td><td class="num">0</td><td class="num">0</td><td class="num">0</td><td class="num">37,044</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Gradle suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Gradle test &#8212; failed</th></tr><tr class="failedeven"><td rowspan="5">tests.LoginTest</td><td><a href="#m0">testLoginWithEmptyEmail</a></td><td rowspan="1">1740045442511</td><td rowspan="1">2178</td></tr><tr class="failedeven"><td><a href="#m1">testLoginWithEmptyEmailAndPassword</a></td><td rowspan="1">1740045445706</td><td rowspan="1">1824</td></tr><tr class="failedeven"><td><a href="#m2">testLoginWithEmptyPassword</a></td><td rowspan="1">1740045438136</td><td rowspan="1">3804</td></tr><tr class="failedeven"><td><a href="#m3">testLoginWithInvalidEmailFormat</a></td><td rowspan="1">1740045434679</td><td rowspan="1">2393</td></tr><tr class="failedeven"><td><a href="#m4">testLoginWithNonExistentEmail</a></td><td rowspan="1">1740045430696</td><td rowspan="1">2928</td></tr><tr><th colspan="4">Gradle test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="2">tests.LoginTest</td><td><a href="#m5">testLoginWithSuccess</a></td><td rowspan="1">1740045427221</td><td rowspan="1">2880</td></tr><tr class="passedeven"><td><a href="#m6">testPasswordVisibilityToggle</a></td><td rowspan="1">1740045448331</td><td rowspan="1">2322</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">Gradle suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">Gradle test &#8212; passed</th></tr><tr class="passedeven"><td rowspan="11">tests.LoginTest</td><td><a href="#m0">testLoginWithEmailContainingSpaces</a></td><td rowspan="1">1740247698804</td><td rowspan="1">2320</td></tr><tr class="passedeven"><td><a href="#m1">testLoginWithEmptyEmail</a></td><td rowspan="1">1740247682689</td><td rowspan="1">1361</td></tr><tr class="passedeven"><td><a href="#m2">testLoginWithEmptyEmailAndPassword</a></td><td rowspan="1">1740247685179</td><td rowspan="1">6351</td></tr><tr class="passedeven"><td><a href="#m3">testLoginWithEmptyPassword</a></td><td rowspan="1">1740247680414</td><td rowspan="1">1432</td></tr><tr class="passedeven"><td><a href="#m4">testLoginWithInvalidEmailFormat</a></td><td rowspan="1">1740247678300</td><td rowspan="1">1354</td></tr><tr class="passedeven"><td><a href="#m5">testLoginWithInvalidEmailSpecialChars</a></td><td rowspan="1">1740247692452</td><td rowspan="1">2363</td></tr><tr class="passedeven"><td><a href="#m6">testLoginWithNonExistentEmail</a></td><td rowspan="1">1740247676057</td><td rowspan="1">1342</td></tr><tr class="passedeven"><td><a href="#m7">testLoginWithPasswordContainingSpaces</a></td><td rowspan="1">1740247701872</td><td rowspan="1">2321</td></tr><tr class="passedeven"><td><a href="#m8">testLoginWithShortPassword</a></td><td rowspan="1">1740247695722</td><td rowspan="1">2340</td></tr><tr class="passedeven"><td><a href="#m9">testLoginWithSuccess</a></td><td rowspan="1">1740247671230</td><td rowspan="1">4075</td></tr><tr class="passedeven"><td><a href="#m10">testPasswordVisibilityToggle</a></td><td rowspan="1">1740247705098</td><td rowspan="1">2365</td></tr></tbody>
 </table>
-<h2>Gradle test</h2><h3 id="m0">tests.LoginTest#testLoginWithEmptyEmail</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Hệ thống không nên cho phép đăng nhập với email trống! expected [https://totoday.vn/user/signin] but found [https://totoday.vn/user/signin?username=&amp;password=innologic2025]
-	at tests.LoginTest.testLoginWithEmptyEmail(LoginTest.java:131)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
-... Removed 45 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m1">tests.LoginTest#testLoginWithEmptyEmailAndPassword</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Hệ thống không nên cho phép đăng nhập với cả email và mật khẩu trống! expected [https://totoday.vn/user/signin] but found [https://totoday.vn/user/signin?username=&amp;password=]
-	at tests.LoginTest.testLoginWithEmptyEmailAndPassword(LoginTest.java:150)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
-... Removed 45 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m2">tests.LoginTest#testLoginWithEmptyPassword</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Hệ thống không nên cho phép đăng nhập với mật khẩu trống! expected [https://totoday.vn/user/signin] but found [https://totoday.vn/user/signin?username=innologic25.team%40gmail.com&amp;password=]
-	at tests.LoginTest.testLoginWithEmptyPassword(LoginTest.java:112)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
-... Removed 45 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m3">tests.LoginTest#testLoginWithInvalidEmailFormat</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Hệ thống không nên cho phép đăng nhập với email sai định dạng! expected [https://totoday.vn/user/signin] but found [https://totoday.vn/user/signin?username=invalid-email-format&amp;password=innologic2025]
-	at tests.LoginTest.testLoginWithInvalidEmailFormat(LoginTest.java:93)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
-... Removed 45 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m4">tests.LoginTest#testLoginWithNonExistentEmail</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Hệ thống không nên cho phép đăng nhập với email không tồn tại! expected [https://totoday.vn/user/signin] but found [https://totoday.vn/user/signin?username=invalid_email%40gmail.com&amp;password=innologic2025]
-	at tests.LoginTest.testLoginWithNonExistentEmail(LoginTest.java:74)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1597)
-	at jdk.proxy1/jdk.proxy1.$Proxy4.stop(Unknown Source)
-... Removed 45 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m5">tests.LoginTest#testLoginWithSuccess</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
-<h3 id="m6">tests.LoginTest#testPasswordVisibilityToggle</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h2>Gradle test</h2><h3 id="m0">tests.LoginTest#testLoginWithEmailContainingSpaces</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m1">tests.LoginTest#testLoginWithEmptyEmail</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m2">tests.LoginTest#testLoginWithEmptyEmailAndPassword</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m3">tests.LoginTest#testLoginWithEmptyPassword</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m4">tests.LoginTest#testLoginWithInvalidEmailFormat</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m5">tests.LoginTest#testLoginWithInvalidEmailSpecialChars</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m6">tests.LoginTest#testLoginWithNonExistentEmail</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m7">tests.LoginTest#testLoginWithPasswordContainingSpaces</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m8">tests.LoginTest#testLoginWithShortPassword</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m9">tests.LoginTest#testLoginWithSuccess</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+<h3 id="m10">tests.LoginTest#testPasswordVisibilityToggle</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 </body>
 </html>

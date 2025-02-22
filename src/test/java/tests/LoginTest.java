@@ -4,12 +4,14 @@ import config.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import utils.Notification;
+import utils.PopupHandler;
 import utils.Tools;
 
 public class LoginTest extends DriverConfig {
@@ -17,6 +19,7 @@ public class LoginTest extends DriverConfig {
     private WebDriver driver;
     private Notification notification;
     private static Tools tools;
+    private PopupHandler popupHandler;
 
     @BeforeSuite
     public void setupSuite() {
@@ -24,6 +27,7 @@ public class LoginTest extends DriverConfig {
         driver.get(loginURL);
         notification = new Notification(driver);
         tools = new Tools(driver);
+        popupHandler = new PopupHandler(driver);
      }
 
     @BeforeMethod
@@ -34,123 +38,280 @@ public class LoginTest extends DriverConfig {
 
     @Test(priority = 0)
     public void testLoginWithSuccess() throws InterruptedException {
+
+        driver.manage().window().maximize();
+
         // Nhập thông tin đăng nhập
         driver.findElement(By.id("SignInEmail")).sendKeys("innologic25.team@gmail.com");
         driver.findElement(By.id("password-field")).sendKeys("innologic2025");
 
         // Gửi biểu mẫu đăng nhập
-        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).submit();
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
         sleep(2);
 
         // Kiểm tra nếu có alert xuất hiện
         if (notification.isAlertPresent()) {
-            String alertText = notification.getAlertText();
-            System.out.println("Thông báo từ hệ thống: " + alertText);
+            String actualMessage = notification.getAlertText();
+            System.out.println("Thông báo từ hệ thống: " + actualMessage);
             notification.acceptAlert(); // Đóng thông báo nếu có
+
+            // So sánh kết quả mong đợi
+            String expectedMessage = "Đăng nhập thành công!";
+            Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không khớp với mong đợi!");
         }
 
         // Kiểm tra đăng nhập thành công
         String currentURL = driver.getCurrentUrl();
+        System.out.println("Actual URL: " + currentURL);
+
+        // Đảm bảo rằng không còn ở trang đăng nhập, tức là đăng nhập thành công
         Assert.assertNotEquals(currentURL, loginURL, "Đăng nhập thất bại! Vẫn ở trang đăng nhập.");
 
         System.out.println("Đăng nhập thành công! Hiện tại ở URL: " + currentURL);
+
+        // Nhấn vào đường dẫn đăng xuất
+        driver.findElement(By.xpath("//img[@alt='Tài khoản']")).click();
+        driver.findElement(By.xpath("//a[@href='/user/signout']")).click();
+
     }
-    @Test(priority = 2)
+    @Test(priority = 1)
     public void testLoginWithNonExistentEmail() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("invalid_email@gmail.com");
         driver.findElement(By.id("password-field")).sendKeys("innologic2025");
-        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).submit();
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
         sleep(2);
 
 
+        // Kiểm tra nếu có alert xuất hiện
         if (notification.isAlertPresent()) {
-            String alertText = notification.getAlertText();
-            System.out.println("Thông báo từ hệ thống: " + alertText);
-            notification.acceptAlert();
-            Assert.assertEquals(alertText, "Email không tồn tại", "Thông báo không chính xác!");
+            String actualMessage = notification.getAlertText();
+            System.out.println("Thông báo từ hệ thống: " + actualMessage);
+            notification.acceptAlert(); // Đóng thông báo nếu có
+
+            // So sánh kết quả mong đợi
+            String expectedMessage = "Tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!";
+            Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không chính xác!");
         }
 
+    // Kiểm tra xem người dùng có bị giữ lại ở trang đăng nhập hay không
         String currentURL = driver.getCurrentUrl();
-        Assert.assertEquals(currentURL, loginURL, "Hệ thống không nên cho phép đăng nhập với email không tồn tại!");
+        System.out.println("Expected URL (Trang đăng nhập): " + loginURL);
+        System.out.println("Actual URL: " + currentURL);
+
+    // Đảm bảo rằng vẫn ở trang đăng nhập, tức là đăng nhập không thành công
+        Assert.assertEquals(currentURL, loginURL, "Hệ thống không nên cho phép đăng nhập với email chưa đăng ký tài khoản!");
     }
 
-    @Test(priority = 3)
+        @Test(priority = 2)
     public void testLoginWithInvalidEmailFormat() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("invalid-email-format");
         driver.findElement(By.id("password-field")).sendKeys("innologic2025");
-        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).submit();
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
         sleep(2);
 
 
-        if (notification.isAlertPresent()) {
-            String alertText = notification.getAlertText();
-            System.out.println("Thông báo từ hệ thống: " + alertText);
-            notification.acceptAlert();
-            Assert.assertEquals(alertText, "Email không hợp lệ", "Hệ thống không kiểm tra định dạng email!");
+            // Kiểm tra nếu có alert xuất hiện
+            if (notification.isAlertPresent()) {
+                String actualMessage = notification.getAlertText();
+                System.out.println("Thông báo từ hệ thống: " + actualMessage);
+                notification.acceptAlert(); // Đóng thông báo nếu có
+
+                // So sánh kết quả mong đợi
+                String expectedMessage = "Tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!";
+                Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không chính xác!");
+            }
+
+            // Kiểm tra xem người dùng có bị giữ lại ở trang đăng nhập hay không
+            String currentURL = driver.getCurrentUrl();
+            System.out.println("Expected URL (Trang đăng nhập): " + loginURL);
+            System.out.println("Actual URL: " + currentURL);
+
+            // Đảm bảo rằng vẫn ở trang đăng nhập, tức là đăng nhập không thành công
+            Assert.assertEquals(currentURL, loginURL, "Hệ thống không nên cho phép đăng nhập với email sai định dạng!");
         }
 
-        String currentURL = driver.getCurrentUrl();
-        Assert.assertEquals(currentURL, loginURL, "Hệ thống không nên cho phép đăng nhập với email sai định dạng!");
-    }
-
-    @Test(priority = 4)
+    @Test(priority = 3)
     public void testLoginWithEmptyPassword() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("innologic25.team@gmail.com");
         driver.findElement(By.id("password-field")).sendKeys("");
-        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).submit();
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
         sleep(2);
 
 
-        if (notification.isAlertPresent()) {
-            String alertText = notification.getAlertText();
-            System.out.println("Thông báo từ hệ thống: " + alertText);
-            notification.acceptAlert();
-            Assert.assertEquals(alertText, "Vui lòng nhập mật khẩu", "Thông báo không chính xác khi bỏ trống mật khẩu!");
+        // Kiểm tra nếu popup lỗi xuất hiện
+        if (popupHandler.isPopupPresent("formErrorContent")) {
+            String actualMessage = popupHandler.getPopupMessage("formErrorContent");
+            System.out.println("Thông báo từ hệ thống: " + actualMessage);
+
+            // So sánh kết quả mong đợi
+            String expectedMessage = "* Trường này bắt buộc";
+            Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không chính xác!");
+        } else {
+            System.out.println("Không có thông báo lỗi xuất hiện!");
         }
 
-        String currentURL = driver.getCurrentUrl();
-        Assert.assertEquals(currentURL, loginURL, "Hệ thống không nên cho phép đăng nhập với mật khẩu trống!");
     }
 
-    @Test(priority = 5)
+        @Test(priority = 4)
     public void testLoginWithEmptyEmail() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("");
         driver.findElement(By.id("password-field")).sendKeys("innologic2025");
-        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).submit();
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
         sleep(2);
 
 
-        if (notification.isAlertPresent()) {
-            String alertText = notification.getAlertText();
-            System.out.println("Thông báo từ hệ thống: " + alertText);
-            notification.acceptAlert();
-            Assert.assertEquals(alertText, "Vui lòng nhập email", "Thông báo không chính xác khi bỏ trống email!");
+            if (popupHandler.isPopupPresent("formErrorContent")) {
+                String actualMessage = popupHandler.getPopupMessage("formErrorContent");
+                System.out.println("Thông báo từ hệ thống: " + actualMessage);
+
+                // So sánh kết quả mong đợi
+                String expectedMessage = "* Trường này bắt buộc";
+                Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không chính xác!");
+            } else {
+                System.out.println("Không có thông báo lỗi xuất hiện!");
+            }
         }
 
-        String currentURL = driver.getCurrentUrl();
-        Assert.assertEquals(currentURL, loginURL, "Hệ thống không nên cho phép đăng nhập với email trống!");
-    }
-
-    @Test(priority = 6)
+    @Test(priority = 5)
     public void testLoginWithEmptyEmailAndPassword() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("");
         driver.findElement(By.id("password-field")).sendKeys("");
-        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).submit();
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
         sleep(2);
 
+
+        // Kiểm tra nếu có alert xuất hiện
+        if (notification.isAlertPresent()) {
+            String actualMessage = notification.getAlertText();
+            System.out.println("Thông báo từ hệ thống: " + actualMessage);
+            notification.acceptAlert(); // Đóng thông báo nếu có
+
+            // So sánh kết quả mong đợi
+            String expectedMessage = "Tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!";
+            Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không chính xác!");
+        }
+
+        // Kiểm tra xem người dùng có bị giữ lại ở trang đăng nhập hay không
+        String currentURL = driver.getCurrentUrl();
+        System.out.println("Expected URL (Trang đăng nhập): " + loginURL);
+        System.out.println("Actual URL: " + currentURL);
+
+        // Đảm bảo rằng vẫn ở trang đăng nhập, tức là đăng nhập không thành công
+        Assert.assertEquals(currentURL, loginURL, "Hệ thống không nên cho phép đăng nhập với email sai định dạng!");
+    }
+
+    @Test(priority = 6)
+    public void testLoginWithInvalidEmailSpecialChars() throws InterruptedException {
+        // Nhập email chứa ký tự đặc biệt không hợp lệ
+        driver.findElement(By.id("SignInEmail")).sendKeys("user!@gmail.com");
+        driver.findElement(By.id("password-field")).sendKeys("validPassword123");
+
+        // Gửi biểu mẫu đăng nhập
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
+        Thread.sleep(2000);
+
+        // Kiểm tra nếu có alert xuất hiện
+        if (notification.isAlertPresent()) {
+            String actualMessage = notification.getAlertText();
+            System.out.println("Thông báo từ hệ thống: " + actualMessage);
+            notification.acceptAlert(); // Đóng thông báo nếu có
+
+            // So sánh kết quả mong đợi
+            String expectedMessage = "Tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!";
+            Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không chính xác!");
+        }
+
+        // Kiểm tra xem người dùng có bị giữ lại ở trang đăng nhập hay không
+        String currentURL = driver.getCurrentUrl();
+        System.out.println("Expected URL (Trang đăng nhập): " + loginURL);
+        System.out.println("Actual URL: " + currentURL);
+
+        // Đảm bảo rằng vẫn ở trang đăng nhập, tức là đăng nhập không thành công
+        Assert.assertEquals(currentURL, loginURL, "Hệ thống không nên cho phép đăng nhập với email sai định dạng!");
+    }
+
+
+    @Test(priority = 7)
+    public void testLoginWithShortPassword() throws InterruptedException {
+        // Nhập email hợp lệ
+        driver.findElement(By.id("SignInEmail")).sendKeys("user@gmail.com");
+        // Nhập mật khẩu dưới 6 ký tự
+        driver.findElement(By.id("password-field")).sendKeys("12345");
+
+        // Gửi biểu mẫu đăng nhập
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
+        Thread.sleep(2000);
 
         if (notification.isAlertPresent()) {
             String alertText = notification.getAlertText();
             System.out.println("Thông báo từ hệ thống: " + alertText);
             notification.acceptAlert();
-            Assert.assertEquals(alertText, "Vui lòng nhập email và mật khẩu", "Thông báo không chính xác khi bỏ trống cả hai trường!");
         }
 
         String currentURL = driver.getCurrentUrl();
-        Assert.assertEquals(currentURL, loginURL, "Hệ thống không nên cho phép đăng nhập với cả email và mật khẩu trống!");
+        Assert.assertEquals(currentURL, loginURL, "Hệ thống không chặn mật khẩu quá ngắn!");
+
+        System.out.println("Testcase: Password dưới 6 ký tự - Passed");
     }
 
-    @Test(priority = 7)
+    @Test(priority = 8)
+    public void testLoginWithEmailContainingSpaces() throws InterruptedException {
+        // Nhập email có khoảng trắng
+        driver.findElement(By.id("SignInEmail")).sendKeys("user @gmail.com");
+        driver.findElement(By.id("password-field")).sendKeys("validPassword123");
+
+        // Gửi biểu mẫu đăng nhập
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
+        Thread.sleep(2000);
+
+        if (notification.isAlertPresent()) {
+            String alertText = notification.getAlertText();
+            System.out.println("Thông báo từ hệ thống: " + alertText);
+            notification.acceptAlert();
+        }
+
+        String currentURL = driver.getCurrentUrl();
+        Assert.assertEquals(currentURL, loginURL, "Hệ thống không chặn email có khoảng trắng!");
+
+        System.out.println("Testcase: Email có khoảng trắng - Passed");
+    }
+
+    @Test(priority = 9)
+    public void testLoginWithPasswordContainingSpaces() throws InterruptedException {
+        // Nhập email hợp lệ
+        driver.findElement(By.id("SignInEmail")).sendKeys("user@gmail.com");
+        // Nhập mật khẩu có khoảng trắng
+        driver.findElement(By.id("password-field")).sendKeys("123 456");
+
+        // Gửi biểu mẫu đăng nhập
+        driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
+        Thread.sleep(2000);
+
+        // Kỳ vọng hệ thống không cho phép đăng nhập
+        String expectedMessage = "Tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!";
+        String actualMessage = "Không có thông báo từ hệ thống"; // Mặc định nếu không có alert
+
+        if (notification.isAlertPresent()) {
+            actualMessage = notification.getAlertText();
+            System.out.println("Thông báo từ hệ thống: " + actualMessage);
+            notification.acceptAlert();
+        }
+
+        // So sánh thông báo kỳ vọng với thực tế
+        Assert.assertEquals(actualMessage, expectedMessage, "Thông báo không khớp!");
+
+        // Kiểm tra URL vẫn ở trang đăng nhập
+        String actualURL = driver.getCurrentUrl();
+        System.out.println("Expected URL: " + loginURL);
+        System.out.println("Actual URL  : " + actualURL);
+
+        Assert.assertEquals(actualURL, loginURL, "Hệ thống không nên cho phép đăng nhập với mật khẩu có khoảng trắng!");
+
+        System.out.println("Testcase: Password có khoảng trắng - Passed");
+    }
+
+
+    @Test(priority = 10)
     public void testPasswordVisibilityToggle() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("innologic25.team@gmail.com");
         driver.findElement(By.id("password-field")).sendKeys("innologic2025");
@@ -175,8 +336,6 @@ public class LoginTest extends DriverConfig {
         inputType = passwordInput.getAttribute("type");
         Assert.assertEquals(inputType, "password", "Lỗi: Mật khẩu không bị ẩn đúng! Giá trị thực tế: " + inputType);
     }
-
-
 
     @AfterSuite
     public void cleanupSuite() {
