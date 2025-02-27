@@ -37,7 +37,7 @@ public class LoginTest extends DriverConfig {
     }
 
     @Test(priority = 0)
-    public void testLoginWithSuccess() throws InterruptedException {
+    public void testSuccess() throws InterruptedException {
 
         driver.manage().window().maximize();
 
@@ -74,8 +74,9 @@ public class LoginTest extends DriverConfig {
         driver.findElement(By.xpath("//a[@href='/user/signout']")).click();
 
     }
+
     @Test(priority = 1)
-    public void testLoginWithNonExistentEmail() throws InterruptedException {
+    public void testNonExistentEmail() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("invalid_email@gmail.com");
         driver.findElement(By.id("password-field")).sendKeys("innologic2025");
         driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
@@ -103,7 +104,7 @@ public class LoginTest extends DriverConfig {
     }
 
         @Test(priority = 2)
-    public void testLoginWithInvalidEmailFormat() throws InterruptedException {
+    public void testInvalidEmailFormat() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("invalid-email-format");
         driver.findElement(By.id("password-field")).sendKeys("innologic2025");
         driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
@@ -131,7 +132,7 @@ public class LoginTest extends DriverConfig {
         }
 
     @Test(priority = 3)
-    public void testLoginWithEmptyPassword() throws InterruptedException {
+    public void testEmptyPassword() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("innologic25.team@gmail.com");
         driver.findElement(By.id("password-field")).sendKeys("");
         driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
@@ -153,7 +154,7 @@ public class LoginTest extends DriverConfig {
     }
 
         @Test(priority = 4)
-    public void testLoginWithEmptyEmail() throws InterruptedException {
+    public void testEmptyEmail() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("");
         driver.findElement(By.id("password-field")).sendKeys("innologic2025");
         driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
@@ -173,7 +174,7 @@ public class LoginTest extends DriverConfig {
         }
 
     @Test(priority = 5)
-    public void testLoginWithEmptyEmailAndPassword() throws InterruptedException {
+    public void testEmptyEmailAndPassword() throws InterruptedException {
         driver.findElement(By.id("SignInEmail")).sendKeys("");
         driver.findElement(By.id("password-field")).sendKeys("");
         driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).click();
@@ -201,7 +202,7 @@ public class LoginTest extends DriverConfig {
     }
 
     @Test(priority = 6)
-    public void testLoginWithInvalidEmailSpecialChars() throws InterruptedException {
+    public void testInvalidEmailSpecialChars() throws InterruptedException {
         // Nhập email chứa ký tự đặc biệt không hợp lệ
         driver.findElement(By.id("SignInEmail")).sendKeys("user!@gmail.com");
         driver.findElement(By.id("password-field")).sendKeys("validPassword123");
@@ -232,7 +233,7 @@ public class LoginTest extends DriverConfig {
 
 
     @Test(priority = 7)
-    public void testLoginWithShortPassword() throws InterruptedException {
+    public void testShortPassword() throws InterruptedException {
         // Nhập email hợp lệ
         driver.findElement(By.id("SignInEmail")).sendKeys("user@gmail.com");
         // Nhập mật khẩu dưới 6 ký tự
@@ -255,7 +256,7 @@ public class LoginTest extends DriverConfig {
     }
 
     @Test(priority = 8)
-    public void testLoginWithEmailContainingSpaces() throws InterruptedException {
+    public void testEmailContainingSpaces() throws InterruptedException {
         // Nhập email có khoảng trắng
         driver.findElement(By.id("SignInEmail")).sendKeys("user @gmail.com");
         driver.findElement(By.id("password-field")).sendKeys("validPassword123");
@@ -277,7 +278,7 @@ public class LoginTest extends DriverConfig {
     }
 
     @Test(priority = 9)
-    public void testLoginWithPasswordContainingSpaces() throws InterruptedException {
+    public void testPasswordContainingSpaces() throws InterruptedException {
         // Nhập email hợp lệ
         driver.findElement(By.id("SignInEmail")).sendKeys("user@gmail.com");
         // Nhập mật khẩu có khoảng trắng

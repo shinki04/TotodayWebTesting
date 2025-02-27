@@ -43,9 +43,9 @@ public class Notification {
     }
 
     // Từ chối alert (Nhấn Cancel nếu có)
-    public void dismissAlert() {
-        if (isAlertPresent()) {
-            driver.switchTo().alert().dismiss();
-        }
-    }
+//    public void dismissAlert() {
+//        if (isAlertPresent()) {
+//            driver.switchTo().alert().dismiss();
+//        }
+//    }
 }
