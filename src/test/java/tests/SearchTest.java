@@ -1,37 +1,24 @@
 package tests;
 
-import config.DriverConfig;
-import io.github.bonigarcia.wdm.WebDriverManager;
+import base.BaseTest;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-import utils.Tools;
 
+public class SearchTest extends BaseTest {
 
-public class SearchTest extends DriverConfig {
-    private static Tools tools;
     private WebElement searchInput;
-    private WebDriver driver;
+
     private WebElement messageNoProduct;
     private WebElement sectionProduct;
-    private JavascriptExecutor js;
 
 
-    @BeforeSuite
-    void setupSuite() {
-        WebDriverManager.chromedriver().setup();
-        driver = getDriver();
-        driver.get(baseURL);
-        tools = new Tools(driver);
-        js = (JavascriptExecutor) driver;
+    @BeforeTest
+    void setupClass(){
+
     }
 
-
-    @AfterSuite
-    void cleanupTest() {
-        quitDriver();
-    }
 
 
     @BeforeMethod
