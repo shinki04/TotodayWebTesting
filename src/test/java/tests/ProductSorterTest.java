@@ -1,6 +1,6 @@
 package tests;
 
-import base.BasePage;
+import base.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -9,13 +9,13 @@ import utils.Tools;
 
 import java.util.List;
 
-public class ProductSorterTest extends BasePage {
+public class ProductSorterTest extends BaseTest {
     private Tools tools;
     public WebElement sortClass;
     public WebElement sortList;
     public List<WebElement> sortOptionsList;
 
-    private String sortProductURL = baseURL + "phu-kien-pc360511.html";
+    private String sortProductURL = baseURL + "/phu-kien-pc360511.html";
 
     @BeforeTest
     void setupTest() {
@@ -35,7 +35,7 @@ public class ProductSorterTest extends BasePage {
 
         sleep(8);
         try {
-            sortList = sortClass.findElement(By.xpath("/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[2]/div[1]/ul[1]"));
+            sortList = sortClass.findElement(By.xpath("//ul[@class='filter-item-list']"));
 
             js.executeScript("arguments[0].style.display = 'block'", sortList);
 
@@ -57,8 +57,8 @@ public class ProductSorterTest extends BasePage {
         Assert.assertTrue(isOptionSelected(optionItem), "Sort option '" + optionItem + "' is NOT selected!");
 
         // Kiểm tra URL đã thay đổi chưa
-        String afterURL = getCurrentURL();
-        Assert.assertEquals(afterURL, sortProductURL + optionURL);
+        String actualUrl = getCurrentURL();
+        Assert.assertEquals(actualUrl, sortProductURL + optionURL);
 
     }
 

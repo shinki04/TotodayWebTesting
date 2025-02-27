@@ -1,13 +1,12 @@
 package tests;
 
-import base.BasePage;
-import config.DriverConfig;
+import base.BaseTest;
 import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
 
-public class SearchTest extends BasePage {
+public class SearchTest extends BaseTest {
 
     private WebElement searchInput;
 
