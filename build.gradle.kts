@@ -43,6 +43,7 @@ tasks.named<Test>("test") {
         html.outputLocation.set(file("$projectDir/GradleReports"))
     }
 }
+
 tasks.test {
 //    useJUnitPlatform()
     useTestNG()
