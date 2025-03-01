@@ -73,7 +73,6 @@ public class ProductDetails extends DriverConfig {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         JavascriptExecutor js = (JavascriptExecutor) driver;
 
-        // **Bước 1: Chuyển sang tab "Đánh giá"**
         WebElement reviewTab = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[contains(text(),'Đánh giá')])[1]")));
         try {
             reviewTab.click();
@@ -81,11 +80,9 @@ public class ProductDetails extends DriverConfig {
             js.executeScript("arguments[0].click();", reviewTab);
         }
 
-        // **Chờ nội dung tab "Đánh giá" hiển thị**
         WebElement reviewContent = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//p[contains(text(),'Chưa có đánh giá nào cho sản phẩm này')])[1]")));
         Assert.assertTrue(reviewContent.isDisplayed(), "Nội dung tab Đánh giá không hiển thị!");
 
-        // **Bước 2: Chuyển lại tab "Chi tiết sản phẩm"**
         WebElement detailsTab = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//button[contains(text(),'Chi tiết sản phẩm')])[1]")));
         try {
             detailsTab.click();
@@ -93,7 +90,6 @@ public class ProductDetails extends DriverConfig {
             js.executeScript("arguments[0].click();", detailsTab);
         }
 
-        // **Chờ nội dung tab "Chi tiết sản phẩm" hiển thị**
         WebElement detailsContent = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/section[1]/div[1]/div[1]/div[2]/div[1]/div[1]")));
         Assert.assertTrue(detailsContent.isDisplayed(), "Nội dung tab Chi tiết sản phẩm không hiển thị!");
 
