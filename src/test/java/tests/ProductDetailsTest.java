@@ -4,12 +4,11 @@ import config.DriverConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import utils.Tools;
 
@@ -22,7 +21,7 @@ public class ProductDetailsTest extends DriverConfig {
     private WebElement searchInput;
     private WebElement messageNoResult;
 
-    @BeforeSuite
+    @BeforeClass
     void setupSuite() {
         WebDriverManager.chromedriver().setup();
         driver = getDriver();
@@ -30,7 +29,7 @@ public class ProductDetailsTest extends DriverConfig {
         tools = new Tools(driver);
     }
 
-    @AfterSuite
+    @AfterClass
     void cleanupTest() {
         quitDriver();
     }
@@ -41,8 +40,8 @@ public class ProductDetailsTest extends DriverConfig {
         driver.findElement(By.xpath("/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]")).click();
         driver.findElement(By.xpath("/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/a[1]")).click();
         driver.findElement(By.xpath("//div[@class='col']")).click();
-
     }
+
     @Test
     public void testProductDetails() {
         WebElement product = driver.findElement(By.xpath("(//span[normalize-space()='ÁO HOODIE NAM - TOTODAY - GOOD MANNERS MATTERS'])[1]"));
@@ -55,6 +54,7 @@ public class ProductDetailsTest extends DriverConfig {
 
         System.out.println("Test thành công: Tên sản phẩm trong danh sách và trang chi tiết giống nhau!");
     }
+
     @Test
     public void testProductDescriptionDisplayed() {
         WebElement productDescription = driver.findElement(By.xpath("(//p)[61]"));
@@ -69,6 +69,7 @@ public class ProductDetailsTest extends DriverConfig {
 
         System.out.println("Test thành công: Mô tả sản phẩm hiển thị đầy đủ và đúng nội dung!");
     }
+
     @Test
     public void testProductTabsSwitching() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
