@@ -30,12 +30,15 @@ graph LR;
     test --> StoreLocatorTest.java;
     tests --> AccountInformationTest.java;
     java_test --> utils;
-    utils --> Tools.java
-    utils --> Notification.java
+    utils --> Tools.java;
+    utils --> Notification.java;
+    utils --> PopupHandler.java;
+    utils --> ExcelReader.java;
     test --> resources_test["resources"];
     resources_test --> testng.xml
     resources_test -->accountln_information.xlsx;
     resources_test --> login.xlsx;
+
 ```
 
 [//]: # ()
