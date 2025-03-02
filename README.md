@@ -27,7 +27,7 @@ graph LR;
     tests --> ProductFilterTest.java;
     tests --> ProductSorterTest.java;
     tests --> ProductDetailsTest.java;
-    test --> StoreLocatorTest.java-
+    test --> StoreLocatorTest.java;
     tests --> AccountInformationTest.java;
     java_test --> utils;
     utils --> Tools.java
