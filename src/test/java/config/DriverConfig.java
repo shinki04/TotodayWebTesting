@@ -5,18 +5,34 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.Map;
+
 public class DriverConfig {
 
 
-    public static String baseURL = "https://totoday.vn/";
-    private static WebDriver driver;
+    public static String baseURL = "https://totoday.vn";
+    public static WebDriver driver;
 
     public static WebDriver getDriver() {
         if (driver == null) {
             WebDriverManager.chromedriver().setup();
             ChromeOptions chromeOptions = new ChromeOptions();
-//            chromeOptions.addArguments("--headless=new");
+            chromeOptions.addArguments("--headless=new");
+
+            chromeOptions.setExperimentalOption("prefs", Map.of(
+                    "profile.default_content_setting_values.notifications", 1,
+                    "profile.default_content_setting_values.popups", 1
+            ));
+            chromeOptions.addArguments("--disable-popup-blocking");
+
+            chromeOptions.setExperimentalOption("prefs", Map.of(
+                    "profile.default_content_setting_values.notifications", 1,
+                    "profile.default_content_setting_values.popups", 1
+            ));
+            chromeOptions.addArguments("--disable-popup-blocking");
+
             driver = new ChromeDriver(chromeOptions);
+
         }
         return driver;
     }

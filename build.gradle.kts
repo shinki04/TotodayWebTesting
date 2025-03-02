@@ -28,8 +28,10 @@ dependencies {
     testImplementation("io.github.bonigarcia:webdrivermanager:5.9.2")
     testImplementation("org.seleniumhq.selenium:selenium-chromium-driver:4.28.1")
     testImplementation("org.testng:reportng:1.2.2")
+    testImplementation("org.apache.poi:poi:5.4.0")  // Để đọc và ghi file Excel
+    testImplementation("org.apache.poi:poi-ooxml:5.4.0") // Để đọc và ghi file Excel
+    testImplementation("org.apache.poi:poi-scratchpad:5.4.0") // Để đọc và ghi file Excel}
 }
-
 tasks.named<Test>("test") {
     // Sử dụng TestNG cho unit tests
     useTestNG {
@@ -41,6 +43,7 @@ tasks.named<Test>("test") {
         html.outputLocation.set(file("$projectDir/GradleReports"))
     }
 }
+
 tasks.test {
 //    useJUnitPlatform()
     useTestNG()
