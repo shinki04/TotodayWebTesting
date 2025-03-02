@@ -15,7 +15,7 @@ import utils.Tools;
 
 import java.time.Duration;
 
-public class ProductDetails extends DriverConfig {
+public class ProductDetailsTest extends DriverConfig {
 
     private static Tools tools;
     private WebDriver driver;
@@ -37,8 +37,9 @@ public class ProductDetails extends DriverConfig {
 
     @BeforeMethod
     void setupMethod() {
-        driver.findElement(By.xpath("/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/a[1]")).click();
-        driver.findElement(By.xpath("(//a[@class='cc-item'][normalize-space()='Áo Khoác Nam'])[1]")).click();
+        driver.get(baseURL);
+        driver.findElement(By.xpath("/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]")).click();
+        driver.findElement(By.xpath("/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/a[1]")).click();
         driver.findElement(By.xpath("//div[@class='col']")).click();
 
     }
@@ -56,7 +57,7 @@ public class ProductDetails extends DriverConfig {
     }
     @Test
     public void testProductDescriptionDisplayed() {
-        WebElement productDescription = driver.findElement(By.xpath("/html[1]/body[1]/section[1]/div[1]/div[1]/div[2]/div[1]/div[1]/p[1]"));
+        WebElement productDescription = driver.findElement(By.xpath("(//p)[61]"));
         Assert.assertTrue(productDescription.isDisplayed(), "Mô tả sản phẩm không hiển thị trên trang!");
 
         String actualDescription = productDescription.getText();
@@ -68,7 +69,7 @@ public class ProductDetails extends DriverConfig {
 
         System.out.println("Test thành công: Mô tả sản phẩm hiển thị đầy đủ và đúng nội dung!");
     }
-    @Test(priority = 3)
+    @Test
     public void testProductTabsSwitching() throws InterruptedException {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -93,5 +94,6 @@ public class ProductDetails extends DriverConfig {
         WebElement detailsContent = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html[1]/body[1]/section[1]/div[1]/div[1]/div[2]/div[1]/div[1]")));
         Assert.assertTrue(detailsContent.isDisplayed(), "Nội dung tab Chi tiết sản phẩm không hiển thị!");
 
-        System.out.println("✅ Test thành công: Tab 'Chi tiết sản phẩm' và 'Đánh giá' hoạt động chính xác!");
-    }}
+        System.out.println("Test thành công: Tab 'Chi tiết sản phẩm' và 'Đánh giá' hoạt động chính xác!");
+    }
+}
