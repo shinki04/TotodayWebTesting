@@ -28,7 +28,6 @@ public class AddToCartTest extends BaseTest {
         actions = new Actions(driver);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get("https://totoday.vn/ao-khoac-du-unisex-totoday-active-windbreaker-jacket-p37885995.html");
-
     }
 
 //    @Test
@@ -114,9 +113,23 @@ public class AddToCartTest extends BaseTest {
     @DataProvider(name = "productData")
     public Object[][] productData() {
         return new Object[][] {
-                {"BE", "276818", true},  // Trường hợp vượt quá số lượng còn lại
-                {"BE", "276820", false}, // Trường hợp không vượt quá số lượng còn lại
-                {"BL", "276821", false}
+                // Trường hợp vượt quá số lượng còn lại : true
+                // Trường hợp không vượt quá số lượng còn lại : false
+                // color, size, stock
+                {"BE", "276818", true},
+                {"BE", "276819", false},
+                {"BE", "276820", true},
+                {"BE", "276821", false},
+
+                {"BL", "276818", false},
+                {"BL", "276819", true},
+                {"BL", "276820", true},
+                {"BL", "276821", false},
+
+                {"BU", "276818", true},
+                {"BU", "276819", false},
+                {"BU", "276820", true},
+                {"BU", "276821", true},
         };
     }
 
@@ -144,10 +157,11 @@ public class AddToCartTest extends BaseTest {
 
         // Nhập số lượng
         WebElement qtyInput = driver.findElement(By.id("qty"));
-        String qtymin = qtyInput.getDomAttribute("min");
+        // Kiểm tra số lượng
+        int qtymin = Integer.parseInt(qtyInput.getDomAttribute("min"));
         int qtymax = Integer.parseInt(qtyInput.getDomAttribute("max"));
-        System.out.println(qtymax + qtymin);
-        int qtyToEnter = isExceed ? qtymax + 1 : qtymax - 1; // Nếu isExceed = true, nhập số lượng lớn hơn
+        System.out.println(qtymax + " " +qtymin);
+        int qtyToEnter = isExceed ? qtymax + 1 : qtymin; // Nếu isExceed = true, nhập số lượng lớn hơn
         qtyInput.clear();
         qtyInput.sendKeys(String.valueOf(qtyToEnter));
 
@@ -173,7 +187,7 @@ public class AddToCartTest extends BaseTest {
                 WebElement modelAddSuccess = wait.until(ExpectedConditions.presenceOfElementLocated(
                         By.cssSelector(".modal-add-success.active")));
                 sleep(10);
-                Assert.assertTrue(modelAddSuccess.isDisplayed(),"Add to cart not done");
+                Assert.assertTrue(modelAddSuccess.isDisplayed(),"The product not add to cart successfully");
             }
 
         }
