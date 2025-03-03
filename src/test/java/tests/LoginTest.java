@@ -1,34 +1,22 @@
 package tests;
 
-import config.DriverConfig;
+import base.BaseTest;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import utils.Notification;
-import utils.PopupHandler;
-import utils.Tools;
 
-public class LoginTest extends DriverConfig {
-    String loginURL = baseURL + "user/signin";
-    private WebDriver driver;
-    private Notification notification;
-    private static Tools tools;
-    private PopupHandler popupHandler;
+public class LoginTest extends BaseTest {
+    private String loginURL = baseURL + "/user/signin";
 
-    @BeforeSuite
-    public void setupSuite() {
-        driver = getDriver();
-        driver.get(loginURL);
-        notification = new Notification(driver);
-        tools = new Tools(driver);
-        popupHandler = new PopupHandler(driver);
-     }
+
+//    @BeforeSuite
+//    public void setupSuite() {
+//        driver.get(loginURL);
+//     }
 
     @BeforeMethod
     public void setupTMethod() {
@@ -338,7 +326,7 @@ public class LoginTest extends DriverConfig {
         Assert.assertEquals(inputType, "password", "Lỗi: Mật khẩu không bị ẩn đúng! Giá trị thực tế: " + inputType);
     }
 
-    @AfterSuite
+    @AfterMethod
     public void cleanupSuite() {
 //        quitDriver();
     }
