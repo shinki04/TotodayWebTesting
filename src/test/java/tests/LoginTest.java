@@ -26,12 +26,13 @@ public class LoginTest extends BaseTest {
     @BeforeMethod
     public void setupTMethod() {
         driver.get(loginURL);
-        excelReader = new ExcelReader("./src/test/resources/login.xlsx");
+
     }
 
     @Test(priority = 0)
     public void testSuccess() throws InterruptedException, IOException {
         driver.manage().window().maximize();
+        excelReader = new ExcelReader("./src/test/resources/login.xlsx");
 
         // Đọc dữ liệu từ file Excel (giả sử thông tin đăng nhập nằm ở Sheet 0, dòng đầu tiên)
         List<String[]> loginData = excelReader.readExcelData(0);
