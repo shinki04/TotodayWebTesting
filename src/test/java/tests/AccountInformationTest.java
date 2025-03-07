@@ -6,7 +6,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utils.ExcelReader;
-import utils.Notification;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,7 +15,7 @@ import java.util.List;
 public class AccountInformationTest  extends BaseTest {
     private String loginURL = baseURL + "/user/signin";
 
-    @BeforeSuite
+    @BeforeClass
     public void loginToAccount() {
         driver.get(loginURL);
         driver.manage().window().maximize();
@@ -247,9 +246,9 @@ public class AccountInformationTest  extends BaseTest {
     }
 
 
-    @AfterSuite
+    @AfterMethod
     public void cleanupSuite() {
-        cleanupTest();
+//        cleanupTest();
     }
 
 
