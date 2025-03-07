@@ -1,17 +1,11 @@
 package tests;
 
 import base.BaseTest;
-import config.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
-import utils.Notification;
-import utils.Tools;
+
 
 public class RegisterTest extends BaseTest {
         private String loginURL = baseURL + "/user/signin";

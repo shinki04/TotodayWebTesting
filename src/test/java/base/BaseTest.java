@@ -4,6 +4,7 @@ import config.DriverConfig;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import utils.ExcelReader;
 import utils.Notification;
@@ -24,7 +25,7 @@ public class BaseTest extends DriverConfig {
 
     protected Actions actions;
 
-    @BeforeSuite
+    @BeforeMethod
     protected void setupSuite() {
         driver = getDriver();
         driver.get(baseURL);
