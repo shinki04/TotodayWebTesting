@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import config.DriverConfig;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
@@ -7,31 +8,26 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utils.Tools;
 
 import java.time.Duration;
 
-public class ProductDetailsTest extends DriverConfig {
+public class ProductDetailsTest extends BaseTest {
 
     private static Tools tools;
     private WebDriver driver;
     private WebElement searchInput;
     private WebElement messageNoResult;
 
-    @BeforeSuite
-    void setupSuite() {
-        WebDriverManager.chromedriver().setup();
+    @BeforeClass
+    void setupClass() {
         driver = getDriver();
-        driver.get(baseURL);
-        tools = new Tools(driver);
+
     }
 
-    @AfterSuite
-    void cleanupTest() {
+    @AfterClass
+    void cleanupClass() {
         quitDriver();
     }
 

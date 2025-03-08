@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import utils.Tools;
 
 
-public class SearchTest extends BaseTest {
+public class SearchTest2 extends BaseTest {
 
     private static Tools tools;
     private WebElement searchInput;
