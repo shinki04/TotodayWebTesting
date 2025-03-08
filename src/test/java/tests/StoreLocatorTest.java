@@ -7,10 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utils.Tools;
 
 import java.time.Duration;
@@ -22,17 +19,15 @@ public class StoreLocatorTest extends DriverConfig {
     private WebElement searchInput;
     private WebElement messageNoResult;
 
-    @BeforeSuite
-    void setupSuite() {
-        WebDriverManager.chromedriver().setup();
+    @BeforeClass
+    void setupClass() {
         driver = getDriver();
-        driver.get(baseURL);
-        tools = new Tools(driver);
+
     }
 
-    @AfterSuite
-    void cleanupTest() {
-        quitDriver();
+    @AfterClass
+    void cleanupClass() {
+//        quitDriver();
     }
 
     @BeforeMethod
