@@ -1,74 +1,72 @@
 package tests;
 
 import base.BaseTest;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.testng.annotations.BeforeMethod;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pages.EditPassPage;
+import utils.FileReader;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+
+import static utils.FileReader.readDataFromExcel;
 
 public class EditPassTest extends BaseTest {
-    private String loginURL = baseURL + "/user/signin";
-    private String changePasswordURL = baseURL + "/profile/changepassword";
     private EditPassPage editPassPage;
+    private final String loginURL = baseURL + "/user/signin";
+    private final String changePasswordURL = baseURL + "/profile/changepassword";
 
-    @BeforeMethod
-    public void setupTest() {
+    @BeforeClass
+    private void setupClass() {
         editPassPage = new EditPassPage(driver, notification);
+    }
+
+    @AfterMethod
+    private void cleanupTest() {
+        driver.get(baseURL);
     }
 
     @DataProvider(name = "passwordChangeData")
     public Object[][] passwordChangeData() {
-        List<Object[]> data = new ArrayList<>();
-        String excelFilePath = "TotodayWebTesting/src/test/resources/edit_password.xlsx";
-        File file = new File(excelFilePath);
-
-        if (!file.exists()) {
-            System.err.println("File not found: " + excelFilePath);
-            return new Object[][]{{"default@example.com", "defaultPass", "newPass123", "newPass123"}};
-        }
-
-        try (FileInputStream fis = new FileInputStream(file)) {
-            Workbook workbook = WorkbookFactory.create(fis);
-            Sheet sheet = workbook.getSheetAt(0);
-
-            for (Row row : sheet) {
-                if (row.getRowNum() == 0) continue; // Bỏ qua header
-
-                String account = row.getCell(0) != null ? row.getCell(0).toString() : "";
-                String currentPassword = row.getCell(1) != null ? row.getCell(1).toString() : "";
-                String newPassword = row.getCell(2) != null ? row.getCell(2).toString() : "";
-                String confirmPassword = row.getCell(3) != null ? row.getCell(3).toString() : "";
-
-                data.add(new Object[]{account, currentPassword, newPassword, confirmPassword});
-            }
-            workbook.close();
-        } catch (IOException e) {
-            System.err.println("Error reading Excel file: " + e.getMessage());
-            e.printStackTrace();
-            return new Object[][]{{"default@example.com", "defaultPass", "newPass123", "newPass123"}};
-        }
-
-        if (data.isEmpty()) {
-            System.err.println("No data found in Excel file: " + excelFilePath);
-            return new Object[][]{{"default@example.com", "defaultPass", "newPass123", "newPass123"}};
-        }
-
-        System.out.println("Loaded " + data.size() + " test cases from Excel file.");
-        return data.toArray(new Object[0][]);
+        return readDataFromExcel("src/test/resources/edit_password.xlsx", "Sheet1");
     }
 
-    @Test(dataProvider = "passwordChangeData")
-    public void testChangePassword(String account, String currentPassword, String newPassword, String confirmPassword) {
+    @Test(dataProvider = "passwordChangeData", priority = 0)
+    public void testChangePassword(Map<String, String> data) {
+        String account = data.get("Account");
+        String currentPassword = data.get("Current Password");
+        String newPassword = data.get("New Password");
+        String confirmPassword = data.get("Confirm Password");
+        String testCase = data.get("TestCase");
+
+        System.out.println("Test case: " + testCase + " | Account: " + account +
+                ", Current Password: " + currentPassword +
+                ", New Password: " + newPassword +
+                ", Confirm Password: " + confirmPassword);
+
+        // Đăng nhập với account và currentPassword
+        editPassPage.loginToAccount(loginURL, account, currentPassword);
+
+        // Thực hiện đổi mật khẩu
         editPassPage.changePassword(loginURL, changePasswordURL, account, currentPassword, newPassword, confirmPassword);
+
+        // Kiểm tra kết quả
+        String successMessage = editPassPage.getSuccessMessageText(); // Đổi tên
+        if (testCase.equals("Đổi mật khẩu thành công")) {
+            // Kỳ vọng thành công: Có thông báo với class "alert alert-warning"
+            Assert.assertNotNull(successMessage, "Success message should be displayed for: " + account);
+            Assert.assertEquals(successMessage.trim(), "Đổi mật khẩu tài khoản thành công",
+                    "Success message should match expected text");
+            Assert.assertTrue(editPassPage.isSuccessMessageDisplayed(),
+                    "Success message with class 'alert alert-warning' should be displayed for: " + account);
+            editPassPage.clickLogoutButton();
+            editPassPage.loginToAccount(loginURL, account, newPassword);
+        } else {
+            // Kỳ vọng thất bại: Không có thông báo
+            Assert.assertFalse(editPassPage.isSuccessMessageDisplayed(),
+                    "No success message should be displayed for failed case: " + account);
+        }
     }
 }
