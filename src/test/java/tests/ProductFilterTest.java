@@ -24,14 +24,11 @@ public class ProductFilterTest extends BaseTest {
     private final String sortProductURL = baseURL + "/phu-kien-pc360511.html";
     private WebDriverWait wait;
     private Actions actions;
-    private JavascriptExecutor js;
-
 
 
     @BeforeTest
     void setupClass() {
-        driver = getDriver();
-
+        driver.manage().window().maximize();
         driver.navigate().to(sortProductURL);
         tools = new Tools(driver);
         driver.manage().window().maximize();
@@ -39,8 +36,6 @@ public class ProductFilterTest extends BaseTest {
         sleep(4);
         actions = new Actions(driver);
         driver.navigate().refresh();
-        js = (JavascriptExecutor) driver;
-
     }
 
     @BeforeMethod
