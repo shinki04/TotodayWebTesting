@@ -2,9 +2,7 @@ package tests;
 
 import base.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.SearchPage;
 import utils.FileReader;
 
@@ -22,6 +20,12 @@ public class SearchTest extends BaseTest {
     private void setupClass() {
         searchPage = new SearchPage(driver);
     }
+
+    @AfterMethod
+    private void cleanupTest(){
+        driver.get(baseURL);
+    }
+
     @DataProvider(name = "searchData")
     public Object[][] loginDataProvider() {
         return readDataFromExcel("src/test/resources/search.xlsx", "Sheet1");
@@ -70,6 +74,7 @@ public class SearchTest extends BaseTest {
         }
 
     }
+
 }
 
 

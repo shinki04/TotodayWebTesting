@@ -1,23 +1,43 @@
 package tests;
 
-import base.BaseTest;
+import config.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import utils.Notification;
+import utils.Tools;
+
+import java.time.Duration;
 
 
-public class RegisterTest extends BaseTest {
-        private String loginURL = baseURL + "/user/signin";
+public class RegisterTest extends DriverConfig {
 
-        @BeforeMethod
-        public void setupTMethod() {
-            driver.get(loginURL);
-            driver.findElement(By.id("pills-profile-tab")).click();
-            sleep(3);
+    String loginURL = baseURL + "user/signin";
+    private WebDriver driver;
+    private Notification notification; // Khai báo Notification
+    private static Tools tools;
 
-        }
 
+    @BeforeSuite
+    public void setupSuite() {
+        driver = getDriver();
+        driver.get(loginURL);
+        notification = new Notification(driver); // Khởi tạo Notification với driver
+        tools = new Tools(driver);
+
+    }
+    @BeforeMethod
+    public void setupTMethod() {
+        driver.findElement(By.id("pills-profile-tab")).click();
+
+        sleep(3);
+
+    }
 
     @Test(priority = 0)
     public void testSuccess() throws InterruptedException {
@@ -93,22 +113,23 @@ public class RegisterTest extends BaseTest {
 
     @Test(priority = 2)
     public void testEmptyFields() throws InterruptedException {
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight / 2);");
-        sleep(5);
+
+        sleep(2);
+        driver.manage().window().fullscreen();
+
         driver.findElement(By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]")).submit();
-        sleep(5);
 
-        String popupClass = "formErrorContent"; // Tên class của popup
+        // Kiểm tra lỗi từng trường
+        Assert.assertTrue(driver.findElement(By.id("signUpFullName")).isDisplayed(), "Không có thông báo lỗi cho họ tên");
+        Assert.assertTrue(driver.findElement(By.id("mobile")).isDisplayed(), "Không có thông báo lỗi cho họ tên");
+        Assert.assertTrue(driver.findElement(By.id("signUpEmail")).isDisplayed(), "Không có thông báo lỗi cho họ tên");
+        Assert.assertTrue(driver.findElement(By.id("signUpPassword")).isDisplayed(), "Không có thông báo lỗi cho họ tên");
 
-        // Kiểm tra nếu popup có xuất hiện
-        Assert.assertTrue(popupHandler.isPopupPresent(popupClass), "Không có thông báo lỗi hiển thị");
-
-        // Kiểm tra nội dung lỗi hiển thị đúng
-        Assert.assertEquals(popupHandler.getPopupMessage(popupClass), "* Trường này bắt buộc", "Sai thông báo lỗi cho họ tên");
-        Assert.assertEquals(popupHandler.getPopupMessage(popupClass), "* Trường này bắt buộc * Số điện thoại sai", "Sai thông báo lỗi cho số điện thoại");
-        Assert.assertEquals(popupHandler.getPopupMessage(popupClass), "* Trường này bắt buộc * Địa chỉ thư điện tử sai", "Sai thông báo lỗi cho email");
-        Assert.assertEquals(popupHandler.getPopupMessage(popupClass), "* Trường này bắt buộc * Tối thiểu 6 số ký tự được cho phép", "Sai thông báo lỗi cho mật khẩu");
+        // Kiểm tra nội dung lỗi
+        Assert.assertEquals(driver.findElement(By.id("signUpFullName")).getText(), "* Trường này bắt buộc");
+        Assert.assertEquals(driver.findElement(By.id("mobile")).getText(), "* Trường này bắt buộc");
+        Assert.assertEquals(driver.findElement(By.id("signUpEmail")).getText(), "* Trường này bắt buộc");
+        Assert.assertEquals(driver.findElement(By.id("signUpPassword")).getText(), "* Trường này bắt buộc");
 
 
     }
@@ -133,8 +154,8 @@ public class RegisterTest extends BaseTest {
     }
 
 
-    @AfterSuite
-    public void cleanupSuite() {
-        cleanupTest();
-    }
+//    @AfterSuite
+//    public void cleanupSuite() {
+//        quitDriver();
+//    }
 }

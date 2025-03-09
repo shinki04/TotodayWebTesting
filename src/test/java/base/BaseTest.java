@@ -35,7 +35,7 @@ public class BaseTest extends DriverConfig {
     }
 
     @AfterSuite
-    protected void cleanupTest() {
+    protected void cleanupSuite() {
         quitDriver();
     }
 }
