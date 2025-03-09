@@ -28,6 +28,7 @@ public class ProductFilterTest extends BaseTest {
 
     @BeforeTest
     void setupClass() {
+        driver.manage().window().maximize();
         driver.navigate().to(sortProductURL);
         tools = new Tools(driver);
         driver.manage().window().maximize();
