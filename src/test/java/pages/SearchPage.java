@@ -3,67 +3,79 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-import utils.Tools;
 
 public class SearchPage {
-
-    private static Tools tools;
     private final WebDriver driver;
 
-    //    Field
+    // Locators
     private final By searchField = By.xpath("//input[@class='search-input']");
     private final By sectionProduct = By.xpath("//div[@class='section-product-wrap']");
-    private final By productNameDetail = By.xpath("//div[@class='section-product-wrap']//a[@class='product-name'][1]");
-
-    //    Message Error
+    private final By firstProductNameDetail = By.xpath("//div[@class='section-product-wrap']//a[@class='product-name'][1]");
     private final By messageNoProduct = By.xpath("//div[@class='no-product']");
 
 
-    //    Constructor
+    // Constructor
     public SearchPage(WebDriver driver) {
         this.driver = driver;
-        tools = new Tools(driver);
     }
 
-
+    /**
+     * Helper method to get element
+     */
     private WebElement getElement(By element) {
         try {
             return driver.findElement(element);
-        } catch (NullPointerException nullEx) {
-            Assert.fail("Element not found");
+        } catch (Exception e) {
             return null;
         }
     }
 
+    public WebElement getSearchFolding(String valueFolding) {
+        return driver.findElement(By.xpath("//div[@class='searchFolding']//a[contains(text(),'" + valueFolding + "')]"));
+    }
+
+    // Actions
     public void enterSearch(String searchValue) {
-        getElement(searchField).sendKeys(searchValue);
+        WebElement searchInput = getElement(searchField);
+        if (searchInput != null) {
+            searchInput.sendKeys(searchValue);
+        }
     }
 
     public void submitSearch() {
         getElement(searchField).submit();
+
     }
 
-
-    public void checkSearchFailed() {
-        Assert.assertTrue(getElement(messageNoProduct).isDisplayed(), "Category was found");
-        Assert.assertFalse(getElement(sectionProduct).isDisplayed(), "Category not found");
+    public void clickSearch() {
+        getElement(searchField).click();
     }
 
-    public void checkSearchSuccess() {
-        Assert.assertFalse(getElement(messageNoProduct).isDisplayed(), "No product displayed");
-        Assert.assertTrue(getElement(sectionProduct).isDisplayed(), "No product displayed");
+    /**
+     * Query Method
+     *
+     * @return boolean
+     */
+    public boolean isFirstProductDisplayed() {
+        WebElement firstProduct = getElement(firstProductNameDetail);
+        return firstProduct != null && firstProduct.isDisplayed();
     }
 
-    public boolean checkContentEqualWithParentElementByXpath(By  parentElement, By childElement, String value) {
-        WebElement child = getElement(parentElement).findElement(childElement);
-        return child.isDisplayed() && child.getText().trim().toLowerCase().contains(value.toLowerCase());
+    public boolean isNoProductMessageDisplayed() {
+        WebElement noProductMsg = getElement(messageNoProduct);
+        return noProductMsg != null && noProductMsg.isDisplayed();
     }
 
-    public void searchProductMultiCase(String searchValue){
-        enterSearch(searchValue);
-        submitSearch();
+    public boolean isProductSectionDisplayed() {
+        WebElement productSection = getElement(sectionProduct);
+        return productSection != null && productSection.isDisplayed();
     }
 
+    public String getFirstProductName() {
+        WebElement firstProduct = getElement(firstProductNameDetail);
+        return (firstProduct != null) ? firstProduct.getText().trim() : "";
+    }
 
 }
+
+

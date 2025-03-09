@@ -1,6 +1,5 @@
 package tests;
 
-import base.BaseTest;
 import config.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,20 +15,21 @@ import utils.Tools;
 import java.time.Duration;
 
 
-public class RegisterTest extends BaseTest {
+public class RegisterTest extends DriverConfig {
 
-    String loginURL = baseURL + "/user/signin";
+    String loginURL = baseURL + "user/signin";
     private WebDriver driver;
     private Notification notification; // Khai báo Notification
     private static Tools tools;
 
 
-    @BeforeTest
-    public void setupTest() {
+    @BeforeSuite
+    public void setupSuite() {
         driver = getDriver();
         driver.get(loginURL);
         notification = new Notification(driver); // Khởi tạo Notification với driver
         tools = new Tools(driver);
+
     }
     @BeforeMethod
     public void setupTMethod() {
@@ -154,8 +154,8 @@ public class RegisterTest extends BaseTest {
     }
 
 
-    @AfterClass
-    public void cleanupClass() {
+//    @AfterSuite
+//    public void cleanupSuite() {
 //        quitDriver();
-    }
+//    }
 }
