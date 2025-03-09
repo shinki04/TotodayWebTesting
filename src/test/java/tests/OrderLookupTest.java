@@ -6,11 +6,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
+import utils.Notification;
+import utils.PopupHandler;
 import utils.Tools;
 
 public class OrderLookupTest extends DriverConfig {
@@ -22,19 +22,16 @@ public class OrderLookupTest extends DriverConfig {
     private WebDriver driver;
     private WebElement messageNoOrder;
 
-
-    @BeforeSuite
-    void setupSuite() {
-        WebDriverManager.chromedriver().setup();
+    @BeforeTest
+    void setupTest() {
         driver = getDriver();
-        driver.get(baseURL);
         tools = new Tools(driver);
 
     }
 
 
-    @AfterSuite
-    void cleanupTest() {
+    @AfterClass
+    void cleanupClass() {
         quitDriver();
     }
 

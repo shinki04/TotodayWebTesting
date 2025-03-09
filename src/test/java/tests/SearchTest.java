@@ -1,169 +1,80 @@
 package tests;
 
 import base.BaseTest;
-import org.openqa.selenium.*;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import pages.SearchPage;
+import utils.FileReader;
 
+import java.util.Map;
+
+import static utils.FileReader.readDataFromExcel;
 
 public class SearchTest extends BaseTest {
 
-    private WebElement searchInput;
+    //    private WebDriver driver;
+    private SearchPage searchPage;
+    private FileReader fileReader;
 
-    private WebElement messageNoProduct;
-    private WebElement sectionProduct;
-
-
-    @BeforeTest
-    void setupClass(){
-
+    @BeforeClass
+    private void setupClass() {
+        searchPage = new SearchPage(driver);
     }
 
-
-
-    @BeforeMethod
-    void setupMethod() {
-        searchInput = driver.findElement(By.xpath("//input[@class='search-input']"));
+    @AfterMethod
+    private void cleanupTest(){
+        driver.get(baseURL);
     }
 
+    @DataProvider(name = "searchData")
+    public Object[][] loginDataProvider() {
+        return readDataFromExcel("src/test/resources/search.xlsx", "Sheet1");
+    }
 
-    @Test(priority = 0, testName = "TC_Search_01")
-    void testSearchSuccess() {
-        String searchItem = "Quần Jean";
-        searchInput.sendKeys(searchItem);
-        searchInput.submit();
-        if (driver.getCurrentUrl().contains(baseURL + "search?q=")) {
-            System.out.println("Search input have change");
+    @Test(dataProvider = "searchData",priority = 0)
+    public void testLogin(Map<String, String> data) {
+        String searchValue = data.get("searchValue");
+        boolean expectedResult = Boolean.parseBoolean(data.get("expectedResult"));
+        System.out.println("Test case: " + searchValue + " | searchValue: " + searchValue + ", expectedResult: " + expectedResult);
+        // Thực hiện tìm kiếm
+        searchPage.enterSearch(searchValue);
+        searchPage.submitSearch();
+
+        // Kiểm tra kết quả
+        if (expectedResult) {
+            // Kỳ vọng có sản phẩm
+            Assert.assertTrue(searchPage.isFirstProductDisplayed(), "First product should be displayed for search: " + searchValue);
+            Assert.assertFalse(searchPage.isNoProductMessageDisplayed(), "No product message should not be displayed for search: " + searchValue);
+            Assert.assertTrue(searchPage.getFirstProductName().toLowerCase().contains(searchValue.toLowerCase()), "First product name should contain search value: " + searchValue);
+        } else {
+            // Kỳ vọng không có sản phẩm
+            Assert.assertFalse(searchPage.isFirstProductDisplayed(), "First product should not be displayed for search: " + searchValue);
+            Assert.assertTrue(searchPage.isNoProductMessageDisplayed(), "No product message should be displayed for search: " + searchValue);
         }
-        sleep(5);
-        checkSearchSuccess();
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem),"Product Item not found or not display");
-        sleep(5);
-
-    }
-
-
-    @Test(priority = 1, testName = "TC_Search_02")
-    void testSearchFailed() {
-        String searchItem = "quần đùi";
-        searchInput.sendKeys(searchItem);
-        searchInput.submit();
-        checkSearchFailed();
-        sleep(5);
-    }
-
-    @Test(priority = 2, testName = "TC_Search_03")
-    void testSearchWithItestSearchWithSpecialCharactersncorrectKeyword() {
-        String searchItem = "@gmail@#$";
-        searchInput.sendKeys(searchItem);
-        searchInput.submit();
-        checkSearchFailed();
-        sleep(5);
-
-    }
-
-    @Test(priority = 3, testName = "TC_Search_04")
-    void testSearchWithCaseInsensitiveKeyword() {
-        String searchItem = "Áo kHoÁc";
-        searchInput.sendKeys(searchItem);
-        searchInput.submit();
-
-        checkSearchSuccess();
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem),"Product Item not found or not display");
-
-        sleep(5);
-    }
-
-    //    ! Defect
-    @Test(priority = 4, testName = "TC_Search_05")
-    void testSearchWithLeadingTrailingSpaces() {
-        String searchItem = "   Quần Jean  ";
-        searchInput.sendKeys(searchItem);
-        searchInput.submit();
-        checkSearchSuccess();
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem),"Product Item not found or not display");
-        sleep(5);
-    }
-
-    @Test(priority = 5, testName = "TC_Search_06")
-    void testSearchWithEmptyKeyword() {
-        String searchItem = "";
-        searchInput.sendKeys(searchItem);
-        searchInput.submit();
-        checkSearchSuccess();
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[1]/div[2]/a[1]",searchItem),"Product Item not found or not display");
-        sleep(5);
-    }
-
-    @Test(priority = 6, testName = "TC_Search_07")
-    void testSearchWithMaxLengthKeyword() {
-        String searchItem = tools.generateRandomString(256);
-        System.out.println(searchItem);
-        searchInput.sendKeys(searchItem);
-        searchInput.submit();
-        checkSearchFailed();
-        sleep(5);
-    }
-
-    //    ! Defect
-    @Test(priority = 7, testName = "TC_Search_08", dataProvider = "categoryData")
-    void testSearchWhenClickingCategoryButton(String xpath, String expectedUrl, String valueItem) {
-        searchInput.click();
-        sleep(5);
-        WebElement searchFolding = tools.getElementByXpath("//div[@class='searchFolding']");
-        if (tools.checkElementIsDisplayed(searchFolding)) {
-            js.executeScript("arguments[0].style.display = 'block'", searchFolding);
-            System.out.println("Was change style");
-        }
-        tools.getElementByXpath(xpath).click();
-        sleep(5);
-
-        if (tools.checkElementIsDisplayed(searchFolding)) {
-            js.executeScript("arguments[0].style.display = 'block'", searchFolding);
-            System.out.println("Was change style");
-        }
-
-        Assert.assertTrue(baseURL.contentEquals(expectedUrl));
-        Assert.assertTrue(checkContentEqualWithParentElementByXpath(sectionProduct,"/html[1]/body[1]/main[1]/div[2]/div[1]/div[3]/div[1]/div[1]/div[1]/div[2]/a[1]",valueItem),"Product Item not found or not display");
-
-        checkSearchSuccess();
-        sleep(5);
     }
 
     @DataProvider(name = "categoryData")
     private Object[][] categoryData() {
-        return new Object[][]{
-                //        Áo khoác
-                {"//div[@class='searchFolding']//a[contains(text(),'ÁO KHOÁC')]", "https://totoday.vn/ao-khoac-pc72908.html" , "Áo khoác"},
-                //        Đồ nam
-                {"//div[@class='searchFolding']//a[contains(text(),'ĐỒ NAM')]", "https://totoday.vn/do-nam-pc72882.html" , "Đồ Nam"},
-                //        Đồ nữ
-                {"//div[@class='searchFolding']//a[contains(text(),'ĐỒ NỮ')]", "https://totoday.vn/do-nu-pc72896.html", "Đồ nữ"},
-                //        Unisex
-                {"//div[@class='searchFolding']//a[contains(text(),'UNISEX')]", "https://totoday.vn/unisex-pc72920.html","Unisex"},
-                //        Phụ kiện
-                {"//div[@class='searchFolding']//a[contains(text(),'PHỤ KIỆN')]", "https://totoday.vn/phu-kien-pc360511.html","Phụ kiện"}
-        };
+        return readDataFromExcel("src/test/resources/search.xlsx", "Sheet2");
     }
 
-    void checkSearchFailed() {
-        messageNoProduct = tools.getElementByXpath("//div[@class='no-product']");
-        Assert.assertTrue(tools.checkElementIsDisplayed(messageNoProduct), "Category was found");
-        sectionProduct = tools.getElementByXpath("//div[@class='section-product-wrap']");
-        Assert.assertFalse(tools.checkElementIsDisplayed(sectionProduct), "Category not found");
-    }
+    //!Defect
+    @Test(priority = 1, testName = "TC_Search_08", dataProvider = "categoryData")
+    void testSearchWhenClickingCategoryButton(Map<String, String> data) {
+        String searchFolding = data.get("valueItem");
+        String expectedUrl = data.get("expectedUrl");
+        try {
+            searchPage.clickSearch();
+            searchPage.getSearchFolding(searchFolding).click();
+            sleep(5);
+            Assert.assertEquals(driver.getCurrentUrl(), expectedUrl);
+            sleep(5);
+        } catch (Exception ex) {
+            Assert.fail("Error");
+        }
 
-    void checkSearchSuccess() {
-        messageNoProduct = tools.getElementByXpath("//div[@class='no-product']");
-        Assert.assertFalse(tools.checkElementIsDisplayed(messageNoProduct), "No product displayed");
-        sectionProduct = tools.getElementByXpath("//div[@class='section-product-wrap']");
-        Assert.assertTrue(tools.checkElementIsDisplayed(sectionProduct), "No product displayed");
-    }
-
-    boolean checkContentEqualWithParentElementByXpath(WebElement parentElement, String xpathChild, String value) {
-
-        WebElement childElement = tools.getElementChildByXpath(parentElement, xpathChild);
-        return tools.checkElementIsDisplayed(childElement) && tools.getText(childElement).trim().toLowerCase().contains(value.toLowerCase());
     }
 
 }
+
+
