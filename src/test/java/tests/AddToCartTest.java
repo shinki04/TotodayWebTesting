@@ -194,7 +194,7 @@ public class AddToCartTest extends BaseTest {
     }
     @AfterClass
     public void cleanupClass(){
-        if (driver != null) quitDriver();
+//        if (driver != null) quitDriver();
     }
 
 //    @AfterMethod

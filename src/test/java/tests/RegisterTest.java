@@ -154,8 +154,8 @@ public class RegisterTest extends DriverConfig {
     }
 
 
-    @AfterSuite
-    public void cleanupSuite() {
-        quitDriver();
-    }
+//    @AfterSuite
+//    public void cleanupSuite() {
+//        quitDriver();
+//    }
 }

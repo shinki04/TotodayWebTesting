@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -14,11 +15,15 @@ public class ProductSorterTest extends BaseTest {
     public WebElement sortClass;
     public WebElement sortList;
     public List<WebElement> sortOptionsList;
+    private JavascriptExecutor js;
 
     private String sortProductURL = baseURL + "/phu-kien-pc360511.html";
 
     @BeforeTest
     void setupTest() {
+        driver = getDriver();
+        js = (JavascriptExecutor) driver;
+
         driver.navigate().to(sortProductURL);
         tools = new Tools(driver);
     }
@@ -107,6 +112,6 @@ public class ProductSorterTest extends BaseTest {
 
     @AfterTest
     void cleanTest() {
-        driver.quit();
+//        driver.quit();
     }
 }

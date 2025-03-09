@@ -1,7 +1,71 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Totoday Test">
-<test name="a">
-    <classes>
-    </classes>
-</test>
+<suite name="Totoday Test" thread-count="4">
+
+<!--    Xong-->
+    <test name="Register Tests">
+        <classes>
+            <class name="tests.RegisterTest"/>
+        </classes>
+    </test>
+
+<!--    Xong-->
+    <test name="Search Tests">
+        <classes>
+            <class name="tests.SearchTest2"/>
+        </classes>
+    </test>
+<!--    Xong-->
+    <test name="Order Lookup Tests">
+        <classes>
+            <class name="tests.OrderLookupTest"/>
+        </classes>
+    </test>
+
+<!--    Xong -->
+    <test name="Login Tests">
+        <classes>
+            <class name="tests.LoginTest"/>
+        </classes>
+    </test>
+<!--    Xong-->
+    <test name="Filter Product Tests">
+        <classes>
+            <class name="tests.ProductFilterTest"/>
+        </classes>
+    </test>
+
+<!--    Xong-->
+    <test name="Sorter Product Tests">
+        <classes>
+            <class name="tests.ProductSorterTest"/>
+        </classes>
+    </test>
+<!--    Xong-->
+    <test name="Store Location Tests">
+        <classes>
+            <class name="tests.StoreLocatorTest"/>
+        </classes>
+    </test>
+
+<!--    Xong-->
+    <test name="Account Information Tests">
+        <classes>
+            <class name="tests.AccountInformationTest"/>
+        </classes>
+    </test>
+
+<!--    Xong-->
+    <test name="Add to Cart Test">
+        <classes>
+            <class name="tests.AddToCartTest"/>
+        </classes>
+    </test>
+
+<!--    Xong-->
+    <test name="Product Detail Tests">
+        <classes>
+            <class name="tests.ProductDetailsTest"/>
+        </classes>
+    </test>
+
 </suite>

@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import utils.ExcelReader;
 import utils.Notification;
+import utils.PopupHandler;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -16,10 +17,12 @@ import java.util.List;
 public class AccountInformationTest  extends BaseTest {
     private String loginURL = baseURL + "/user/signin";
 
-    @BeforeSuite
+    @BeforeClass
     public void loginToAccount() {
         driver.get(loginURL);
         driver.manage().window().maximize();
+        notification = new Notification(driver);
+        popupHandler = new PopupHandler(driver);
         excelReader = new ExcelReader("./src/test/resources/accountln_information.xlsx");
 
         // Đăng nhập tài khoản
@@ -247,9 +250,9 @@ public class AccountInformationTest  extends BaseTest {
     }
 
 
-    @AfterSuite
+    @AfterMethod
     public void cleanupSuite() {
-        cleanupTest();
+//        cleanupTest();
     }
 
 
