@@ -1,6 +1,7 @@
 package utils;
 
 import org.openqa.selenium.*;
+import org.testng.Assert;
 
 import java.util.List;
 import java.util.Objects;
@@ -63,7 +64,6 @@ public class Tools {
     }
 
     public WebElement getElementChildByXpath( WebElement parentElement,String xpath) {
-
         try {
             return parentElement.findElement(By.xpath(xpath));
         } catch (NoSuchElementException e) {
@@ -146,6 +146,17 @@ public class Tools {
 
         return String.format("rgb(%d, %d, %d)", r, g, b);
     }
+
+
+    public void checkErrorMessage(WebElement errorElement, String errorMessage) {
+        System.out.println("==========================================");
+        System.out.println("Check Error : ");
+        System.out.println("Actual : " + errorElement.getText());
+        System.out.println("Expect : " + errorMessage);
+        Assert.assertEquals(errorElement.getText(), errorMessage, "Error Message not equal");
+        System.out.println("==========================================");
+    }
+
 
 
 

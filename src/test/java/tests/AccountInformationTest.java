@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import utils.ExcelReader;
 import utils.Notification;
-import utils.Tools;
+import utils.PopupHandler;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -17,17 +17,14 @@ import java.util.List;
 public class AccountInformationTest  extends BaseTest {
     private String loginURL = baseURL + "/user/signin";
 
-      private Notification notification;
-
     @BeforeClass
-    public void setupClass() {
-        driver = getDriver();
+    public void loginToAccount() {
         driver.get(loginURL);
-        tools = new Tools(driver);
-
         driver.manage().window().maximize();
-        excelReader = new ExcelReader("./src/test/resources/accountln_information.xlsx");
         notification = new Notification(driver);
+        popupHandler = new PopupHandler(driver);
+        excelReader = new ExcelReader("./src/test/resources/accountln_information.xlsx");
+
         // Đăng nhập tài khoản
         driver.findElement(By.id("SignInEmail")).sendKeys("innologic25.team@gmail.com");
         driver.findElement(By.id("password-field")).sendKeys("innologic2025");
@@ -35,12 +32,6 @@ public class AccountInformationTest  extends BaseTest {
 
         // Xác nhận thông báo nếu có
         notification.acceptAlert();
-
-    }
-
-    @BeforeTest
-    public void loginToAccount(){
-
     }
 
     @BeforeMethod
@@ -259,9 +250,10 @@ public class AccountInformationTest  extends BaseTest {
     }
 
 
-    @AfterClass
+    @AfterMethod
     public void cleanupSuite() {
 //        cleanupTest();
     }
+
 
 }
