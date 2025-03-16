@@ -24,8 +24,7 @@ public class OrderLookupTest extends DriverConfig {
 
     @BeforeTest
     void setupTest() {
-        driver = getDriver();
-        tools = new Tools(driver);
+
 
     }
 

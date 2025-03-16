@@ -1,33 +1,22 @@
 package tests;
 
 import base.BaseTest;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import pages.AddCartPage;
 
-import java.time.Duration;
+public class AddCartTest extends BaseTest {
+    private AddCartPage addCartPage;
 
-public class AddToCartTest extends BaseTest {
-    private WebDriverWait wait;
-
-//    @BeforeClass
-//    public void setupClass() {
-////        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-////        driver.navigate().to("https://totoday.vn/tui-xach-totoday-02508-p37887460.html");
-//        driver.navigate().to("https://totoday.vn/quan-short-kaki-nam-totoday-basic-chinos-short-p37881600.html");
-//    }
-    @BeforeMethod
-    private void setupMethod(){
-        driver = getDriver();
-        actions = new Actions(driver);
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    @BeforeClass
+    public void setupClass() {
+        addCartPage = new AddCartPage(driver, wait);
         driver.get("https://totoday.vn/ao-khoac-du-unisex-totoday-active-windbreaker-jacket-p37885995.html");
+    }
+
+    @BeforeMethod
+    private void setupMethod() {
+        driver.navigate().refresh();
     }
 
 //    @Test
@@ -112,7 +101,7 @@ public class AddToCartTest extends BaseTest {
 
     @DataProvider(name = "productData")
     public Object[][] productData() {
-        return new Object[][] {
+        return new Object[][]{
                 // Trường hợp vượt quá số lượng còn lại : true
                 // Trường hợp không vượt quá số lượng còn lại : false
                 // color, size, stock
@@ -133,67 +122,121 @@ public class AddToCartTest extends BaseTest {
         };
     }
 
+//    @Test(dataProvider = "productData")
+//    public void testAddToCart(String color, String size, boolean isExceed) {
+//        // Chọn màu sắc
+//        WebElement colorElement = wait.until(ExpectedConditions.elementToBeClickable(
+//                By.cssSelector("div.colorPicker.clearfix a[title='" + color + "']")));
+//        actions.moveToElement(colorElement).click().perform();
+//        sleep(10);
+//
+//        // Chọn kích cỡ
+//        WebElement sizeElement = wait.until(ExpectedConditions.elementToBeClickable(
+//                By.cssSelector("div.sizePicker.clearfix a[data-value='" + size + "']")));
+//        sleep(10);
+//
+////        wait.until(ExpectedConditions.attributeToBe(By.cssSelector("div.sizePicker.clearfix a[data-value='" + size + "']"), "class", "deactive"));
+////        System.out.println(sizeElement.getAttribute("class"));
+//        actions.moveToElement(sizeElement).click().perform();
+//        sleep(10);
+////        // Lấy số lượng còn lại
+////        WebElement stockElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
+////                By.xpath("//div[@class='blockShip tp_product_detail_depot']//span[@class='quarity-active']/b[1]")));
+////        int stock = Integer.parseInt(stockElement.getText());
+//
+//        // Nhập số lượng
+//        WebElement qtyInput = driver.findElement(By.id("qty"));
+//        // Kiểm tra số lượng
+//        int qtymin = Integer.parseInt(qtyInput.getDomAttribute("min"));
+//        int qtymax = Integer.parseInt(qtyInput.getDomAttribute("max"));
+//        System.out.println(qtymax + " " +qtymin);
+//        int qtyToEnter = isExceed ? qtymax + 1 : qtymin; // Nếu isExceed = true, nhập số lượng lớn hơn
+//        qtyInput.clear();
+//        qtyInput.sendKeys(String.valueOf(qtyToEnter));
+//
+//        sleep(50);
+//        // Kiểm tra kết quả
+//        if (isExceed) {
+//            // Mong đợi alert xuất hiện
+//            wait.until(ExpectedConditions.alertIsPresent());
+//            Alert alert = driver.switchTo().alert();
+//            String alertText = alert.getText();
+//            Assert.assertTrue(alertText.contentEquals( "Bạn không thể đặt quá số lượng còn lại của sản phẩm !"));
+//            alert.accept(); // Đóng alert
+//        } else {
+//            // Mong đợi không có alert và hiển thị modal thành công
+//            try {
+//                wait.until(ExpectedConditions.alertIsPresent());
+//                Assert.fail("Không mong đợi alert xuất hiện");
+//            } catch (TimeoutException e) {
+//                // Không có alert, kiểm tra modal thành công
+//                // Nhấn nút "Thêm vào giỏ hàng" bằng Actions
+//                WebElement addToCartBtn = driver.findElement(By.id("addToCart"));
+//                addToCartBtn.click();
+//                WebElement modelAddSuccess = wait.until(ExpectedConditions.presenceOfElementLocated(
+//                        By.cssSelector(".modal-add-success.active")));
+//                sleep(10);
+//                Assert.assertTrue(modelAddSuccess.isDisplayed(),"The product not add to cart successfully");
+//            }
+//        }
+//    }
+
     @Test(dataProvider = "productData")
     public void testAddToCart(String color, String size, boolean isExceed) {
         // Chọn màu sắc
-        WebElement colorElement = wait.until(ExpectedConditions.elementToBeClickable(
-                By.cssSelector("div.colorPicker.clearfix a[title='" + color + "']")));
-        actions.moveToElement(colorElement).click().perform();
+        addCartPage.clickColorByTitle(color);
         sleep(10);
 
         // Chọn kích cỡ
-        WebElement sizeElement = wait.until(ExpectedConditions.elementToBeClickable(
-                By.cssSelector("div.sizePicker.clearfix a[data-value='" + size + "']")));
+        addCartPage.clickSizeByDataValue(size);
         sleep(10);
 
 //        wait.until(ExpectedConditions.attributeToBe(By.cssSelector("div.sizePicker.clearfix a[data-value='" + size + "']"), "class", "deactive"));
 //        System.out.println(sizeElement.getAttribute("class"));
-        actions.moveToElement(sizeElement).click().perform();
-        sleep(10);
 //        // Lấy số lượng còn lại
 //        WebElement stockElement = wait.until(ExpectedConditions.visibilityOfElementLocated(
 //                By.xpath("//div[@class='blockShip tp_product_detail_depot']//span[@class='quarity-active']/b[1]")));
 //        int stock = Integer.parseInt(stockElement.getText());
 
         // Nhập số lượng
-        WebElement qtyInput = driver.findElement(By.id("qty"));
-        // Kiểm tra số lượng
-        int qtymin = Integer.parseInt(qtyInput.getDomAttribute("min"));
-        int qtymax = Integer.parseInt(qtyInput.getDomAttribute("max"));
-        System.out.println(qtymax + " " +qtymin);
-        int qtyToEnter = isExceed ? qtymax + 1 : qtymin; // Nếu isExceed = true, nhập số lượng lớn hơn
-        qtyInput.clear();
-        qtyInput.sendKeys(String.valueOf(qtyToEnter));
 
-        sleep(50);
+        // Kiểm tra số lượng
+        int qtymin = addCartPage.getMinQtyByDom();
+        int qtymax = addCartPage.getMaxQtyByDom();
+        System.out.println(qtymax + " " + qtymin);
+
+        int qtyToEnter = isExceed ? qtymax + 1 : qtymin; // Nếu isExceed = true, nhập số lượng lớn hơn
+        addCartPage.enterQuantity(qtyToEnter);
+
+//        sleep(50);
         // Kiểm tra kết quả
         if (isExceed) {
             // Mong đợi alert xuất hiện
-            wait.until(ExpectedConditions.alertIsPresent());
-            Alert alert = driver.switchTo().alert();
-            String alertText = alert.getText();
-            Assert.assertTrue(alertText.contentEquals( "Bạn không thể đặt quá số lượng còn lại của sản phẩm !"));
-            alert.accept(); // Đóng alert
+            addCartPage.checkAlertPresent();
+            String alertText = addCartPage.getAlertText();
+            System.out.println();
+            Assert.assertTrue(alertText.contains("Bạn không thể đặt quá số lượng còn lại của sản phẩm !"));
+            addCartPage.acceptAlert(); // Đóng alert
         } else {
             // Mong đợi không có alert và hiển thị modal thành công
-            try {
-                wait.until(ExpectedConditions.alertIsPresent());
+
+            if (addCartPage.checkAlertPresent()) {
+                addCartPage.acceptAlert();
                 Assert.fail("Không mong đợi alert xuất hiện");
-            } catch (TimeoutException e) {
+            } else {
                 // Không có alert, kiểm tra modal thành công
                 // Nhấn nút "Thêm vào giỏ hàng" bằng Actions
-                WebElement addToCartBtn = driver.findElement(By.id("addToCart"));
-                addToCartBtn.click();
-                WebElement modelAddSuccess = wait.until(ExpectedConditions.presenceOfElementLocated(
-                        By.cssSelector(".modal-add-success.active")));
-                sleep(10);
-                Assert.assertTrue(modelAddSuccess.isDisplayed(),"The product not add to cart successfully");
-            }
+                addCartPage.clickAddBtn();
 
+                sleep(10);
+                Assert.assertTrue(addCartPage.checkNotificationAddSuccessDisplayed(), "The product not add to cart successfully");
+                Assert.assertTrue(addCartPage.getNotificationAddSuccessMessage().contains("vào giỏ hàng"));
+            }
         }
     }
+
     @AfterClass
-    public void cleanupClass(){
+    public void cleanupClass() {
 //        if (driver != null) quitDriver();
     }
 

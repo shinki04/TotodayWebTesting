@@ -57,7 +57,7 @@
 <!--    Xong-->
     <test name="Add to Cart Test">
         <classes>
-            <class name="tests.AddToCartTest"/>
+            <class name="tests.AddCartTest"/>
         </classes>
     </test>
 

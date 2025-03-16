@@ -14,7 +14,6 @@ public class SearchTest extends BaseTest {
 
     //    private WebDriver driver;
     private SearchPage searchPage;
-    private FileReader fileReader;
 
     @BeforeClass
     private void setupClass() {
@@ -28,7 +27,7 @@ public class SearchTest extends BaseTest {
 
     @DataProvider(name = "searchData")
     public Object[][] loginDataProvider() {
-        return readDataFromExcel("src/test/resources/search.xlsx", "Sheet1");
+        return readDataFromExcel("src/test/resources/search.xlsx", "SearchData");
     }
 
     @Test(dataProvider = "searchData",priority = 0)
@@ -55,7 +54,7 @@ public class SearchTest extends BaseTest {
 
     @DataProvider(name = "categoryData")
     private Object[][] categoryData() {
-        return readDataFromExcel("src/test/resources/search.xlsx", "Sheet2");
+        return readDataFromExcel("src/test/resources/search.xlsx", "CategoryData");
     }
 
     //!Defect
