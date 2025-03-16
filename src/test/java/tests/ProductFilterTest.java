@@ -30,11 +30,6 @@ public class ProductFilterTest extends BaseTest {
     void setupClass() {
         driver.manage().window().maximize();
         driver.navigate().to(sortProductURL);
-        tools = new Tools(driver);
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Initialize wait with 10-second timeout
-        sleep(4);
-        actions = new Actions(driver);
         driver.navigate().refresh();
     }
 

@@ -23,14 +23,7 @@ public class RegisterTest extends DriverConfig {
     private static Tools tools;
 
 
-    @BeforeSuite
-    public void setupSuite() {
-        driver = getDriver();
-        driver.get(loginURL);
-        notification = new Notification(driver); // Khởi tạo Notification với driver
-        tools = new Tools(driver);
 
-    }
     @BeforeMethod
     public void setupTMethod() {
         driver.findElement(By.id("pills-profile-tab")).click();
