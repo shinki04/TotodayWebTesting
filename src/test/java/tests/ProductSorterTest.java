@@ -11,21 +11,20 @@ import utils.Tools;
 import java.util.List;
 
 public class ProductSorterTest extends BaseTest {
-    private Tools tools;
     public WebElement sortClass;
     public WebElement sortList;
     public List<WebElement> sortOptionsList;
+    private Tools tools;
     private JavascriptExecutor js;
 
     private String sortProductURL = baseURL + "/phu-kien-pc360511.html";
 
     @BeforeTest
     void setupTest() {
-        driver = getDriver();
-        js = (JavascriptExecutor) driver;
+
 
         driver.navigate().to(sortProductURL);
-        tools = new Tools(driver);
+
     }
 
     @BeforeClass
