@@ -8,6 +8,9 @@ import pages.FilterPage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
+import static utils.FileReader.readDataFromExcel;
 
 public class ProductFilterTest extends BaseTest {
 
@@ -30,7 +33,7 @@ public class ProductFilterTest extends BaseTest {
 
     @BeforeMethod
     void setupMethod() {
-        sleep(8);
+//        sleep(8);
         try {
             filterPage.clickFilterClass();
             filterPage.clickFilterColorBlock();
@@ -41,86 +44,79 @@ public class ProductFilterTest extends BaseTest {
         }
     }
 
-//    @DataProvider(name = "singleColorFilter")
-//    public Object[][] createSingleFilterData() {
-//        return new Object[][]{
-//                {"1393450"}, {"1347096"}, {"1261970"}, {"1261969"},
-//                {"822715"}, {"817482"}, {"588112"}, {"587994"},
-//                {"587993"}, {"276852"}
-//        };
-//    }
-//
-//    @Test(priority = 0, dataProvider = "singleColorFilter")
-//    public void testSelectSingleColorFilter(String expectedFilter) {
-//        optionColorItems = filterPage.getColorOption();
-//
-//        for (WebElement optionColorItem : optionColorItems) {
-//            String filterValue = filterPage.getDataValue(optionColorItem);
-//            if (filterValue.equals(expectedFilter)) {
-//                filterPage.clickEachColor(optionColorItem);
-//
+    @DataProvider(name = "singleColorFilter")
+    public Object[][] createSingleFilterData() {
+        return readDataFromExcel("src/test/resources/FilterData.xlsx", "ColorData");
+
+    }
+
+    @Test(priority = 0, dataProvider = "singleColorFilter")
+    public void testSelectSingleColorFilter(Map<String, String> data) {
+        optionColorItems = filterPage.getColorOption();
+        String expectedFilter = data.get("expectedFilter");
+        for (WebElement optionColorItem : optionColorItems) {
+            String filterValue = filterPage.getDataValue(optionColorItem);
+            if (filterValue.equals(expectedFilter)) {
+                filterPage.clickEachColor(optionColorItem);
+
 //                sleep(2); // Consider replacing with explicit wait for page update
-//                break;
-//            }
-//        }
-//
-//        String currentUrl = driver.getCurrentUrl();
-//        String expectedUrl = baseURL + "/phu-kien-pc360511.html?i4=" + expectedFilter;
-//        System.out.println("==========================================");
-//
-//        System.out.println("Expected URL: " + expectedUrl);
-//        System.out.println("Current URL: " + currentUrl);
-//
-//        Assert.assertEquals(currentUrl, expectedUrl, "Bộ lọc màu không được áp dụng chính xác");
-//        System.out.println("==========================================");
-//
-//
-//    }
-//
-//    @Test(priority = 1)
-//    public void testSelectMultipleColorFilters() {
-//        optionColorItems = filterPage.getColorOption();
-//        List<String> selectedFilters = new ArrayList<>();
-//
-//        for (WebElement optionColorItem : optionColorItems) {
-//            String filterValue = filterPage.getDataValue(optionColorItem);
-//
-//            if (!filterValue.isEmpty() && !selectedFilters.contains(filterValue)) {
-//                filterPage.clickEachColor(optionColorItem);
-//                selectedFilters.add(filterValue);
-//                sleep(1);
-//            }
-//        }
-//
-////        selectedFilters = selectedFilters.stream().distinct().collect(Collectors.toList());
-//
-//        String currentUrl = driver.getCurrentUrl();
-//        String expectedUrl = baseURL + "/phu-kien-pc360511.html?i4=" + String.join(",", selectedFilters);
-//        System.out.println("==========================================");
-//
-//        System.out.println("Expected URL: " + expectedUrl);
-//        System.out.println("Current URL: " + currentUrl);
-//
-//        Assert.assertEquals(currentUrl, expectedUrl, "Bộ lọc màu cộng dồn không chính xác");
-//        System.out.println("==========================================");
-//
-//    }
+                break;
+            }
+        }
+
+        String currentUrl = driver.getCurrentUrl();
+        String expectedUrl = baseURL + "/phu-kien-pc360511.html?i4=" + expectedFilter;
+        System.out.println("==========================================");
+
+        System.out.println("Expected URL: " + expectedUrl);
+        System.out.println("Current URL: " + currentUrl);
+
+        Assert.assertEquals(currentUrl, expectedUrl, "Bộ lọc màu không được áp dụng chính xác");
+        System.out.println("==========================================");
+
+
+    }
+
+    @Test(priority = 1)
+    public void testSelectMultipleColorFilters() {
+        optionColorItems = filterPage.getColorOption();
+        List<String> selectedFilters = new ArrayList<>();
+
+        for (WebElement optionColorItem : optionColorItems) {
+            String filterValue = filterPage.getDataValue(optionColorItem);
+
+            if (!filterValue.isEmpty() && !selectedFilters.contains(filterValue)) {
+                filterPage.clickEachColor(optionColorItem);
+                selectedFilters.add(filterValue);
+                sleep(1);
+            }
+        }
+
+//        selectedFilters = selectedFilters.stream().distinct().collect(Collectors.toList());
+
+        String currentUrl = driver.getCurrentUrl();
+        String expectedUrl = baseURL + "/phu-kien-pc360511.html?i4=" + String.join(",", selectedFilters);
+        System.out.println("==========================================");
+
+        System.out.println("Expected URL: " + expectedUrl);
+        System.out.println("Current URL: " + currentUrl);
+
+        Assert.assertEquals(currentUrl, expectedUrl, "Bộ lọc màu cộng dồn không chính xác");
+        System.out.println("==========================================");
+
+    }
 
     @DataProvider(name = "priceFilterData")
     public Object[][] createPriceFilterData() {
-        return new Object[][]{
-                {500000, 2000000},  // 500,000đ - 2,000,000đ
-                {1000000, 4000000}, // 1,000,000đ - 4,000,000đ
-                {200000, 1500000},  // 200,000đ - 1,500,000đ
-                {1500000, 3000000}, // 1,500,000đ - 3,000,000đ
-                {0, 5000000}        // 0đ - 5,000,000đ (toàn phạm vi)
-        };
+        return readDataFromExcel("src/test/resources/FilterData.xlsx", "PriceData");
     }
 
-    @Test(priority = 2,dataProvider = "priceFilterData")
-    public void testPriceFilter(int expectedMinPrice, int expectedMaxPrice) {
+    @Test(priority = 2, dataProvider = "priceFilterData")
+    public void testPriceFilter(Map<String, String> data) {
         filterPage.clickPriceClass();
-        filterPage.setSlider(expectedMinPrice,expectedMaxPrice);
+        int expectedMinPrice = Integer.parseInt(data.get("expectedMinPrice"));
+        int expectedMaxPrice = Integer.parseInt(data.get("expectedMaxPrice"));
+        filterPage.setSlider(expectedMinPrice, expectedMaxPrice);
         filterPage.clickFilterButton();
         sleep(10);
         int actualMinPrice = filterPage.getMinPrice();
