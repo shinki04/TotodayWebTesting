@@ -126,4 +126,6 @@ public class UpdateCartPage {
     public void acceptAlert() {
         alertnoty.acceptAlert();
     }
+
+
 }

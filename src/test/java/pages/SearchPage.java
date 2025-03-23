@@ -61,6 +61,9 @@ public class SearchPage {
         return firstProduct != null && firstProduct.isDisplayed();
     }
 
+
+
+
     public boolean isNoProductMessageDisplayed() {
         WebElement noProductMsg = getElement(messageNoProduct);
         return noProductMsg != null && noProductMsg.isDisplayed();
