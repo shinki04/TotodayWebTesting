@@ -7,6 +7,9 @@ import org.testng.annotations.*;
 import pages.SortPage;
 
 import java.util.List;
+import java.util.Map;
+
+import static utils.FileReader.readDataFromExcel;
 
 public class ProductSorterTest extends BaseTest {
     private String sortProductURL = baseURL + "/phu-kien-pc360511.html";
@@ -23,10 +26,6 @@ public class ProductSorterTest extends BaseTest {
         driver.manage().window().maximize();
         driver.navigate().to(sortProductURL);
         driver.navigate().refresh();
-
-
-
-
     }
 
     @BeforeMethod()
@@ -35,36 +34,35 @@ public class ProductSorterTest extends BaseTest {
         sortPage.clickSortList();
         sortOptionsList = sortPage.getSortList();
 
-
     }
 
     @Test(dataProvider = "sortOptions")
-    void testSorterBySingleCriteria(String optionItem, String optionURL)  {
-        // Click vào option sắp xếp
-
+    void testSorterBySingleCriteria(Map<String, String> data)  {
         sleep(7);
+        String optionItem = data.get("optionItem");
+        String optionURL = data.get("optionURL");
         // Kiểm tra option có được highlight (active/selected) không
         Assert.assertTrue(sortPage.checkSelectSortOption(sortOptionsList,optionItem), "Sort option '" + optionItem + "' is NOT selected!");
 
         // Kiểm tra URL đã thay đổi chưa
         String actualUrl = sortPage.getCurrentURL();
+
+
+        System.out.println("==========================================");
+
+        System.out.println("Expected URL: " + sortProductURL + optionURL);
+        System.out.println("Current URL: " + actualUrl);
         Assert.assertEquals(actualUrl,
                             sortProductURL + optionURL,
                             "Actual url :" + actualUrl + "\nExpect : " + sortProductURL + optionURL
         );
-
-
+        System.out.println("==========================================");
     }
 
     // Dữ liệu test: Danh sách các option cần kiểm tra và đường dẫn thay đổi
     @DataProvider(name = "sortOptions")
     public Object[][] sortOptions() {
-        return new Object[][]{
-                {"Bán chạy nhất", "?show=hot"},
-                {"Mới nhất", "?show=new"},
-                {"Giá: Thấp - Cao", "?show=priceAsc"},
-                {"Giá: Cao - Thấp", "?show=priceDesc"}
-        };
+        return readDataFromExcel("src/test/resources/SortData.xlsx","SortData");
     }
 
     @AfterMethod
