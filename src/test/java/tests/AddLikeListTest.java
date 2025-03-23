@@ -1,5 +1,6 @@
 package tests;
 
+import base.BaseTest;
 import config.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -12,7 +13,7 @@ import org.testng.annotations.Test;
 import pages.AddLikeListPage;
 
 
-public class AddLikeListTest extends DriverConfig {
+public class AddLikeListTest extends BaseTest {
     private WebDriver driver;
     private AddLikeListPage likeListPage;
     private String baseURL = "https://totoday.vn/";
@@ -24,7 +25,7 @@ public class AddLikeListTest extends DriverConfig {
     @BeforeSuite
     public void setupSuite() {
         driver = getDriver();
-        likeListPage = new AddLikeListPage(driver);
+        likeListPage = new AddLikeListPage(driver,wait);
     }
 
     @BeforeMethod

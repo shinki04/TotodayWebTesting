@@ -33,9 +33,9 @@ public class AddLikeListPage {
     private final By productNameInLikeList = By.xpath("(//p[@class='name'])[1]");
 
     // Constructor
-    public AddLikeListPage(WebDriver driver) {
+    public AddLikeListPage(WebDriver driver , WebDriverWait wait) {
         this.driver = driver;
-//        tools = new Tools();
+        tools = new Tools(driver,wait);
     }
 
     // Phương thức đăng nhập
