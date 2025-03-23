@@ -35,7 +35,7 @@ public class AddLikeListPage {
     // Constructor
     public AddLikeListPage(WebDriver driver) {
         this.driver = driver;
-//        tools = new Tools();
+        tools = new Tools(driver);
     }
 
     // Phương thức đăng nhập

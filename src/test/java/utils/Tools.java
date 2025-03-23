@@ -112,12 +112,12 @@ public class Tools {
 //        return null;
 //    }
 
-    public String generateRandomString(int length) {
+    public static String generateRandomString(int length) {
         String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // Loại bỏ dấu "-"
         return uuid.substring(0, Math.min(length, uuid.length()));
     }
 
-    public String generateRandomNumber(int length) {
+    public static String generateRandomNumber(int length) {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
