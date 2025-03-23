@@ -26,7 +26,7 @@ public class BaseTest extends DriverConfig {
     protected void setupSuite() {
         driver = getDriver();
         driver.get(baseURL);
-        driver.manage().window().maximize();
+//        driver.manage().window().maximize();
         tools = new Tools(driver);
         js = (JavascriptExecutor) driver;
         notification = new Notification(driver);
