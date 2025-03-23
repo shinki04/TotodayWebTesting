@@ -1,7 +1,6 @@
 package tests;
 
 import base.BaseTest;
-import config.DriverConfig;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -10,7 +9,6 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import pages.AddLikeListPage;
 
 
 public class AddLikeListTest extends BaseTest {

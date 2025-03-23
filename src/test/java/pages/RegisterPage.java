@@ -21,7 +21,6 @@ public class RegisterPage extends BaseTest {
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
         this.notification = new Notification(driver);
-        this.tools = new Tools(driver);
     }
 
     // Điều hướng đến trang đăng nhập trước khi mở tab đăng ký
