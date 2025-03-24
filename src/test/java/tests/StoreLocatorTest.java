@@ -1,133 +1,62 @@
 package tests;
 
-import config.DriverConfig;
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import base.BaseTest;
+import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import pages.StoreLocatorPage;
 import utils.Tools;
 
-import java.time.Duration;
-
-public class StoreLocatorTest extends DriverConfig {
-
+public class StoreLocatorTest extends BaseTest {
     private static Tools tools;
     private WebDriver driver;
-    private WebElement searchInput;
-    private WebElement messageNoResult;
+    private StoreLocatorPage storeLocatorPage;
 
     @BeforeClass
     void setupClass() {
         driver = getDriver();
-
-    }
-
-    @AfterClass
-    void cleanupClass() {
-//        quitDriver();
+        tools = new Tools(driver);
+        storeLocatorPage = new StoreLocatorPage(driver);
     }
 
     @BeforeMethod
     void setupMethod() {
-        driver.findElement(By.linkText("Hệ thống cửa hàng")).click();
-        searchInput = driver.findElement(By.id("locations"));
+        driver.get(baseURL);
+        storeLocatorPage.navigateToStoreLocator();
     }
 
-    @Test()
-    void testOpenStoreLocatorPage() {
-        // Bước 1: Nhấn vào nút "Hệ thống cửa hàng"
-        WebElement storeLocatorButton = driver.findElement(By.linkText("Hệ thống cửa hàng"));
-        storeLocatorButton.click();
-        sleep(1);
-        WebElement storeListContainer = driver.findElement(By.xpath("(//h1[contains(text(),'Hệ thống cửa hàng')])[1]"));
-        Assert.assertTrue(storeListContainer.isDisplayed(), "Trang hệ thống cửa hàng không hiển thị!");
+    @AfterClass
+    void cleanupClass() {
+        quitDriver();
     }
 
-    @Test()
-    //Tìm kiếm cửa hàng cần chọn tỉnh thành
-    public void testAccessStoreLocatorPage() {
-        WebElement dropdownCity = driver.findElement(By.xpath("(//select[@name='change-tinh'])[1]"));
-        dropdownCity.click();
-
-        Select selectCity = new Select(dropdownCity);
-        selectCity.selectByVisibleText("Cần Thơ");
-        String storeAddress = dropdownCity.getText().trim();
-        System.out.println(" Địa chỉ kiểm tra: " + storeAddress);
-
-        boolean containsCanTho = storeAddress.contains("Cần Thơ");
-
-        if (containsCanTho) {
-            System.out.println(" Có chi nhánh cửa hàng ở Cần thơ");
-        } else {
-            System.out.println("Không có chi nhánh cửa hàng ở Cần thơ");
-        }
-
-        // Assert để test pass hoặc fail
-        Assert.assertTrue(containsCanTho, "Không có chi nhánh ở Cần Thơ");
-    }
-
-    @Test()
-    //TÌm vị trí cửa hàng không cần tỉnh thành
-    public void testFindStoreLocationGoVap() {
-
-        WebElement goVapText = driver.findElement(By.xpath("(//b[contains(text(),'Quận Gò Vấp')])[1]"));
-        Assert.assertNotNull(goVapText, "Không tìm thấy Quận Gò Vấp trên trang");
-
-        WebElement xemBanDo = driver.findElement(By.xpath("(//li[5]//div[1]//a[1])"));
-        try {
-            xemBanDo.click();
-        } catch (ElementClickInterceptedException e) {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", xemBanDo);
-        }
-        sleep(2);
-
-
-        WebElement diaChiGoVap = driver.findElement(By.xpath("(//p[contains(text(),'Số 55 Quang Trung, Phường 10, Quận Gò Vấp, TP HCM')])[1]"));
-        String addressGoVapText = diaChiGoVap.getText();
-
-        WebElement mapAddress = driver.findElement(By.xpath("(//p[contains(text(),'Số 55 Quang Trung, Phường 10, Quận Gò Vấp, TP HCM')])"));
-        String mapAddressText = mapAddress.getText();
-
-        Assert.assertEquals(addressGoVapText, mapAddressText, "Địa chỉ trên bản đồ không khớp với địa chỉ Gò Vấp!");
-
-        System.out.println("Test thành công: Địa chỉ cửa hàng Gò Vấp trùng khớp trên bản đồ!");
-    }
     @Test
-    public void testFindCityWithDropdown() throws InterruptedException {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    void testOpenStoreLocatorPage() {
+        Assert.assertTrue(storeLocatorPage.isStoreListDisplayed(), 
+            "Store locator page should be displayed");
+    }
 
-        WebElement dropdownCity = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//select[@name='change-tinh']")));
-        dropdownCity.click();
+    @Test
+    public void testAccessStoreLocatorPage() {
+        storeLocatorPage.selectCity("Cần Thơ");
+        Assert.assertTrue(storeLocatorPage.isCityInAddress("Cần Thơ"), 
+            "Can Tho should be in the store address");
+    }
 
-        Select selectCity = new Select(dropdownCity);
-        selectCity.selectByValue("255");
+    @Test
+    public void testFindStoreLocationGoVap() {
+        Assert.assertNotNull(storeLocatorPage.findDistrictElement("Quận Gò Vấp"), 
+            "Go Vap district should be found");
 
-
+        storeLocatorPage.clickViewMap("(//li[5]//div[1]//a[1])");
         sleep(2);
-        WebElement textThuDuc = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//b[contains(text(),'Quận Thủ Đức')]")));
-        Assert.assertNotNull(textThuDuc, "Không tìm thấy Quận Thủ Đức trên trang");
 
-        WebElement xemBanDo = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//li[1]//div[1]//a[1]")));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", xemBanDo);
-        try {
-            xemBanDo.click();
-        } catch (ElementClickInterceptedException e) {
-            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", xemBanDo);
-        }
-        sleep(2);
-        WebElement diaChiThuDuc = wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.xpath("//p[contains(text(),'Số 170A Võ Văn Ngân, Phường Bình Thọ, Thủ Đức, TP ')]")));
-        String addressThuDucText = diaChiThuDuc.getText();
+        String addressGoVap = storeLocatorPage.getStoreAddress(
+            "(//p[contains(text(),'Số 55 Quang Trung, Phường 10, Quận Gò Vấp, TP HCM')])[1]");
+        String mapAddress = storeLocatorPage.getStoreAddress(
+            "(//p[contains(text(),'Số 55 Quang Trung, Phường 10, Quận Gò Vấp, TP HCM')])");
 
-        WebElement mapAddress1 = wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.xpath("//p[contains(text(),'Số 170A Võ Văn Ngân, Phường Bình Thọ, Thủ Đức, TP ')]")));
-        String mapAddressText1 = mapAddress1.getText();
-
-        Assert.assertEquals(addressThuDucText, mapAddressText1, "Địa chỉ trên bản đồ không khớp với địa chỉ Thủ Đức!");
-
-        System.out.println("Test thành công: Địa chỉ cửa hàng Thủ Đức trùng khớp trên bản đồ!");
+        Assert.assertEquals(addressGoVap, mapAddress, 
+            "Store address should match map address for Go Vap location");
     }
 }
