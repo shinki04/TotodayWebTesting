@@ -13,6 +13,7 @@ import java.time.Duration;
 public class AddLikeListPage {
     private final WebDriver driver;
     private static Tools tools;
+    private final WebDriverWait wait;
 
     // Các locator (định vị phần tử) trên trang
     private final By likeButton = By.xpath("/html[1]/body[1]/section[1]/div[1]/div[1]/div[1]/div[1]/div[1]/button[1]");
@@ -33,9 +34,10 @@ public class AddLikeListPage {
     private final By productNameInLikeList = By.xpath("(//p[@class='name'])[1]");
 
     // Constructor
-    public AddLikeListPage(WebDriver driver) {
+    public AddLikeListPage(WebDriver driver , WebDriverWait wait) {
         this.driver = driver;
-        tools = new Tools(driver);
+        this.wait = wait;
+        tools = new Tools(driver, wait);
     }
 
     // Phương thức đăng nhập

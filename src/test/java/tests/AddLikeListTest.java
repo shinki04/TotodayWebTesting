@@ -9,6 +9,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
+import pages.AddLikeListPage;
 
 
 public class AddLikeListTest extends BaseTest {
@@ -23,7 +24,7 @@ public class AddLikeListTest extends BaseTest {
     @BeforeSuite
     public void setupSuite() {
         driver = getDriver();
-        likeListPage = new AddLikeListPage(driver,wait);
+        likeListPage = new AddLikeListPage(driver, wait);
     }
 
     @BeforeMethod
