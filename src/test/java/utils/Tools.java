@@ -1,22 +1,26 @@
 package utils;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 import java.util.Random;
+import java.util.UUID;
 
 
 public class Tools {
 
     private final WebDriver driver;
-    private static JavascriptExecutor js;
+    private final JavascriptExecutor js;
+    private final WebDriverWait wait;
 
-    public Tools(WebDriver driver){
+    public Tools(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
+        this.wait = wait;
         js = (JavascriptExecutor) this.driver;
+
     }
 
     public String getValue(WebElement element, String arr) {
@@ -28,6 +32,9 @@ public class Tools {
         return element.getText();
     }
 
+    public WebElement getElement(By byElement) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(byElement));
+    }
 
     public void setCheckboxState(WebElement element, boolean state) {
         boolean isActualChecked = element.isSelected();
@@ -63,7 +70,7 @@ public class Tools {
         }
     }
 
-    public WebElement getElementChildByXpath( WebElement parentElement,String xpath) {
+    public WebElement getElementChildByXpath(WebElement parentElement, String xpath) {
         try {
             return parentElement.findElement(By.xpath(xpath));
         } catch (NoSuchElementException e) {
@@ -80,7 +87,7 @@ public class Tools {
     }
 
 
-    public boolean addDisplayBlockCSS(WebElement element){
+    public boolean addDisplayBlockCSS(WebElement element) {
         if (checkElementIsDisplayed(element)) {
             js.executeScript("arguments[0].style.display = 'block'", element);
             return true;
@@ -88,15 +95,14 @@ public class Tools {
         return false;
     }
 
-    public boolean checkOptionSelectedByClass(WebElement element){
+    public boolean checkOptionSelectedByClass(WebElement element) {
         try {
             String className = element.getAttribute("class");
             return className.contains("selected") || className.contains("active");
 
+        } catch (NoSuchElementException e) {
+            return false;
         }
-           catch (NoSuchElementException e){
-               return false;
-           }
 
     }
 
@@ -112,12 +118,12 @@ public class Tools {
 //        return null;
 //    }
 
-    public String generateRandomString(int length) {
+    public static String generateRandomString(int length) {
         String uuid = UUID.randomUUID().toString().replaceAll("-", ""); // Loại bỏ dấu "-"
         return uuid.substring(0, Math.min(length, uuid.length()));
     }
 
-    public String generateRandomNumber(int length) {
+    public static String generateRandomNumber(int length) {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
@@ -156,8 +162,6 @@ public class Tools {
         Assert.assertEquals(errorElement.getText(), errorMessage, "Error Message not equal");
         System.out.println("==========================================");
     }
-
-
 
 
 }

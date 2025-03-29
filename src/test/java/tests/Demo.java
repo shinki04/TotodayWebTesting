@@ -23,14 +23,14 @@ public class Demo extends DriverConfig {
 //    private PopupHandler popupHandler;
     private ExcelReader excelReader;
 
-    @BeforeSuite
-    public void setupSuite() {
-        driver = getDriver();
-        notification = new Notification(driver);
-        tools = new Tools(driver);
-//        popupHandler = new PopupHandler(driver);
-        excelReader = new ExcelReader("./src/test/resources/login.xlsx");
-    }
+//    @BeforeSuite
+//    public void setupSuite() {
+//        driver = getDriver();
+//        notification = new Notification(driver);
+//        tools = new Tools(driver);
+////        popupHandler = new PopupHandler(driver);
+//        excelReader = new ExcelReader("./src/test/resources/login.xlsx");
+//    }
 
     @BeforeMethod
     public void setupTMethod() {

@@ -44,7 +44,7 @@ public class OrderLookupTest extends BaseTest {
         String orderSearchItem = "\"@b$$^";
         orderLookupPage.enterOrderSearch(orderSearchItem);
         orderLookupPage.submitOrderSearch();
-        
+
         sleep(5);
         Assert.assertEquals(orderLookupPage.getNoOrderMessage(), "Không tìm thấy đơn hàng theo yêu cầu");
     }
@@ -54,7 +54,7 @@ public class OrderLookupTest extends BaseTest {
         String orderSearchItem = "";
         orderLookupPage.enterOrderSearch(orderSearchItem);
         orderLookupPage.submitOrderSearch();
-        
+
         sleep(5);
         Assert.assertEquals(orderLookupPage.getNoOrderMessage(), "Không tìm thấy đơn hàng theo yêu cầu");
     }

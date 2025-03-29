@@ -30,14 +30,14 @@
 <!--    Xong-->
     <test name="Filter Product Tests">
         <classes>
-            <class name="tests.ProductFilterTest"/>
+            <class name="tests.ProductFilterTest2"/>
         </classes>
     </test>
 
 <!--    Xong-->
     <test name="Sorter Product Tests">
         <classes>
-            <class name="tests.ProductSorterTest"/>
+            <class name="tests.ProductSorterTest2"/>
         </classes>
     </test>
 <!--    Xong-->
@@ -57,7 +57,7 @@
 <!--    Xong-->
     <test name="Add to Cart Test">
         <classes>
-            <class name="tests.AddToCartTest"/>
+            <class name="tests.AddCartTest"/>
         </classes>
     </test>
 
