@@ -1,7 +1,7 @@
 package tests;
 
 
-import pages.SearchNewPage;
+import pages.SearchPLTPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -9,9 +9,9 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-public class SearchNewTest {
+public class SearchBLTTest {
     private WebDriver driver;
-    private SearchNewPage searchPage;
+    private SearchPLTPage searchPage;
     private String baseUrl = "https://pltpro.net/";
 
     @BeforeMethod
@@ -20,7 +20,7 @@ public class SearchNewTest {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get(baseUrl);
-        searchPage = new SearchNewPage(driver);
+        searchPage = new SearchPLTPage(driver);
     }
 
     // Test Case 1: Tìm kiếm thành công sản phẩm "Lenovo"

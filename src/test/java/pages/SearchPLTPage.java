@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-public class SearchNewPage {
+public class SearchPLTPage {
     private final WebDriver driver;
 
     // XPaths được định nghĩa từ yêu cầu
@@ -16,7 +16,7 @@ public class SearchNewPage {
     private final By error404Message = By.xpath("(//h1[@class='title'])[1]");
 
     // Constructor
-    public SearchNewPage(WebDriver driver) {
+    public SearchPLTPage(WebDriver driver) {
         this.driver = driver;
     }
 
