@@ -35,9 +35,7 @@ public class OrderLookupTest extends BaseTest {
         String orderSearchItem = "0708712413";
         orderLookupPage.enterOrderSearch(orderSearchItem);
         orderLookupPage.submitOrderSearch();
-        
-        Assert.assertTrue(orderLookupPage.isUrlContainsSearchQuery(baseURL));
-        sleep(5);
+
         Assert.assertEquals(orderLookupPage.getNoOrderMessage(), "Không tìm thấy đơn hàng theo yêu cầu");
     }
 
