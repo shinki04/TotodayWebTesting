@@ -20,42 +20,6 @@
     </test>
 
     <!--    Xong-->
-    <test name="Search Tests">
-        <classes>
-            <class name="tests.SearchTest"/>
-        </classes>
-    </test>
-
-
-    <!--    Xong-->
-    <test name="Filter Product Tests">
-        <classes>
-            <class name="tests.ProductFilterTest"/>
-        </classes>
-    </test>
-
-    <!--    Xong-->
-    <test name="Sorter Product Tests">
-        <classes>
-            <class name="tests.ProductSorterTest"/>
-        </classes>
-    </test>
-
-    <!--    Xong-->
-    <test name="Order Lookup Tests">
-        <classes>
-            <class name="tests.OrderLookupTest"/>
-        </classes>
-    </test>
-
-    <!--    Xong-->
-    <test name="Store Location Tests">
-        <classes>
-            <class name="tests.StoreLocatorTest"/>
-        </classes>
-    </test>
-
-    <!--    Xong-->
     <test name="Account Information Tests">
         <classes>
             <class name="tests.AccountInformationTest"/>
@@ -70,27 +34,6 @@
     </test>
 
     <!--    Xong-->
-    <test name="Add to Cart Test">
-        <classes>
-            <class name="tests.AddCartTest"/>
-        </classes>
-    </test>
-
-    <!--    Xong-->
-    <test name="Update to Cart Test">
-        <classes>
-            <class name="tests.UpdateCartTest"/>
-        </classes>
-    </test>
-
-    <!--    Xong-->
-    <test name="Product Detail Tests">
-        <classes>
-            <class name="tests.ProductDetailsTest"/>
-        </classes>
-    </test>
-
-    <!--    Xong-->
     <test name="Delete Favourite Tests">
         <classes>
             <class name="tests.DeleteFavoriteListTest"/>
@@ -98,10 +41,75 @@
     </test>
 
     <!--    Xong-->
-    <test name="Zoom Tests">
+    <test name="web PLT slution ">
         <classes>
-            <class name="tests.ZoomTest"/>
+            <class name="tests.ContactFormTest"/>
         </classes>
     </test>
+
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Search Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.SearchTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Filter Product Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.ProductFilterTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Sorter Product Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.ProductSorterTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Order Lookup Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.OrderLookupTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Store Location Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.StoreLocatorTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    -->
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Add to Cart Test">-->
+<!--        <classes>-->
+<!--            <class name="tests.AddCartTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Update to Cart Test">-->
+<!--        <classes>-->
+<!--            <class name="tests.UpdateCartTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Product Detail Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.ProductDetailsTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    -->
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Zoom Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.ZoomTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite>
