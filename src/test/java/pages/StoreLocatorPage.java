@@ -1,5 +1,6 @@
 package pages;
 
+import base.BaseTest;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
@@ -19,10 +20,10 @@ public class StoreLocatorPage {
     private final By dropdownCity = By.xpath("//select[@name='change-tinh']");
     private final By storeListHeader = By.xpath("(//h1[contains(text(),'Hệ thống cửa hàng')])[1]");
 
-    public StoreLocatorPage(WebDriver driver) {
+    public StoreLocatorPage(WebDriver driver, WebDriverWait wait) {
         this.driver = driver;
-        this.tools = new Tools(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        this.tools = new Tools(driver,wait);
+        this.wait = wait;
     }
 
     // Actions

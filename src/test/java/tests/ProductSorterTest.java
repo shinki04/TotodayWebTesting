@@ -2,10 +2,12 @@ package tests;
 
 import base.BaseTest;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.SortPage;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Map;
 
@@ -18,6 +20,10 @@ public class ProductSorterTest extends BaseTest {
 
     @BeforeClass
     void setupClass() {
+        if (wait == null) {
+            System.out.println("Warning: wait is null in setupClass");
+            wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        }
         sortPage = new SortPage(driver, wait);
     }
 
@@ -33,7 +39,6 @@ public class ProductSorterTest extends BaseTest {
 //        sortPage.clickSortClass();
         sortPage.clickSortList();
         sortOptionsList = sortPage.getSortList();
-
     }
 
     @Test(dataProvider = "sortOptions")

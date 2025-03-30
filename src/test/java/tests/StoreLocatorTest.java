@@ -15,8 +15,8 @@ public class StoreLocatorTest extends BaseTest {
     @BeforeClass
     void setupClass() {
         driver = getDriver();
-        tools = new Tools(driver);
-        storeLocatorPage = new StoreLocatorPage(driver);
+        tools = new Tools(driver,wait);
+        storeLocatorPage = new StoreLocatorPage(driver,wait);
     }
 
     @BeforeMethod

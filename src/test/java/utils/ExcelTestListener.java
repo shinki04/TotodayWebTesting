@@ -144,11 +144,19 @@ public class ExcelTestListener implements ITestListener {
 
     private void saveExcelFile(String testName) {
         try {
+            // Tạo thư mục nếu chưa tồn tại
+            File directory = new File("ExportExcel");
+            if (!directory.exists()) {
+                directory.mkdirs(); // Tạo thư mục
+            }
+
+            // Ghi file Excel
             String fileName = "ExportExcel/" + testName + ".xlsx";
             FileOutputStream fileOut = new FileOutputStream(new File(fileName));
             Workbook workbook = testWorkbooks.get(testName);
             workbook.write(fileOut);
             fileOut.close();
+
             System.out.println("Kết quả đã được ghi vào file: " + fileName);
         } catch (IOException e) {
             System.out.println("Lỗi khi ghi file Excel: " + e.getMessage());
