@@ -36,6 +36,7 @@ public class AccountInformationTest extends BaseTest {
         String actualFullName = accInformationPage.updateFullNameFromExcel(0);
         String expectedFullName = accInformationPage.getExpectedFullName(0);
         Assert.assertEquals(actualFullName, expectedFullName, "Họ tên không được cập nhật!");
+        sleep(2);
     }
 
     @Test(priority = 2)
@@ -43,6 +44,7 @@ public class AccountInformationTest extends BaseTest {
         String actualBirthday = accInformationPage.updateBirthday("15/08/1995");
         String expectedBirthday = "15/08/1995";
         Assert.assertEquals(actualBirthday, expectedBirthday, "Ngày sinh không được cập nhật chính xác!");
+        sleep(2);
     }
 
     @Test(priority = 3)
@@ -51,30 +53,36 @@ public class AccountInformationTest extends BaseTest {
         String finalPhoneNumber = accInformationPage.tryUpdatePhoneNumber();
         Assert.assertEquals(finalPhoneNumber, originalPhoneNumber,
                 "Số điện thoại không được phép cập nhật vì có thuộc tính disabled, nhưng nó đã bị thay đổi!");
+        sleep(2);
 
         String expectedNewPhone = accInformationPage.getExpectedPhoneNumber();
         Assert.assertNotEquals(finalPhoneNumber, expectedNewPhone,
                 "Số điện thoại không nên khớp với giá trị từ Excel vì nó bị disabled!");
+        sleep(2);
     }
 
     @Test(priority = 4)
     public void testEditEmail() throws InterruptedException {
         String randomEmail = "random" + System.currentTimeMillis() + "@gmail.com";
+        sleep(2);
         String actualEmail = accInformationPage.updateEmail(randomEmail);
         String expectedEmail = "innologic25.team@gmail.com";
         Assert.assertEquals(actualEmail, expectedEmail, "Email đã thực hiện việc cập nhật!");
+        sleep(2);
     }
 
     @Test(priority = 5)
     public void testSelectMaleRadio() throws InterruptedException {
         boolean isSelected = accInformationPage.selectAndUpdateMaleGender();
         Assert.assertTrue(isSelected, "Radio button 'male' không được chọn!");
+        sleep(2);
     }
 
     @Test(priority = 6)
     public void testSelectFemaleRadio() throws InterruptedException {
         boolean isSelected = accInformationPage.selectAndUpdateFemaleGender();
         Assert.assertTrue(isSelected, "Radio button 'female' không được chọn!");
+        sleep(2);
     }
 
     @Test(priority = 7)
@@ -82,6 +90,7 @@ public class AccountInformationTest extends BaseTest {
         String actualAddress = accInformationPage.updateAddressFromExcel();
         String expectedAddress = accInformationPage.getExpectedAddress();
         Assert.assertEquals(actualAddress, expectedAddress, "Địa chỉ cập nhật không đúng!");
+        sleep(2);
     }
 
     @Test(priority = 8)
@@ -89,6 +98,7 @@ public class AccountInformationTest extends BaseTest {
         String actualProvince = accInformationPage.selectAndUpdateProvince("Hồ Chí Minh");
         String expectedProvince = "Hồ Chí Minh";
         Assert.assertEquals(actualProvince, expectedProvince, "Lỗi chọn tỉnh!");
+        sleep(2);
     }
 
     @Test(priority = 9, dependsOnMethods = "testSelectProvince")
@@ -96,6 +106,7 @@ public class AccountInformationTest extends BaseTest {
         String actualDistrict = accInformationPage.selectAndUpdateDistrict("Quận 1");
         String expectedDistrict = "Quận 1";
         Assert.assertEquals(actualDistrict, expectedDistrict, "Lỗi chọn quận!");
+        sleep(2);
     }
 
     @Test(priority = 10, dependsOnMethods = "testSelectDistrict")
@@ -103,6 +114,7 @@ public class AccountInformationTest extends BaseTest {
         String actualWard = accInformationPage.selectAndUpdateWard("Phường Đa Kao");
         String expectedWard = "Phường Đa Kao";
         Assert.assertEquals(actualWard, expectedWard, "Lỗi chọn phường!");
+        sleep(2);
     }
 
     @AfterClass
