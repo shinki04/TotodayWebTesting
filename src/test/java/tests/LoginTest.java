@@ -4,6 +4,7 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.ExcelReader;
@@ -11,6 +12,8 @@ import utils.Notification;
 
 import java.io.IOException;
 import java.util.List;
+
+//@Listeners(utils.ExcelTestListener.class)
 
 public class LoginTest extends BaseTest {
     private LoginPage loginPage;
@@ -210,7 +213,6 @@ public class LoginTest extends BaseTest {
 
     @AfterMethod
     public void cleanupSuite() {
-        // Có thể bỏ comment nếu cần đóng driver sau mỗi test
-        // quitDriver();
+//        cleanupSuite();
     }
 }
