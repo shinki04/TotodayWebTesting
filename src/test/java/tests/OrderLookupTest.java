@@ -15,8 +15,8 @@ public class OrderLookupTest extends BaseTest {
     @BeforeClass
     void setupClass() {
         driver = getDriver();
-        tools = new Tools(driver);
-        orderLookupPage = new OrderLookupPage(driver);
+        tools = new Tools(driver,wait);
+        orderLookupPage = new OrderLookupPage(driver,wait);
     }
 
     @BeforeMethod
