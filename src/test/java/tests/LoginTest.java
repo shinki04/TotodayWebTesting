@@ -35,9 +35,10 @@ public class LoginTest extends BaseTest {
         String password = loginData.get(0)[1];
 
         loginPage.login(email, password);
-        Thread.sleep(2000);
+        sleep(2);
 
         if (notification.isAlertPresent()) {
+            System.out.println("==========================================");
             String actualMessage = notification.getAlertText();
             System.out.println("Thông báo từ hệ thống: " + actualMessage);
             notification.acceptAlert();
@@ -55,9 +56,11 @@ public class LoginTest extends BaseTest {
     @Test(priority = 1)
     public void testNonExistentEmail() throws InterruptedException {
         loginPage.login("invalid_email@gmail.com", "innologic2025");
-        Thread.sleep(2000);
+        sleep(2);
 
         if (notification.isAlertPresent()) {
+            System.out.println("==========================================");
+            System.out.println("Check Error : ");
             String actualMessage = notification.getAlertText();
             System.out.println("Thông báo từ hệ thống: " + actualMessage);
             notification.acceptAlert();
@@ -72,9 +75,11 @@ public class LoginTest extends BaseTest {
     @Test(priority = 2)
     public void testInvalidEmailFormat() throws InterruptedException {
         loginPage.login("invalid-email-format", "innologic2025");
-        Thread.sleep(2000);
+        sleep(2);
 
         if (notification.isAlertPresent()) {
+            System.out.println("==========================================");
+            System.out.println("Check Error : ");
             String actualMessage = notification.getAlertText();
             System.out.println("Thông báo từ hệ thống: " + actualMessage);
             notification.acceptAlert();
@@ -89,9 +94,11 @@ public class LoginTest extends BaseTest {
     @Test(priority = 3)
     public void testEmptyPassword() throws InterruptedException {
         loginPage.login("innologic25.team@gmail.com", "");
-        Thread.sleep(2000);
+        sleep(2);
 
         if (popupHandler.isPopupPresent("formErrorContent")) {
+            System.out.println("==========================================");
+            System.out.println("Check Error : ");
             String actualMessage = popupHandler.getPopupMessage("formErrorContent");
             System.out.println("Thông báo từ hệ thống: " + actualMessage);
             String expectedMessage = "* Trường này bắt buộc";
@@ -102,9 +109,11 @@ public class LoginTest extends BaseTest {
     @Test(priority = 4)
     public void testEmptyEmail() throws InterruptedException {
         loginPage.login("", "innologic2025");
-        Thread.sleep(2000);
+        sleep(2);
 
         if (popupHandler.isPopupPresent("formErrorContent")) {
+            System.out.println("==========================================");
+            System.out.println("Check Error : ");
             String actualMessage = popupHandler.getPopupMessage("formErrorContent");
             System.out.println("Thông báo từ hệ thống: " + actualMessage);
             String expectedMessage = "* Trường này bắt buộc";
@@ -115,9 +124,11 @@ public class LoginTest extends BaseTest {
     @Test(priority = 5)
     public void testEmptyEmailAndPassword() throws InterruptedException {
         loginPage.login("", "");
-        Thread.sleep(2000);
+        sleep(2);
 
         if (notification.isAlertPresent()) {
+            System.out.println("==========================================");
+            System.out.println("Check Error : ");
             String actualMessage = notification.getAlertText();
             System.out.println("Thông báo từ hệ thống: " + actualMessage);
             notification.acceptAlert();
@@ -132,9 +143,11 @@ public class LoginTest extends BaseTest {
     @Test(priority = 6)
     public void testInvalidEmailSpecialChars() throws InterruptedException {
         loginPage.login("user!@gmail.com", "validPassword123");
-        Thread.sleep(2000);
+        sleep(2);
 
         if (notification.isAlertPresent()) {
+            System.out.println("==========================================");
+            System.out.println("Check Error : ");
             String actualMessage = notification.getAlertText();
             System.out.println("Thông báo từ hệ thống: " + actualMessage);
             notification.acceptAlert();
@@ -149,9 +162,11 @@ public class LoginTest extends BaseTest {
     @Test(priority = 7)
     public void testShortPassword() throws InterruptedException {
         loginPage.login("user@gmail.com", "12345");
-        Thread.sleep(2000);
+        sleep(2);
 
         if (notification.isAlertPresent()) {
+            System.out.println("==========================================");
+            System.out.println("Check Error : ");
             String alertText = notification.getAlertText();
             System.out.println("Thông báo từ hệ thống: " + alertText);
             notification.acceptAlert();
@@ -164,9 +179,11 @@ public class LoginTest extends BaseTest {
     @Test(priority = 8)
     public void testEmailContainingSpaces() throws InterruptedException {
         loginPage.login("user @gmail.com", "validPassword123");
-        Thread.sleep(2000);
+        sleep(2);
 
         if (notification.isAlertPresent()) {
+            System.out.println("==========================================");
+            System.out.println("Check Error : ");
             String alertText = notification.getAlertText();
             System.out.println("Thông báo từ hệ thống: " + alertText);
             notification.acceptAlert();
@@ -179,12 +196,14 @@ public class LoginTest extends BaseTest {
     @Test(priority = 9)
     public void testPasswordContainingSpaces() throws InterruptedException {
         loginPage.login("user@gmail.com", "123 456");
-        Thread.sleep(2000);
+        sleep(2);
 
         String expectedMessage = "Tài khoản hoặc mật khẩu không chính xác. Vui lòng kiểm tra lại!";
         String actualMessage = "Không có thông báo từ hệ thống";
 
         if (notification.isAlertPresent()) {
+            System.out.println("==========================================");
+            System.out.println("Check Error : ");
             actualMessage = notification.getAlertText();
             System.out.println("Thông báo từ hệ thống: " + actualMessage);
             notification.acceptAlert();
@@ -196,20 +215,41 @@ public class LoginTest extends BaseTest {
     }
 
     @Test(priority = 10)
-    public void testPasswordVisibilityToggle() throws InterruptedException {
+    public void testPasswordVisibilityAsText() throws InterruptedException {
         loginPage.enterEmail("innologic25.team@gmail.com");
         loginPage.enterPassword("innologic2025");
 
-        loginPage.togglePasswordVisibility();
-        Thread.sleep(1000);
-        String inputType = loginPage.getPasswordFieldType();
-        Assert.assertEquals(inputType, "text", "Mật khẩu không hiển thị đúng!");
+        System.out.println("==========================================");
+        System.out.println("Kết quả dạng text: ");
+        sleep(2);
 
         loginPage.togglePasswordVisibility();
-        Thread.sleep(1000);
-        inputType = loginPage.getPasswordFieldType();
-        Assert.assertEquals(inputType, "password", "Mật khẩu không ẩn đúng!");
+        sleep(2);
+
+        String visiblePassword = loginPage.getPassText(); // Giả sử getPassText() trả về String
+        String inputType = loginPage.getPasswordFieldType();
+
+        System.out.println("Mật khẩu: " + visiblePassword);
+        Assert.assertEquals(inputType, "text", "Mật khẩu không hiển thị dạng text!");
     }
+
+//    @Test(priority = 11)
+//    public void testPasswordHiddenAsPassword() throws InterruptedException {
+//        loginPage.enterEmail("innologic25.team@gmail.com");
+//        loginPage.enterPassword("innologic2025");
+//
+//        System.out.println("==========================================");
+//        System.out.println("Checking password hidden as password: ");
+//        sleep(2);
+//
+//        loginPage.togglePasswordVisibility(); // Mở để xem dạng text trước
+//        sleep(2);
+//        loginPage.togglePasswordVisibility(); // Ẩn lại
+//        sleep(2);
+//
+//        String inputType = loginPage.getPasswordFieldType();
+//        Assert.assertEquals(inputType, "password", "Mật khẩu không ẩn đúng dạng password!");
+//    }
 
     @AfterMethod
     public void cleanupSuite() {

@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTest;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -28,6 +29,33 @@ public class EditPassTest extends BaseTest {
         driver.get(baseURL);
     }
 
+    @Test(priority = 0)
+    public void testChangePasswordWithSuccess() {
+        String account = "Hoa0987.team@gmail.com";
+        String currentPassword = "abcd123456";
+        String newPassword = "NewPass@2025";
+
+        // Đăng nhập ban đầu
+        editPassPage.loginToAccount(loginURL, account, currentPassword);
+        sleep(2);
+
+        // Navigate to change password page and update password
+        driver.get(changePasswordURL);
+        sleep(2);
+        WebElement currentPassField = editPassPage.enterCurrentPassword();
+        if (currentPassField != null) {
+            currentPassField.sendKeys(currentPassword);
+        }
+        sleep(1);
+        editPassPage.enterNewPassword(newPassword);
+        sleep(1);
+        editPassPage.enterConfirmPassword(newPassword);
+        sleep(1);
+        editPassPage.clickUpdateBtn();
+        sleep(3);
+
+    }
+
     @DataProvider(name = "passwordChangeData")
     public Object[][] passwordChangeData() {
         return readDataFromExcel("src/test/resources/edit_password.xlsx", "Sheet1");
@@ -41,11 +69,11 @@ public class EditPassTest extends BaseTest {
         String confirmPassword = data.get("Confirm Password");
         String testCase = data.get("TestCase");
 
-        System.out.println("Test case: " + testCase + " | Account: " + account +
-                ", Current Password: " + currentPassword +
-                ", New Password: " + newPassword +
-                ", Confirm Password: " + confirmPassword);
-
+        System.out.println("Test case: " + testCase );
+        System.out.println("Account: " + account );
+        System.out.println("Current Password: " + currentPassword );
+        System.out.println("New Password: " + newPassword );
+        System.out.println("Confirm Password: " + confirmPassword);
         // Đăng nhập với account và currentPassword
         editPassPage.loginToAccount(loginURL, account, currentPassword);
 
