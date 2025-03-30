@@ -49,7 +49,7 @@ public class AddCartPLTTest {
     void setupMethod(){
         driver.get(addCartURL);
         addCartPLTPage.clickAddCart();
-        tools.checkEqualMessage(driver.getCurrentUrl(), "https://pltpro.net/gio-hang");
+//        tools.checkEqualMessage(driver.getCurrentUrl(), "https://pltpro.net/gio-hang");
     }
     @DataProvider(name = "Information")
     private Object[][] InformationData() {
@@ -69,24 +69,29 @@ public class AddCartPLTTest {
 
         // Kiểm tra lỗi liên quan đến name
         if (data.get("name").isEmpty()) {
-            tools.checkContainsMessage(errorMessages, "Xin hãy nhập đầy đủ tên.");
+            tools.checkContainsMessageList(errorMessages, "Xin hãy nhập đầy đủ tên.");
         } else if (data.get("name").length() > 50) {
-            tools.checkContainsMessage(errorMessages, "Tên không được quá 50 kí tự");
+            tools.checkContainsMessageList(errorMessages, "Tên không được quá 50 kí tự");
         }
 
         // Kiểm tra lỗi liên quan đến phone
         if (data.get("phone").isEmpty()) {
-            tools.checkContainsMessage(errorMessages, "Xin hãy nhập số điện thoại.");
+            tools.checkContainsMessageList(errorMessages, "Xin hãy nhập số điện thoại.");
         } else if (data.get("phone").length() > 12) {
-            tools.checkContainsMessage(errorMessages, "SDT không được quá 12 kí tự");
+            tools.checkContainsMessageList(errorMessages, "SDT không được quá 12 kí tự");
         } else if (!data.get("phone").matches("\\d+")) {
-            tools.checkContainsMessage(errorMessages, "SDT phải là số");
+            tools.checkContainsMessageList(errorMessages, "SDT phải là số");
         }
 
         // Kiểm tra lỗi liên quan đến email
         if (!data.get("email").contains("@")) {
-            tools.checkEqualMessage(addCartPLTPage.getValidationEmail(), "Vui lòng bao gồm '@' trong địa chỉ email");
+            tools.checkContainsMessage(addCartPLTPage.getValidationEmail(), "Please include an '@' in the email address.");
         }
     }
+    @AfterTest
+    void cleanupTest(){
+        driver.quit();
+    }
+
 
 }

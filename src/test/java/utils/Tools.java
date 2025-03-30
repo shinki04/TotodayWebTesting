@@ -165,8 +165,26 @@ public class Tools {
     }
 
 
-    public void checkContainsMessage(List<String> actualMessages, String expectedMessage) {
+    public void checkContainsMessageList(List<String> actualMessages, String expectedMessage) {
+        System.out.println("==========================================");
+        System.out.println("Check Expect In Actual : ");
+        System.out.println("Actual : " + actualMessages.toString());
+        System.out.println("Expect : " + expectedMessage);
+        System.out.println("==========================================");
+
         Assert.assertTrue(actualMessages.contains(expectedMessage),
                           "Expected message '" + expectedMessage + "' not found in " + actualMessages);
+
+    }
+    public void checkContainsMessage(String actualMessages, String expectedMessage) {
+        System.out.println("==========================================");
+        System.out.println("Check Expect In Actual : ");
+        System.out.println("Actual : " + actualMessages);
+        System.out.println("Expect : " + expectedMessage);
+        System.out.println("==========================================");
+
+        Assert.assertTrue(actualMessages.contains(expectedMessage),
+                          "Expected message '" + expectedMessage + "' not found in " + actualMessages);
+
     }
 }
