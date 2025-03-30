@@ -48,7 +48,6 @@ tasks.test {
 //    useJUnitPlatform()
     useTestNG()
 }
-
 //tasks.register("helloVietnam") {
 //    doLast {
 //        println("Xin chào Việt Nam! ")
