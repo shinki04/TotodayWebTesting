@@ -32,11 +32,13 @@ dependencies {
     testImplementation("org.apache.poi:poi-ooxml:5.4.0") // Để đọc và ghi file Excel
     testImplementation("org.apache.poi:poi-scratchpad:5.4.0") // Để đọc và ghi file Excel}
 }
+
 tasks.named<Test>("test") {
     // Sử dụng TestNG cho unit tests
     useTestNG {
         useDefaultListeners = true
         outputDirectory = file("$projectDir/TestNG_Reports")
+        listeners.add("utils.ExcelTestListener")
     }
     reports {
         html.required.set(true)

@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
@@ -10,6 +11,7 @@ import org.testng.annotations.Test;
 import pages.AddCartPage;
 import pages.UpdateCartPage;
 
+import java.time.Duration;
 import java.util.List;
 
 public class UpdateCartTest extends BaseTest {
@@ -18,6 +20,10 @@ public class UpdateCartTest extends BaseTest {
 
     @BeforeClass
     private void setupClass() {
+        if (wait == null) {
+            System.out.println("Warning: wait is null in setupClass");
+            wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        }
         addCartPage = new AddCartPage(driver, wait);
         updateCartPage = new UpdateCartPage(driver, wait);
         driver.get("https://totoday.vn/ao-khoac-du-unisex-totoday-active-windbreaker-jacket-p37885995.html");

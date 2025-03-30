@@ -29,8 +29,9 @@ public class AddCartPLTTest {
     private WebDriverWait wait;
     private Tools tools;
 
-    @BeforeSuite
-    void setupSuite() {
+
+    @BeforeTest
+    void setupTest() {
         driver = getDriver();
         tools = new Tools(driver, wait);
         WebDriverManager.chromedriver().setup();
@@ -39,11 +40,6 @@ public class AddCartPLTTest {
         addCartPLTPage = new AddCartPLTPage(driver, wait);
         driver.manage().window().maximize();
         driver.navigate().refresh();
-    }
-
-    @BeforeTest
-    void setupTest() {
-
     }
     @BeforeMethod
     void setupMethod(){
@@ -88,10 +84,7 @@ public class AddCartPLTTest {
             tools.checkContainsMessage(addCartPLTPage.getValidationEmail(), "Please include an '@' in the email address.");
         }
     }
-    @AfterTest
-    void cleanupTest(){
-        driver.quit();
-    }
+
 
 
 }

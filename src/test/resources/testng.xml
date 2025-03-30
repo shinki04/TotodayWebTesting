@@ -5,19 +5,6 @@
         <listener class-name="utils.ExcelTestListener"></listener>
     </listeners>
 
-    <!--    Xong-->
-    <test name="Register Tests">
-        <classes>
-            <class name="tests.RegisterTest"/>
-        </classes>
-    </test>
-
-    <!--    Xong -->
-    <test name="Login Tests">
-        <classes>
-            <class name="tests.LoginTest"/>
-        </classes>
-    </test>
 
     <!--    Xong-->
     <test name="Search Tests">
@@ -41,36 +28,10 @@
         </classes>
     </test>
 
-    <!--    Xong-->
-    <test name="Order Lookup Tests">
-        <classes>
-            <class name="tests.OrderLookupTest"/>
-        </classes>
-    </test>
 
-    <!--    Xong-->
-    <test name="Store Location Tests">
-        <classes>
-            <class name="tests.StoreLocatorTest"/>
-        </classes>
-    </test>
 
-    <!--    Xong-->
-    <test name="Account Information Tests">
-        <classes>
-            <class name="tests.AccountInformationTest"/>
-        </classes>
-    </test>
 
-    <!--    Xong-->
-    <test name="Edit Password Tests">
-        <classes>
-            <class name="tests.EditPassTest"/>
-        </classes>
-    </test>
-
-    <!--    Xong-->
-    <test name="Add to Cart Test">
+    <test name="Add To Cart Tests">
         <classes>
             <class name="tests.AddCartTest"/>
         </classes>
@@ -83,25 +44,88 @@
         </classes>
     </test>
 
-    <!--    Xong-->
-    <test name="Product Detail Tests">
+    <test name="AddCartPLTTest">
         <classes>
-            <class name="tests.ProductDetailsTest"/>
+            <class name="tests.AddCartPLTTest"/>
         </classes>
     </test>
 
-    <!--    Xong-->
-    <test name="Delete Favourite Tests">
-        <classes>
-            <class name="tests.DeleteFavoriteListTest"/>
-        </classes>
-    </test>
+
+    <!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Register Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.RegisterTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong &ndash;&gt;-->
+<!--    <test name="Login Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.LoginTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Order Lookup Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.OrderLookupTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Store Location Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.StoreLocatorTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Account Information Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.AccountInformationTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Edit Password Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.EditPassTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash;    Xong&ndash;&gt;-->
+<!--    <test name="Add to Cart Test">-->
+<!--        <classes>-->
+<!--            <class name="tests.AddCartTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <!--    Xong-->
-    <test name="Zoom Tests">
-        <classes>
-            <class name="tests.ZoomTest"/>
-        </classes>
-    </test>
+<!--    <test name="Update to Cart Test">-->
+<!--        <classes>-->
+<!--            <class name="tests.UpdateCartTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <!--    Xong-->
+<!--    <test name="Product Detail Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.ProductDetailsTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <!--    Xong-->
+<!--    <test name="Delete Favourite Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.DeleteFavoriteListTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <!--    Xong-->
+<!--    <test name="Zoom Tests">-->
+<!--        <classes>-->
+<!--            <class name="tests.ZoomTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 </suite>

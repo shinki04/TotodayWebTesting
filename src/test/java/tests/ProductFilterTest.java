@@ -2,10 +2,12 @@ package tests;
 
 import base.BaseTest;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.FilterPage;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,11 +23,16 @@ public class ProductFilterTest extends BaseTest {
 
     @BeforeClass
     void setupClass() {
+        if (wait == null) {
+            System.out.println("Warning: wait is null in setupClass");
+            wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        }
         filterPage = new FilterPage(driver, wait);
     }
 
     @BeforeTest
     void setupTest() {
+
         driver.manage().window().maximize();
         driver.navigate().to(sortProductURL);
         driver.navigate().refresh();
