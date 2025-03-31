@@ -23,30 +23,35 @@ import java.util.List;
  * Page Object đại diện cho trang thông tin tài khoản
  */
 public class AccountInformationPage extends BaseTest {
+
+    // Khai báo biến và locator
     private WebDriver driver;
     private ExcelReader excelReader;
     private List<String[]> excelData;
     private String loginURL = DriverConfig.baseURL + "/user/signin";
     private String profileURL = DriverConfig.baseURL + "/profile";
 
-    // Các locator của các element trên trang
+    // Các locator của các element Field
     private By signInEmailField = By.id("SignInEmail");
     private By passwordField = By.id("password-field");
-    private By loginButton = By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]");
     private By fullNameField = By.id("floatingInput");
     private By birthdayField = By.id("birthday");
     private By phoneField = By.xpath("//input[@placeholder='Số điện thoại']");
-//    private By emailField = By.id("fEmail");
-private By emailField = By.xpath("//input[@id='fEmail']");
+    private By emailField = By.xpath("//input[@id='fEmail']");
     private By maleRadio = By.xpath("(//input[@id='gender'])[1]");
     private By femaleRadio = By.xpath("(//input[@id='gender'])[2]");
     private By addressField = By.id("address");
     private By provinceDropdown = By.id("cityId");
     private By districtDropdown = By.id("districtId");
     private By wardDropdown = By.id("wardId");
-    private By updateButton = By.xpath("//button[contains(text(),'Cập nhật')]");
 
-    // Constructor
+    // Các locator của các element Button
+    private By loginButton = By.xpath("//button[@type='submit'][contains(text(),'Đăng nhập')]");
+    private By updateButton = By.xpath("//button[contains(text(),'Cập nhật')]");
+    private By userButton = By.xpath("//img[@alt='Tài khoản']");
+    private By logoutButton = By.xpath("//a[@href='/user/signout']");
+
+    // Constructor - Khởi tạo đối tượng trang
     public AccountInformationPage(WebDriver driver) throws IOException {
         this.driver = driver;
         this.excelReader = new ExcelReader("./src/test/resources/accountln_information.xlsx");
@@ -55,7 +60,10 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         this.popupHandler = new PopupHandler(driver);
     }
 
-    //  Đăng nhập
+    /**
+     * Các phương thức chính xử lý luồng nghiệp vụ
+     */
+    // Đăng nhập vào hệ thống
     public void loginToAccount() {
         driver.get(loginURL);
         driver.manage().window().maximize();
@@ -66,12 +74,21 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         notification.acceptAlert();
     }
 
-    //  Điều hướng đến trang profile
+    // Điều hướng đến trang profile
     public void navigateToProfile() {
         driver.get(profileURL);
     }
 
-    //  Cập nhật họ tên từ Excel 
+    // Đăng xuất khỏi hệ thống
+    public void clickLogoutBtn() {
+        driver.findElement(userButton).click();
+        driver.findElement(logoutButton).click();
+    }
+
+    /**
+     * Các phương thức cập nhật thông tin và kiểm tra kết quả
+     */
+    // Cập nhật họ tên từ Excel
     public String updateFullNameFromExcel(int rowIndex) {
         String expectedFullName = excelData.get(rowIndex)[0];
         enterFullName(expectedFullName);
@@ -81,7 +98,7 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         return actualFullName;
     }
 
-    //  Cập nhật ngày sinh 
+    // Cập nhật ngày sinh
     public String updateBirthday(String newBirthday) {
         setBirthday("1995-08-15");
         clickUpdateButton();
@@ -92,29 +109,28 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         return formattedBirthday;
     }
 
-    //  Thử cập nhật số điện thoại từ Excel 
+    // Thử cập nhật số điện thoại từ Excel
     public String tryUpdatePhoneNumber() throws InterruptedException {
         String originalPhone = getPhoneNumber();
-        String actualPhone = tryEnterPhoneNumber();
         clickUpdateButton();
-        DriverConfig.sleep(2);
+        sleep(5);
         String finalPhone = getPhoneNumber();
         printResult(finalPhone, originalPhone);
         return finalPhone;
     }
 
-    //  Cập nhật email 
+    // Cập nhật email
     public String updateEmail(String randomEmail) throws InterruptedException {
         String expectedEmail = "innologic25.team@gmail.com";
         enterEmail(randomEmail);
         clickUpdateButton();
-        DriverConfig.sleep(3);
+        sleep(5);
         String actualEmail = getEmail();
         printResult(actualEmail, expectedEmail);
         return actualEmail;
     }
 
-    //  Chọn và cập nhật giới tính nam
+    // Chọn và cập nhật giới tính nam
     public boolean selectAndUpdateMaleGender() throws InterruptedException {
         selectMaleGender();
         DriverConfig.sleep(2);
@@ -124,7 +140,7 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         return actualSelected;
     }
 
-    //  Chọn và cập nhật giới tính nữ
+    // Chọn và cập nhật giới tính nữ
     public boolean selectAndUpdateFemaleGender() throws InterruptedException {
         selectFemaleGender();
         DriverConfig.sleep(2);
@@ -134,7 +150,7 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         return actualSelected;
     }
 
-    //  Cập nhật địa chỉ từ Excel 
+    // Cập nhật địa chỉ từ Excel
     public String updateAddressFromExcel() throws InterruptedException {
         String expectedAddress = excelData.get(0)[4];
         enterAddress();
@@ -145,7 +161,7 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         return actualAddress;
     }
 
-    //  Chọn và cập nhật tỉnh
+    // Chọn và cập nhật tỉnh
     public String selectAndUpdateProvince(String province) throws InterruptedException {
         selectProvince(province);
         DriverConfig.sleep(5);
@@ -155,7 +171,7 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         return actualProvince;
     }
 
-    //  Chọn và cập nhật quận
+    // Chọn và cập nhật quận
     public String selectAndUpdateDistrict(String district) throws InterruptedException {
         selectDistrict(district);
         DriverConfig.sleep(5);
@@ -165,7 +181,7 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         return actualDistrict;
     }
 
-    //  Chọn và cập nhật phường
+    // Chọn và cập nhật phường
     public String selectAndUpdateWard(String ward) throws InterruptedException {
         selectWard(ward);
         DriverConfig.sleep(5);
@@ -175,23 +191,13 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         return actualWard;
     }
 
-    // Phương thức in kết quả
-    private void printResult(String actual, String expected) {
-        System.out.println("==========================================");
-        System.out.println("Actual : " + actual);
-        System.out.println("Expect : " + expected);
-        System.out.println("==========================================");
-    }
-
-    // Các phương thức hỗ trợ
+    /**
+     * Các phương thức hỗ trợ nhập liệu
+     */
     private void enterFullName(String fullName) {
         WebElement element = waitForElement(fullNameField);
         element.clear();
         element.sendKeys(fullName);
-    }
-
-    public String getFullName() {
-        return driver.findElement(fullNameField).getAttribute("value");
     }
 
     private void setBirthday(String birthday) {
@@ -199,41 +205,15 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         js.executeScript("arguments[0].value = arguments[1];", driver.findElement(birthdayField), birthday);
     }
 
-    public String getBirthday() {
-        return driver.findElement(birthdayField).getAttribute("value");
-    }
-
-    private String tryEnterPhoneNumber() {
-        WebElement element = waitForElement(phoneField);
-        String originalPhone = element.getAttribute("value");
-        String newPhone = excelData.get(0)[2];
-        String isDisabled = element.getAttribute("disabled");
-
-        if (isDisabled == null || !isDisabled.equals("true")) {
-            element.clear();
-            element.sendKeys(newPhone);
-        } else {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-            js.executeScript("arguments[0].value = arguments[1];", element, newPhone);
-        }
-        return element.getAttribute("value");
-    }
-
-    public String getPhoneNumber() {
-        return driver.findElement(phoneField).getAttribute("value");
-    }
-
     private void enterEmail(String email) {
-        // Debug để kiểm tra trạng thái trang
         System.out.println("Current URL: " + driver.getCurrentUrl());
         System.out.println("Page source snippet: " + driver.getPageSource().substring(0, Math.min(500, driver.getPageSource().length())));
-
         WebElement element;
         try {
             element = waitForElement(emailField);
         } catch (org.openqa.selenium.TimeoutException e) {
             System.err.println("Không tìm thấy phần tử emailField (id=fEmail) sau 10 giây.");
-            throw e; // Ném lại ngoại lệ để test thất bại
+            throw e;
         }
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].removeAttribute('disabled');", element);
@@ -241,24 +221,12 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         element.sendKeys(email);
     }
 
-    public String getEmail() {
-        return driver.findElement(emailField).getAttribute("value");
-    }
-
     private void selectMaleGender() {
         driver.findElement(maleRadio).click();
     }
 
-    public boolean isMaleSelected() {
-        return driver.findElement(maleRadio).isSelected();
-    }
-
     private void selectFemaleGender() {
         driver.findElement(femaleRadio).click();
-    }
-
-    public boolean isFemaleSelected() {
-        return driver.findElement(femaleRadio).isSelected();
     }
 
     private void enterAddress() {
@@ -268,18 +236,9 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         element.sendKeys(address);
     }
 
-    public String getAddress() {
-        return driver.findElement(addressField).getAttribute("value");
-    }
-
     private void selectProvince(String province) {
         Select dropdown = new Select(waitForElement(provinceDropdown));
         dropdown.selectByVisibleText(province);
-    }
-
-    public String getSelectedProvince() {
-        Select dropdown = new Select(driver.findElement(provinceDropdown));
-        return dropdown.getFirstSelectedOption().getText();
     }
 
     private void selectDistrict(String district) {
@@ -287,19 +246,9 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         dropdown.selectByVisibleText(district);
     }
 
-    public String getSelectedDistrict() {
-        Select dropdown = new Select(driver.findElement(districtDropdown));
-        return dropdown.getFirstSelectedOption().getText();
-    }
-
     private void selectWard(String ward) {
         Select dropdown = new Select(waitForElement(wardDropdown));
         dropdown.selectByVisibleText(ward);
-    }
-
-    public String getSelectedWard() {
-        Select dropdown = new Select(driver.findElement(wardDropdown));
-        return dropdown.getFirstSelectedOption().getText();
     }
 
     private void clickUpdateButton() {
@@ -307,7 +256,55 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         updateBtn.submit();
     }
 
-    // Lấy dữ liệu từ Excel cho việc kiểm tra
+    /**
+     * Các phương thức lấy giá trị từ giao diện
+     */
+    public String getFullName() {
+        return driver.findElement(fullNameField).getAttribute("value");
+    }
+
+    public String getBirthday() {
+        return driver.findElement(birthdayField).getAttribute("value");
+    }
+
+    public String getPhoneNumber() {
+        return driver.findElement(phoneField).getAttribute("value");
+    }
+
+    public String getEmail() {
+        return driver.findElement(emailField).getAttribute("value");
+    }
+
+    public boolean isMaleSelected() {
+        return driver.findElement(maleRadio).isSelected();
+    }
+
+    public boolean isFemaleSelected() {
+        return driver.findElement(femaleRadio).isSelected();
+    }
+
+    public String getAddress() {
+        return driver.findElement(addressField).getAttribute("value");
+    }
+
+    public String getSelectedProvince() {
+        Select dropdown = new Select(driver.findElement(provinceDropdown));
+        return dropdown.getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedDistrict() {
+        Select dropdown = new Select(driver.findElement(districtDropdown));
+        return dropdown.getFirstSelectedOption().getText();
+    }
+
+    public String getSelectedWard() {
+        Select dropdown = new Select(driver.findElement(wardDropdown));
+        return dropdown.getFirstSelectedOption().getText();
+    }
+
+    /**
+     * Các phương thức lấy dữ liệu kỳ vọng từ Excel
+     */
     public String getExpectedFullName(int rowIndex) {
         return excelData.get(rowIndex)[0];
     }
@@ -320,7 +317,16 @@ private By emailField = By.xpath("//input[@id='fEmail']");
         return excelData.get(0)[4];
     }
 
-    // Phương thức chờ phần tử sẵn sàng
+    /**
+     * Các phương thức tiện ích
+     */
+    private void printResult(String actual, String expected) {
+        System.out.println("==========================================");
+        System.out.println("Actual : " + actual);
+        System.out.println("Expect : " + expected);
+        System.out.println("==========================================");
+    }
+
     private WebElement waitForElement(By locator) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.elementToBeClickable(locator));

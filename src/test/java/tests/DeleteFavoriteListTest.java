@@ -2,6 +2,7 @@ package tests;
 
 import base.BaseTest;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.DeleteFavoriteListPage;
@@ -54,9 +55,11 @@ public class DeleteFavoriteListTest extends BaseTest {
             System.out.println("Xóa sản phẩm thứ hai thất bại: " + secondProductName);
         }
         Assert.assertFalse(isSecondStillInWishlist, "Sản phẩm thứ hai vẫn còn trong danh sách yêu thích sau khi xóa");
+        sleep(2);
 
         // Load lại trang sau khi xóa sản phẩm thứ hai
         driver.navigate().refresh();
+        sleep(5);
 
         // Kiểm tra danh sách yêu thích có trống không
         boolean isWishlistEmpty = deleteFavoriteListPage.isWishlistEmpty();
@@ -72,4 +75,10 @@ public class DeleteFavoriteListTest extends BaseTest {
         String expectedMessage = "Danh sách quan tâm đang trống! Xem thêm sản phẩm tại đây";
         Assert.assertEquals(actualMessage, expectedMessage, "Thông báo khi wishlist trống không đúng!");
     }
+
+    @AfterMethod
+    public void cleanupSuite() {
+//        deleteFavoriteListPage.clickLogoutBtn();
+    }
+
 }

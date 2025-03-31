@@ -54,7 +54,6 @@ public class AccountInformationTest extends BaseTest {
         Assert.assertEquals(finalPhoneNumber, originalPhoneNumber,
                 "Số điện thoại không được phép cập nhật vì có thuộc tính disabled, nhưng nó đã bị thay đổi!");
         sleep(2);
-
         String expectedNewPhone = accInformationPage.getExpectedPhoneNumber();
         Assert.assertNotEquals(finalPhoneNumber, expectedNewPhone,
                 "Số điện thoại không nên khớp với giá trị từ Excel vì nó bị disabled!");
@@ -119,6 +118,6 @@ public class AccountInformationTest extends BaseTest {
 
     @AfterClass
     public void tearDown() {
-//        cleanupSuite();
+        accInformationPage.clickLogoutBtn();
     }
 }

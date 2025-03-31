@@ -38,10 +38,10 @@ public class LoginPage {
     public void clickLoginButton() {
         driver.findElement(submitButton).click();
     }
+
     public String getPassText() {
         return driver.findElement(passwordField).getAttribute("value");
     }
-
 
     public void login(String email, String password) {
         enterEmail(email);

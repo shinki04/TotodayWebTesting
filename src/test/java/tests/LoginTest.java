@@ -4,25 +4,25 @@ import base.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.LoginPage;
 import utils.ExcelReader;
 import utils.Notification;
+import utils.PopupHandler;
 
 import java.io.IOException;
 import java.util.List;
 
-//@Listeners(utils.ExcelTestListener.class)
-
 public class LoginTest extends BaseTest {
     private LoginPage loginPage;
     private Notification notification;
+    private PopupHandler popupHandler; // Thêm biến popupHandler
 
     @BeforeMethod
     public void setupMethod() {
         loginPage = new LoginPage(driver, baseURL);
         notification = new Notification(driver);
+        popupHandler = new PopupHandler(driver); // Khởi tạo popupHandler
         loginPage.navigateToLoginPage();
     }
 
@@ -226,33 +226,15 @@ public class LoginTest extends BaseTest {
         loginPage.togglePasswordVisibility();
         sleep(2);
 
-        String visiblePassword = loginPage.getPassText(); // Giả sử getPassText() trả về String
+        String visiblePassword = loginPage.getPassText();
         String inputType = loginPage.getPasswordFieldType();
 
         System.out.println("Mật khẩu: " + visiblePassword);
         Assert.assertEquals(inputType, "text", "Mật khẩu không hiển thị dạng text!");
     }
 
-//    @Test(priority = 11)
-//    public void testPasswordHiddenAsPassword() throws InterruptedException {
-//        loginPage.enterEmail("innologic25.team@gmail.com");
-//        loginPage.enterPassword("innologic2025");
-//
-//        System.out.println("==========================================");
-//        System.out.println("Checking password hidden as password: ");
-//        sleep(2);
-//
-//        loginPage.togglePasswordVisibility(); // Mở để xem dạng text trước
-//        sleep(2);
-//        loginPage.togglePasswordVisibility(); // Ẩn lại
-//        sleep(2);
-//
-//        String inputType = loginPage.getPasswordFieldType();
-//        Assert.assertEquals(inputType, "password", "Mật khẩu không ẩn đúng dạng password!");
-//    }
-
     @AfterMethod
     public void cleanupSuite() {
-//        cleanupSuite();
+        // cleanupSuite();
     }
 }

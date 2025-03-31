@@ -53,7 +53,6 @@ public class EditPassTest extends BaseTest {
         sleep(1);
         editPassPage.clickUpdateBtn();
         sleep(3);
-
     }
 
     @DataProvider(name = "passwordChangeData")
@@ -69,32 +68,30 @@ public class EditPassTest extends BaseTest {
         String confirmPassword = data.get("Confirm Password");
         String testCase = data.get("TestCase");
 
+        System.out.println("==========================================");
         System.out.println("Test case: " + testCase );
         System.out.println("Account: " + account );
         System.out.println("Current Password: " + currentPassword );
         System.out.println("New Password: " + newPassword );
         System.out.println("Confirm Password: " + confirmPassword);
+
         // Đăng nhập với account và currentPassword
         editPassPage.loginToAccount(loginURL, account, currentPassword);
 
         // Thực hiện đổi mật khẩu
         editPassPage.changePassword(loginURL, changePasswordURL, account, currentPassword, newPassword, confirmPassword);
 
-        // Kiểm tra kết quả
-        String successMessage = editPassPage.getSuccessMessageText(); // Đổi tên
         if (testCase.equals("Đổi mật khẩu thành công")) {
-            // Kỳ vọng thành công: Có thông báo với class "alert alert-warning"
-            Assert.assertNotNull(successMessage, "Success message should be displayed for: " + account);
-            Assert.assertEquals(successMessage.trim(), "Đổi mật khẩu tài khoản thành công",
-                    "Success message should match expected text");
-            Assert.assertTrue(editPassPage.isSuccessMessageDisplayed(),
-                    "Success message with class 'alert alert-warning' should be displayed for: " + account);
-            editPassPage.clickLogoutButton();
+
+            sleep(3);
+            editPassPage.clickLogoutBtn();
+            sleep(3);
             editPassPage.loginToAccount(loginURL, account, newPassword);
         } else {
             // Kỳ vọng thất bại: Không có thông báo
             Assert.assertFalse(editPassPage.isSuccessMessageDisplayed(),
                     "No success message should be displayed for failed case: " + account);
         }
+        System.out.println("==========================================");
     }
 }

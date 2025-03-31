@@ -26,6 +26,10 @@ public class EditPassPage {
     private final By errorMessageLocator = By.id("error-message");
     private final By successMessageLocator = By.cssSelector(".alert.alert-warning");
 
+    // Locators cho đăng xuất
+    private final By userButton = By.xpath("//img[@alt='Tài khoản']");
+    private final By logoutButton = By.xpath("//a[@href='/user/signout']");
+
     // Constructor
     public EditPassPage(WebDriver driver, Notification notification) {
         this.driver = driver;
@@ -105,10 +109,28 @@ public class EditPassPage {
         }
     }
 
-    public void clickLogoutButton() { /* ... */ }
+    public void clickLogoutBtn() {
+        WebElement userBtn = waitForElement(userButton);
+        if (userBtn != null) {
+            userBtn.click();
+        }
+        WebElement logoutBtn = waitForElement(logoutButton);
+        if (logoutBtn != null) {
+            logoutBtn.click();
+        }
+    }
 
     public void changePassword(String loginUrl, String changePasswordUrl, String account,
-                               String currentPassword, String newPassword, String confirmPassword) { /* ... */ }
+                               String currentPassword, String newPassword, String confirmPassword) {
+        driver.get(changePasswordUrl);
+        WebElement currentPassField = enterCurrentPassword();
+        if (currentPassField != null) {
+            currentPassField.sendKeys(currentPassword);
+        }
+        enterNewPassword(newPassword);
+        enterConfirmPassword(confirmPassword);
+        clickUpdateBtn();
+    }
 
     // Query Methods
     public String getSuccessMessageText() {
