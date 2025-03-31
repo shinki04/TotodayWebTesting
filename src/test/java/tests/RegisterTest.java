@@ -4,9 +4,12 @@ import base.BaseTest;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.RegisterPage;
 import utils.Tools;
+
+//@Listeners(utils.ExcelTestListener.class)
 
 public class RegisterTest extends BaseTest {
     private RegisterPage registerPage;

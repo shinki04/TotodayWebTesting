@@ -11,6 +11,8 @@ import utils.Notification;
 import java.time.Duration;
 import java.util.List;
 
+import static config.DriverConfig.sleep;
+
 public class DeleteFavoriteListPage {
     private final WebDriver driver;
     private final String baseURL;
@@ -27,6 +29,9 @@ public class DeleteFavoriteListPage {
     private final By deleteWishlistButton = By.xpath("//div[@class='col-md-8']//div[2]//div[2]//span[1]//i[1]");
     private final By productNameLocator = By.xpath("//p[@class='name']");
     private final By emptyWishlistMessage = By.xpath("//div[@class='wrap-right']");
+
+    private By userButton = By.xpath("//img[@alt='Tài khoản']");
+    private By logoutButton = By.xpath("//a[@href='/user/signout']");
 
     public DeleteFavoriteListPage(WebDriver driver, String baseURL, Notification notification) {
         this.driver = driver;
@@ -71,6 +76,13 @@ public class DeleteFavoriteListPage {
             System.out.println("Thông báo sau đăng nhập: " + alertText);
             notification.acceptAlert();
         }
+    }
+
+    public void clickLogoutBtn() {
+        sleep(2);
+        driver.findElement(userButton).click();
+        sleep(2);
+        driver.findElement(logoutButton).click();
     }
 
     public void addToWishlist(String productUrl) {

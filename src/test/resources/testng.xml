@@ -1,5 +1,5 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Totoday Test" thread-count="4" parallel="false">
+<suite name="Totoday Test" thread-count="1" >
 
     <listeners>
         <listener class-name="utils.ExcelTestListener"></listener>
